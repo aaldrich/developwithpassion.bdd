@@ -20,10 +20,6 @@ namespace developwithpassion.bdd.tests
                 target.reset();
 
                 delegate_type_to_run = typeof (because);
-
-                provide_a_basic_sut_constructor_argument(delegate_type_to_run);
-                provide_a_basic_sut_constructor_argument(target);
-                provide_a_basic_sut_constructor_argument(target.GetType());
             };
 
             because b = () => sut.run();
@@ -35,6 +31,10 @@ namespace developwithpassion.bdd.tests
                 SomeClassWithDelegateFields.context_block_invocation_count.should_be_equal_to(0);
             };
 
+            public override ICommand create_sut()
+            {
+                return new DelegateFieldInvocation(delegate_type_to_run, target, target.GetType());
+            }
 
             static Type delegate_type_to_run;
             static SomeClassWithDelegateFields target;

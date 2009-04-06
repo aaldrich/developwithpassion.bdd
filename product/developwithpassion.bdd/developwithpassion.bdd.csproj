@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="contexts\after_all_observations.cs" />
     <Compile Include="contexts\before_all_observations.cs" />
+    <Compile Include="contexts\observation.cs" />
     <Compile Include="mbunit\AssertionExtensions.cs" />
     <Compile Include="mbunit\ComparisonAssertionExtensions.cs" />
     <Compile Include="mbunit\ComparisonAssertionExtensionsSpecs.cs" />
