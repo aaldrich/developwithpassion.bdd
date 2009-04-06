@@ -21,11 +21,18 @@ task :default => [:full_test]
 task :init  => :clean do
   mkdir 'artifacts'
   mkdir 'artifacts/coverage'
+  mkdir 'artifacts/deploy'
 end
 
 desc 'compiles the project'
 task :compile do
   MSBuildRunner.compile :compile_target => COMPILE_TARGET, :solution_file => 'solution.sln'
+end
+
+task :deploy => :compile do
+  Dir.glob(File.join('product','**','developwithpassion*.dll')).each do|file|
+    FileUtils.cp file,File.join('artifacts','deploy')
+  end
 end
 
 desc 'run the tests for the project'
