@@ -6,14 +6,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EAA828F4-419B-4078-8EB6-533FBD86E800}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>build</RootNamespace>
-    <AssemblyName>build</AssemblyName>
+    <RootNamespace>project</RootNamespace>
+    <AssemblyName>project</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <PublishUrl>http://localhost/build/</PublishUrl>
+    <PublishUrl>http://localhost/project/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -47,22 +47,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="assembly_build.ps1" />
     <None Include="build.bat" />
-    <None Include="build.ps1" />
-    <None Include="commit.bat" />
-    <None Include="config\app.config.vista.template" />
-    <None Include="config\app.config.xp.template" />
-    <None Include="config\log4net.config.xml.template" />
-    <None Include="local_properties.ps1" />
-    <None Include="local_properties.ps1.customize" />
-    <None Include="open.bat" />
-    <None Include="open.ps1" />
-    <None Include="project_name.ps1" />
-    <None Include="studio_build.ps1" />
+    <None Include="build_utilities.rb" />
+    <None Include="local_properties.rb" />
+    <None Include="project_name.rb" />
+    <None Include="rakefile.rb" />
     <None Include="tools\psake\build_utilities.ps1" />
     <None Include="tools\psake\psake.ps1" />
-    <None Include="up.bat" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -80,6 +71,13 @@
       <ProductName>.NET Framework 3.5</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt" />
+    <Content Include="setup\resharper\FileTemplate.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="setup\classtoincludefortdd.net\EmptyTestContainer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
