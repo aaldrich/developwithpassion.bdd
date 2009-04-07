@@ -32,13 +32,13 @@ namespace developwithpassion.bdd.mbunit
 
         public static ExceptionType should_throw_an<ExceptionType>(this Action work_to_perform) where ExceptionType : Exception
         {
-            var resultingException = get_exception_from_performing(work_to_perform);
+            var resultingException = work_to_perform.get_exception();
             resultingException.should_not_be_null();
             resultingException.should_be_an_instance_of<ExceptionType>();
             return (ExceptionType)resultingException;
         }
 
-        private static Exception get_exception_from_performing(Action work)
+        public static Exception get_exception(this Action work)
         {
             try
             {

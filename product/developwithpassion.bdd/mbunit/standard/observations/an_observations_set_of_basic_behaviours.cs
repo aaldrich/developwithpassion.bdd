@@ -7,6 +7,7 @@ using developwithpassion.bdd.mbunit.standard;
 using developwithpassion.bdd.concerns;
 using MbUnit.Framework;
 using Rhino.Mocks;
+using developwithpassion.bdd.mbunit;
 
 namespace developwithpassion.bdd.concerns
 {
@@ -95,15 +96,7 @@ namespace developwithpassion.bdd.concerns
 
         static Exception get_exception_throw_by(Action because_behaviour)
         {
-            try
-            {
-                because_behaviour();
-                return null;
-            }
-            catch (Exception e)
-            {
-                return e;
-            }
+            return because_behaviour.get_exception();
         }
 
         static public InterfaceType container_dependency<InterfaceType>() where InterfaceType : class
