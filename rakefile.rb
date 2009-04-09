@@ -25,7 +25,7 @@ task :init  => :clean do
 end
 
 desc 'compiles the project'
-task :compile do
+task :compile => :init do
   MSBuildRunner.compile :compile_target => COMPILE_TARGET, :solution_file => 'solution.sln'
 end
 
@@ -41,3 +41,10 @@ task :test, :category_to_exclude, :needs => [:compile] do |t,args|
   runner = MbUnitRunner.new :compile_target => COMPILE_TARGET, :category_to_exclude => args.category_to_exclude
   runner.execute_tests ["#{Project.name}.tests"]
 end
+
+desc 'run the bdddoc test report for the project'
+task :run_test_report => [:test] do
+ runner = BDDDocRunner.new 
+ runner.run(File.join('product','developwithpassion.bdd.tests','bin','debug','developwithpassion.bdd.tests.dll'))
+end
+

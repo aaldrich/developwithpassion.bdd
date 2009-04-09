@@ -1,6 +1,7 @@
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
+using developwithpassion.bdddoc.core;
 
 namespace developwithpassion.bdd.tests
 {
@@ -8,6 +9,7 @@ namespace developwithpassion.bdd.tests
     {
         public abstract class concern : observations_for_a_static_sut {}
 
+        [Concern(typeof(StringAssertionExtensions))]
         public class when_performing_string_assertions_using_bdd_style_extension_methods : concern
         {
             it should_be_able_to_assert_that_2_strings_are_equal_irrespective_of_case = () =>

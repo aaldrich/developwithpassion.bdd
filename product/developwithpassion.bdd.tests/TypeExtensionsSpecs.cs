@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using bdddoc.core;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core.extensions;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdd.mbunit;
+using developwithpassion.bdddoc.core;
 
 namespace developwithpassion.bdd.tests
 {
@@ -15,7 +15,7 @@ namespace developwithpassion.bdd.tests
         public abstract class concern : observations_for_a_static_sut {}
 
         [Concern(typeof (TypeExtensions))]
-        public class when_a_type_is_told_to_find_its_greediest_constructor : observations_for_a_static_sut
+        public class when_a_type_is_told_to_find_its_greediest_constructor : concern
         {
             static ConstructorInfo result;
 

@@ -104,7 +104,8 @@ class MbUnitRunner
 		@test_results_dir = items.fetch(:test_results_dir, 'artifacts')
 		@compile_target = items.fetch(:compile_target, 'debug')
 		@category_to_exclude = items.fetch(:category_to_exclude, 'missing')
-		@show_report = items.fetch(:show_report, true)
+		@show_report = items.fetch(:show_report, false)
+    @report_type = items.fetch(:report_type,'XML')
 	end
 	
 	def execute_tests(assemblies)
@@ -117,7 +118,7 @@ class MbUnitRunner
 
   def build_command_line_for(assembly)
 			file = File.expand_path("#{@source_dir}/#{assembly}/bin/#{@compile_target}/#{assembly}.dll")
-      "#{@mbunit_dir}/mbunit.cons.exe #{file} /rt:text /rnf:#{assembly}.dll-results.xml /rf:#{@test_results_dir} #{'/sr' if @show_report} /ec:#{@category_to_exclude}"
+      "#{@mbunit_dir}/mbunit.cons.exe #{file} /rt:#{@report_type} /rnf:#{assembly}.dll-results /rf:#{@test_results_dir} #{'/sr' if @show_report} /ec:#{@category_to_exclude}"
   end
 end
 
@@ -163,3 +164,24 @@ class File
   end
 
  end
+
+class BDDDocRunner
+  def initialize(settings = Hash.new('missing'))
+    @output_folder = settings.fetch(:output_folder,'artifacts')
+    @observation_attribute = settings.fetch(:observation_attribute,'ObservationAttribute')
+    @bdddoc_folder = settings.fetch(:bdddoc_folder,'thirdparty\developwithpassion.bdddoc')
+    @mbunit_test_output_folder = settings.fetch(:mbunit_test_output_folder,'artifacts')
+    @developwithpassion_bdddoc_exe = settings.fetch(:bdddoc_exe,'developwithpassion.bdddoc.exe')
+    @logo_jpg = settings.fetch(:logo_jpg,File.join(@bdddoc_folder,'developwithpassion.bdddoc-logo.jpg'))
+    @css = settings.fetch(:css,File.join(@bdddoc_folder,'developwithpassion.bdddoc.css'))
+  end
+
+  def run(test_library)
+    test_file = File.basename(test_library)
+    output_file = "#{File.join(@output_folder,test_file)}.developwithpassion.bdddoc.html"
+    mbunit_test_output_file = "#{File.join(@mbunit_test_output_folder,test_file)}-results.xml"
+    sh "#{File.join(@bdddoc_folder,@developwithpassion_bdddoc_exe)} #{test_library} #{@observation_attribute} #{output_file} #{mbunit_test_output_file}"
+   FileUtils.cp @logo_jpg,@output_folder
+   FileUtils.cp @css,@output_folder
+  end
+end

@@ -5,6 +5,7 @@ using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdd.tests.helpers;
 using developwithpassion.bdd.mbunit;
+using developwithpassion.bdddoc.core;
 
 namespace developwithpassion.bdd.tests
 {
@@ -12,6 +13,7 @@ namespace developwithpassion.bdd.tests
     {
         public abstract class concern : observations_for_a_static_sut {}
 
+        [Concern(typeof(EnumerableAssertionExtensions))]
         public class when_performing_enumerable_assertions_using_bdd_extensions_methods : concern
         {
             context c = () =>

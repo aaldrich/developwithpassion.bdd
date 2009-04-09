@@ -10,10 +10,8 @@ _ReSharper.*
 *.sql
 *.swp
 *.swo
-/build/buildartifacts
-/build/artifacts
-/build/deploy
-/build/config/app.config.vista
-/build/config/app.config.xp
-/build/config/log4net.config.xml
+/artifacts
+/product/config/app.config.vista
+/product/config/app.config.xp
+/product/config/log4net.config.xml
 

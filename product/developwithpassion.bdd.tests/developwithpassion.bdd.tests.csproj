@@ -30,15 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="bdddoc, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\thirdparty\bdddoc\bdddoc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Castle.DynamicProxy2, Version=2.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\thirdparty\castle\Castle.DynamicProxy2.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="developwithpassion.bdddoc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\thirdparty\developwithpassion.bdddoc\developwithpassion.bdddoc.exe</HintPath>
     </Reference>
     <Reference Include="developwithpassion.commons.core.infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -65,6 +64,7 @@
     <Compile Include="an_observations_set_of_basic_behaviours_specs.cs" />
     <Compile Include="AssertionExtensionsSpecs.cs" />
     <Compile Include="ChainedCommandSpecs.cs" />
+    <Compile Include="ComparisonAssertionExtensionsSpecs.cs" />
     <Compile Include="DelegateFieldInvocationSpecs.cs" />
     <Compile Include="EnumerableAssertionExtensionsSpecs.cs" />
     <Compile Include="helpers\NumericExtensions.cs" />

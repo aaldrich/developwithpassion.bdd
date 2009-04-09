@@ -1,15 +1,15 @@
 using System;
-using bdddoc.core;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core.commands;
-using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.mbunit.standard.observations;
+using developwithpassion.bdddoc.core;
 
 namespace developwithpassion.bdd.tests
 {
     public class DelegateFieldInvocationSpecs
     {
-        public abstract class concern : observations_for_a_sut_with_a_contract<ICommand,DelegateFieldInvocation> {}
+        public abstract class concern : observations_for_a_sut_with_a_contract<ICommand, DelegateFieldInvocation> {}
 
         [Concern(typeof (DelegateFieldInvocation))]
         public class when_run_with_a_specified_delegate_type : concern

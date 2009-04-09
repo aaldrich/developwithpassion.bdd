@@ -1,10 +1,10 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using bdddoc.core;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
+using developwithpassion.bdddoc.core;
 
 namespace developwithpassion.bdd.tests
 {
