@@ -13,17 +13,17 @@ namespace developwithpassion.bdd.containers
             this.resolvers = resolvers;
         }
 
-        public Interface get_an<Interface>()
+        public Interface instance_of<Interface>()
         {
-            return (Interface) get_an(typeof (Interface));
+            return (Interface) instance_of(typeof (Interface));
         }
 
-        public object get_an(Type dependency_type)
+        public object instance_of(Type dependency_type)
         {
             return get_resolver_for(dependency_type).resolve();
         }
 
-        public IEnumerable<Contract> get_all<Contract>()
+        public IEnumerable<Contract> all_instances_of<Contract>()
         {
             throw new NotImplementedException();
         }

@@ -248,7 +248,7 @@ namespace test.developwithpassion.bdd
     {
         public void do_something()
         {
-            IOC.current.get_an<IDbConnection>().Open();
+            IOC.get().instance_of<IDbConnection>().Open();
         }
     }
 }
