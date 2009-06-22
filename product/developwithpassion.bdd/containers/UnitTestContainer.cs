@@ -6,8 +6,8 @@ namespace developwithpassion.bdd.containers
 {
     public class UnitTestContainer
     {
-        static IContainer container;
-        static IDictionary<Type, IContainerItemResolver> items;
+        static Container container;
+        static IDictionary<Type, ContainerItemResolver> items;
         static object mutex = new object();
 
 
@@ -23,9 +23,9 @@ namespace developwithpassion.bdd.containers
             {
                 if (container == null)
                 {
-                    items = new Dictionary<Type, IContainerItemResolver>();
+                    items = new Dictionary<Type, ContainerItemResolver>();
                     container = new SimpleContainer(items);
-                    Container.initialize_with(container);
+                    IOC.initialize_with(container);
                 }
                 action();
             });
@@ -43,7 +43,7 @@ namespace developwithpassion.bdd.containers
             {
                 items = null;
                 container = null;
-                Container.initialize_with(null);
+                IOC.initialize_with(null);
             });
         }
     }

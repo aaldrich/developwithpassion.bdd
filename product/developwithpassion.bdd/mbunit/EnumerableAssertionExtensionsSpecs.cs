@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.mbunit.standard.observations;
-using developwithpassion.bdd.tests.helpers;
-using developwithpassion.bdd.mbunit;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.tests
+namespace developwithpassion.bdd.mbunit
 {
     public class EnumerableAssertionExtensionsSpecs
     {

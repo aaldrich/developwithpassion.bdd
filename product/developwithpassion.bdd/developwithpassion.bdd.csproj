@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.DynamicProxy2, Version=2.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\thirdparty\castle\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="developwithpassion.bdddoc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\thirdparty\developwithpassion.bdddoc\developwithpassion.bdddoc.exe</HintPath>
+    </Reference>
     <Reference Include="developwithpassion.commons.core.infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\thirdparty\developwithpassion.commons\developwithpassion.commons.core.infrastructure.dll</HintPath>
@@ -55,11 +63,19 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="mbunit\standard\observations\an_observations_set_of_basic_behaviours_specs.cs" />
+    <Compile Include="mbunit\AssertionExtensionsSpecs.cs" />
+    <Compile Include="core\commands\ChainedCommandSpecs.cs" />
+    <Compile Include="mbunit\ComparisonAssertionExtensionsSpecs.cs" />
     <Compile Include="contexts\after_all_observations.cs" />
     <Compile Include="contexts\before_all_observations.cs" />
     <Compile Include="contexts\observation.cs" />
+    <Compile Include="DelegateFieldInvocationSpecs.cs" />
+    <Compile Include="mbunit\EnumerableAssertionExtensionsSpecs.cs" />
+    <Compile Include="core\extensions\IterationExtensionsSpecs.cs" />
     <Compile Include="mbunit\AssertionExtensions.cs" />
     <Compile Include="mbunit\ComparisonAssertionExtensions.cs" />
     <Compile Include="mbunit\standard\observations\an_observations_set_of_basic_behaviours.cs" />
@@ -68,7 +84,7 @@
     <Compile Include="mbunit\standard\observations\observations_for_a_sut_without_a_contract.cs" />
     <Compile Include="mbunit\standard\observations\observations_for_a_sut_with_a_contract.cs" />
     <Compile Include="containers\DependencyResolver.cs" />
-    <Compile Include="containers\IContainerItemResolver.cs" />
+    <Compile Include="containers\ContainerItemResolver.cs" />
     <Compile Include="containers\SimpleContainer.cs" />
     <Compile Include="containers\SimpleContainerItemResolver.cs" />
     <Compile Include="containers\UnitTestContainer.cs" />
@@ -79,7 +95,7 @@
     <Compile Include="contexts\context.cs" />
     <Compile Include="contexts\create_the_sut.cs" />
     <Compile Include="contexts\it.cs" />
-    <Compile Include="core\commands\IParameterizedCommand.cs" />
+    <Compile Include="core\commands\ParameterizedCommand.cs" />
     <Compile Include="mbunit\AppendTestsToTestTree.cs" />
     <Compile Include="mbunit\BlockRun.cs" />
     <Compile Include="mbunit\StringAssertionExtensions.cs" />
@@ -87,7 +103,7 @@
     <Compile Include="mbunit\DelegateRunInvoker.cs" />
     <Compile Include="core\commands\ChainedCommand.cs" />
     <Compile Include="core\commands\CommandExtensions.cs" />
-    <Compile Include="core\commands\ICommand.cs" />
+    <Compile Include="core\commands\Command.cs" />
     <Compile Include="core\commands\NullCommand.cs" />
     <Compile Include="core\extensions\IterationExtensions.cs" />
     <Compile Include="core\extensions\StringExtensions.cs" />
@@ -97,8 +113,14 @@
     <Compile Include="mbunit\standard\ObservationAttribute.cs" />
     <Compile Include="mbunit\standard\ObservationsAttribute.cs" />
     <Compile Include="mbunit\EnumerableAssertionExtensions.cs" />
+    <Compile Include="mbunit\standard\observations\observations_for_an_instance_sut_specs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RhinoMocksExtensions.cs" />
+    <Compile Include="NumericExtensionsSpecs.cs" />
+    <Compile Include="mbunit\StringAssertionExtensionsSpecs.cs" />
+    <Compile Include="core\extensions\StringExtensionsSpecs.cs" />
+    <Compile Include="core\extensions\TypeCastingExtensionsSpecs.cs" />
+    <Compile Include="core\extensions\TypeExtensionsSpecs.cs" />
     <Compile Include="VoidMethodCallOccurance.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

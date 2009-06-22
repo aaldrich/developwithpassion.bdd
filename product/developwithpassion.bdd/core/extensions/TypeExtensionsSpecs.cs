@@ -3,12 +3,11 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using developwithpassion.bdd.contexts;
-using developwithpassion.bdd.core.extensions;
-using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.tests
+namespace developwithpassion.bdd.core.extensions
 {
     public class TypeExtensionSpecs
     {
@@ -46,6 +45,25 @@ namespace developwithpassion.bdd.tests
             };
         }
 
+        [Concern(typeof (TypeExtensions))]
+        public class when_told_to_get_a_list_of_fields_of_certain_type : concern
+        {
+            static IEnumerable<FieldInfo> result;
+
+            because b = () =>
+            {
+                result = TypeExtensions.all_fields_of<it>(typeof(SomethingWithParameterfulConstructors),BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+            };
+
+            it should_only_return_the_fields_that_match_the_expected_type = () =>
+            {
+                result.Count().should_be_equal_to(2);
+            };
+        }
+
+
+        
+
         public class SomethingWithParameterfulConstructors
         {
             public IDbConnection connection { get; set; }
@@ -59,6 +77,20 @@ namespace developwithpassion.bdd.tests
                 this.connection = connection;
                 this.command = command;
             }
+
+            it first_observation = () =>
+            {
+                
+
+
+            };
+
+            it second_observation = () =>
+            {
+                
+
+
+            };
         }
     }
 }

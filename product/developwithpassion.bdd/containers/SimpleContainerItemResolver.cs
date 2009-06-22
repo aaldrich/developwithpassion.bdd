@@ -1,6 +1,6 @@
 namespace developwithpassion.bdd.containers
 {
-    public class SimpleContainerItemResolver : IContainerItemResolver
+    public class SimpleContainerItemResolver : ContainerItemResolver
     {
         readonly DependencyResolver resolver;
 

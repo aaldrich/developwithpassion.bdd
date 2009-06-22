@@ -7,7 +7,7 @@ using developwithpassion.bdd.core.extensions;
 
 namespace developwithpassion.bdd
 {
-    public class DelegateFieldInvocation : ICommand
+    public class DelegateFieldInvocation : Command
     {
         const BindingFlags probing_flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly;
         Type delegate_type;

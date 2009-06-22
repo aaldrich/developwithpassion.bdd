@@ -4,11 +4,11 @@ using developwithpassion.commons.core.infrastructure.containers;
 
 namespace developwithpassion.bdd.containers
 {
-    public class SimpleContainer : IContainer
+    public class SimpleContainer : Container
     {
-        readonly IDictionary<Type, IContainerItemResolver> resolvers;
+        readonly IDictionary<Type, ContainerItemResolver> resolvers;
 
-        public SimpleContainer(IDictionary<Type, IContainerItemResolver> resolvers)
+        public SimpleContainer(IDictionary<Type, ContainerItemResolver> resolvers)
         {
             this.resolvers = resolvers;
         }
@@ -28,12 +28,12 @@ namespace developwithpassion.bdd.containers
             throw new NotImplementedException();
         }
 
-        public void add_resolver_for<Interface>(IContainerItemResolver resolver)
+        public void add_resolver_for<Interface>(ContainerItemResolver resolver)
         {
             resolvers.Add(typeof (Interface), resolver);
         }
 
-        IContainerItemResolver get_resolver_for(Type type)
+        ContainerItemResolver get_resolver_for(Type type)
         {
             return resolvers[type];
         }

@@ -1,6 +1,6 @@
 namespace developwithpassion.bdd.core.commands
 {
-    public interface ICommand
+    public interface Command
     {
         void run();
     }

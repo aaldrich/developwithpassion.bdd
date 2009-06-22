@@ -1,6 +1,6 @@
-namespace developwithpassion.bdd.tests.helpers
+namespace developwithpassion.bdd
 {
-    static public class NumericExtensions
+    static public class NumericExtensionsSpecs
     {
         public static bool is_a_non_zero_multiple_of(this int item, int multiple) {
             return item%multiple == 0 && item !=0; 

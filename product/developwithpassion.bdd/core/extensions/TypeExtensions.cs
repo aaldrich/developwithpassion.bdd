@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -25,6 +26,11 @@ namespace developwithpassion.bdd.core.extensions
             type.GetGenericArguments().each(x => message.AppendFormat(generic_argument_type_format, x));
 
             return message.ToString();
+        }
+
+        public static IEnumerable<FieldInfo> all_fields_of<FieldType>(this Type type, BindingFlags flags)
+        {
+            return type.GetFields(flags).Where(field => field.FieldType == typeof (FieldType));
         }
     }
 }

@@ -1,9 +1,8 @@
 using developwithpassion.bdd.contexts;
-using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.tests
+namespace developwithpassion.bdd.mbunit
 {
     public class StringAssertionExtensionsSpecs
     {

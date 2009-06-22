@@ -64,9 +64,9 @@ namespace developwithpassion.bdd.concerns
             return default(SUT);
         }
 
-        ICommand build_command_chain<DelegateType>()
+        Command build_command_chain<DelegateType>()
         {
-            var actions = new Stack<ICommand>();
+            var actions = new Stack<Command>();
             var current_class = GetType();
 
             while (current_class.is_a_concern_type())

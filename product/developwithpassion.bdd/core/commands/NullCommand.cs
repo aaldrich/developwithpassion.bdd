@@ -1,6 +1,6 @@
 namespace developwithpassion.bdd.core.commands
 {
-    public class NullCommand : ICommand
+    public class NullCommand : Command
     {
         public void run()
         {

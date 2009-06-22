@@ -1,24 +1,23 @@
 using developwithpassion.bdd.contexts;
-using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.tests
+namespace developwithpassion.bdd.core.commands
 {
     public class ChainedCommandSpecs
     {
-        public abstract class concern : observations_for_a_sut_with_a_contract<ICommand, ChainedCommand>
+        public abstract class concern : observations_for_a_sut_with_a_contract<Command, ChainedCommand>
         {
-            static protected ICommand command_one;
-            static protected ICommand command_two;
+            static protected Command command_one;
+            static protected Command command_two;
 
             context c = () =>
             {
-                command_one = an<ICommand>();
-                command_two = an<ICommand>();
+                command_one = an<Command>();
+                command_two = an<Command>();
             };
 
-            public override ICommand create_sut()
+            public override Command create_sut()
             {
                 return new ChainedCommand(command_one, command_two);
             }

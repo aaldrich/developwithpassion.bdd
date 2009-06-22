@@ -5,11 +5,11 @@ using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.tests
+namespace developwithpassion.bdd
 {
     public class DelegateFieldInvocationSpecs
     {
-        public abstract class concern : observations_for_a_sut_with_a_contract<ICommand, DelegateFieldInvocation> {}
+        public abstract class concern : observations_for_a_sut_with_a_contract<Command, DelegateFieldInvocation> {}
 
         [Concern(typeof (DelegateFieldInvocation))]
         public class when_run_with_a_specified_delegate_type : concern
@@ -31,7 +31,7 @@ namespace developwithpassion.bdd.tests
                 SomeClassWithDelegateFields.context_block_invocation_count.should_be_equal_to(0);
             };
 
-            public override ICommand create_sut()
+            public override Command create_sut()
             {
                 return new DelegateFieldInvocation(delegate_type_to_run, target, target.GetType());
             }

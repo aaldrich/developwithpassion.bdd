@@ -1,6 +1,6 @@
 namespace developwithpassion.bdd.core.commands
 {
-    public interface IParameterizedCommand<T>
+    public interface ParameterizedCommand<T>
     {
         void run_against(T item);
     }

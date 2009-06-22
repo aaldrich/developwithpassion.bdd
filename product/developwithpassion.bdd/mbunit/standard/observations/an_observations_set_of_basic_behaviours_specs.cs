@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using developwithpassion.bdd.concerns;
 using developwithpassion.bdd.contexts;
-using developwithpassion.bdd.mbunit;
-using developwithpassion.bdd.mbunit.standard;
-using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 using developwithpassion.commons.core.infrastructure.containers;
 using MbUnit.Framework;
 using Rhino.Mocks;
 
-namespace developwithpassion.bdd.tests
+namespace developwithpassion.bdd.mbunit.standard.observations
 {
     public class an_observations_set_of_basic_behaviours_specs
     {
@@ -153,7 +150,7 @@ namespace developwithpassion.bdd.tests
                 context_block_ran = false;
                 after_each_observation_block_ran = false;
                 after_the_sut_has_been_created_block_ran = false;
-                sut = null;
+                an_observations_set_of_basic_behaviours<IDbConnection>.sut = null;
             }
 
             static context c = () =>
@@ -247,7 +244,7 @@ namespace developwithpassion.bdd.tests
     {
         public void do_something()
         {
-            Container.current.get_an<IDbConnection>().Open();
+            IOC.current.get_an<IDbConnection>().Open();
         }
     }
 }

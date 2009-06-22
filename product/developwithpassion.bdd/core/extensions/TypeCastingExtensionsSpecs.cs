@@ -2,14 +2,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using developwithpassion.bdd.contexts;
-using developwithpassion.bdd.core.extensions;
-using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.tests
+namespace developwithpassion.bdd.core.extensions
 {
-    public class TypeCastingSpecs
+    public class TypeCastingExtensionsSpecs
     {
         public abstract class concern : observations_for_a_static_sut {}
 

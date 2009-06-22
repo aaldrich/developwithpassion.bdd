@@ -1,6 +1,6 @@
 namespace developwithpassion.bdd.containers
 {
-    public interface IContainerItemResolver
+    public interface ContainerItemResolver
     {
         object resolve();
     }

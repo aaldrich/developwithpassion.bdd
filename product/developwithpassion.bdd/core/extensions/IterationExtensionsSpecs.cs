@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using developwithpassion.bdd.contexts;
-using developwithpassion.bdd.core.extensions;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.tests
+namespace developwithpassion.bdd.core.extensions
 {
-    public class IterationSpecs
+    public class IterationExtensionsSpecs
     {
         public abstract class concern_for_iteration_extensions : observations_for_a_static_sut {}
 

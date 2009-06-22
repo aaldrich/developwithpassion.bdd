@@ -7,10 +7,10 @@ namespace developwithpassion.bdd.mbunit
 {
     public class BlockRun<DelegateType> : Run
     {
-        IParameterizedCommand<TestTreeArgs<DelegateType>> block_action;
+        ParameterizedCommand<TestTreeArgs<DelegateType>> block_action;
         IRun main_run;
 
-        public BlockRun(bool is_test, IParameterizedCommand<TestTreeArgs<DelegateType>> block_action,IRun main_run) : base("block", is_test)
+        public BlockRun(bool is_test, ParameterizedCommand<TestTreeArgs<DelegateType>> block_action,IRun main_run) : base("block", is_test)
         {
             this.block_action = block_action;
             this.main_run = main_run;
