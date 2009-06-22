@@ -1,11 +1,12 @@
 using System;
+using developwithpassion.bdd;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd
+namespace test.developwithpassion.bdd
 {
     public class DelegateFieldInvocationSpecs
     {

@@ -1,4 +1,4 @@
-namespace developwithpassion.bdd
+namespace test.developwithpassion.bdd
 {
     static public class NumericExtensionsSpecs
     {

@@ -12,7 +12,7 @@ COMPILE_TARGET = 'debug'
 CLEAN.include('artifacts','**/bin','**/obj')
 
 #target folders that can be run from VS
-project_test_dir  = File.join('product',"#{Project.name}",'bin','debug')
+project_test_dir  = File.join('product',"test.#{Project.name}",'bin','debug')
 
 output_folders = [project_test_dir]
 
@@ -39,12 +39,12 @@ desc 'run the tests for the project'
 task :test, :category_to_exclude, :needs => [:compile] do |t,args|
   args.with_defaults(:category_to_exclude => 'SLOW')
   runner = MbUnitRunner.new :compile_target => COMPILE_TARGET, :category_to_exclude => args.category_to_exclude
-  runner.execute_tests ["#{Project.name}"]
+  runner.execute_tests ["test.#{Project.name}"]
 end
 
 desc 'run the bdddoc test report for the project'
 task :run_test_report => [:test] do
  runner = BDDDocRunner.new 
- runner.run(File.join('product','developwithpassion.bdd','bin','debug','developwithpassion.bdd.dll'))
+ runner.run(File.join('product','test.developwithpassion.bdd','bin','debug','test.developwithpassion.bdd.dll'))
 end
 

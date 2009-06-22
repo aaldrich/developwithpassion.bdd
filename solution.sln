@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "developwithpassion.bdd", "p
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project", "project.csproj", "{EAA828F4-419B-4078-8EB6-533FBD86E800}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test.developwithpassion.bdd", "product\test.developwithpassion.bdd\test.developwithpassion.bdd.csproj", "{7CFD2097-9055-478A-B1AF-E2978C347EBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{EAA828F4-419B-4078-8EB6-533FBD86E800}.Debug|Any CPU.ActiveCfg = Release|Any CPU
 		{EAA828F4-419B-4078-8EB6-533FBD86E800}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAA828F4-419B-4078-8EB6-533FBD86E800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CFD2097-9055-478A-B1AF-E2978C347EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CFD2097-9055-478A-B1AF-E2978C347EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CFD2097-9055-478A-B1AF-E2978C347EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CFD2097-9055-478A-B1AF-E2978C347EBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

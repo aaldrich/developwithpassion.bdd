@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using developwithpassion.bdd.contexts;
+using developwithpassion.bdd.core.extensions;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.core.extensions
+namespace test.developwithpassion.bdd
 {
     public class TypeCastingExtensionsSpecs
     {

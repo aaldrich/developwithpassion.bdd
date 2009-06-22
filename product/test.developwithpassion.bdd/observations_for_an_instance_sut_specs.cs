@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.mbunit.standard;
+using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 using MbUnit.Framework;
 using Rhino.Mocks;
 
-namespace developwithpassion.bdd.mbunit.standard.observations
+namespace test.developwithpassion.bdd
 {
     public class observations_for_an_instance_sut_specs
     {

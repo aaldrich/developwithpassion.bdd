@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using developwithpassion.bdd.contexts;
+using developwithpassion.bdd.core.extensions;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.core.extensions
+namespace test.developwithpassion.bdd
 {
     public class IterationExtensionsSpecs
     {

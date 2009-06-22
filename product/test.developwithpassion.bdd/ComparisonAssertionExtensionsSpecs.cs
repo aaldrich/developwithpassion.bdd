@@ -1,8 +1,9 @@
 using developwithpassion.bdd.contexts;
+using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.mbunit
+namespace test.developwithpassion.bdd
 {
     public class ComparisonAssertionExtensionsSpecs
     {

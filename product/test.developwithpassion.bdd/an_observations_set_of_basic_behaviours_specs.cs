@@ -1,14 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using developwithpassion.bdd;
 using developwithpassion.bdd.concerns;
 using developwithpassion.bdd.contexts;
+using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.mbunit.standard;
+using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 using developwithpassion.commons.core.infrastructure.containers;
 using MbUnit.Framework;
 using Rhino.Mocks;
 
-namespace developwithpassion.bdd.mbunit.standard.observations
+namespace test.developwithpassion.bdd
 {
     public class an_observations_set_of_basic_behaviours_specs
     {

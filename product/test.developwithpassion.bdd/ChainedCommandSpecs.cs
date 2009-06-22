@@ -1,8 +1,10 @@
+using developwithpassion.bdd;
 using developwithpassion.bdd.contexts;
+using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace developwithpassion.bdd.core.commands
+namespace test.developwithpassion.bdd
 {
     public class ChainedCommandSpecs
     {
