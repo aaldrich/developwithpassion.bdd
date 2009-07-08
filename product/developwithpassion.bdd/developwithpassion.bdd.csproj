@@ -79,6 +79,7 @@
     <Compile Include="core\commands\ParameterizedCommand.cs" />
     <Compile Include="mbunit\AppendTestsToTestTree.cs" />
     <Compile Include="mbunit\BlockRun.cs" />
+    <Compile Include="mbunit\standard\SlowAttribute.cs" />
     <Compile Include="mbunit\StringAssertionExtensions.cs" />
     <Compile Include="mbunit\TestTreeArgs.cs" />
     <Compile Include="mbunit\DelegateRunInvoker.cs" />
