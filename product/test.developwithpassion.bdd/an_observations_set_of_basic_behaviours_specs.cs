@@ -143,6 +143,40 @@ namespace test.developwithpassion.bdd
             }
         }
 
+        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        public class when_it_is_asked_for_the_exception_that_was_thrown_and_the_method_it_is_targeting_is_a_method_that_leverages_the_yield_keyword : concern_for_an_observations_set_of_basic_behaviours_that_has_run_its_setup
+        {
+            static Exception exception = new Exception();
+            static bool alternate_because_block_ran;
+            Exception result;
+
+
+            protected override void establish_context()
+            {
+                an_observations_set_of_basic_behaviours<IDbConnection>.doing(() => new SampleClassWithYieldingMethodThrowingAnException().get_numbers());
+            }
+
+            protected override void because()
+            {
+                result = an_observations_set_of_basic_behaviours<IDbConnection>.exception_thrown_by_the_sut;
+            }
+
+
+            [Observation]
+            public void should_return_the_exception_throw_in_the_alternate_because_block()
+            {
+                result.should_be_an_instance_of<ArgumentException>();
+            }
+        }
+
+        public class SampleClassWithYieldingMethodThrowingAnException {
+            public IEnumerable<int> get_numbers() {
+                throw new ArgumentException();
+                yield return 1;
+                yield return 2;
+            }
+        }
+
         public class SampleSetOfObservations : an_observations_set_of_basic_behaviours<IDbConnection>
         {
             static public bool context_block_ran;

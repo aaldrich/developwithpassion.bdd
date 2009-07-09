@@ -8,6 +8,7 @@ using developwithpassion.bdd.concerns;
 using MbUnit.Framework;
 using Rhino.Mocks;
 using developwithpassion.bdd.mbunit;
+using System.Linq;
 
 namespace developwithpassion.bdd.concerns
 {
@@ -87,6 +88,10 @@ namespace developwithpassion.bdd.concerns
         static public void doing(Action because_behaviour)
         {
             behaviour_performed_in_because = because_behaviour;
+        }
+
+        static public void doing<T>(Func<IEnumerable<T>> behaviour) {
+            doing(() => behaviour().force_traversal());
         }
 
         static public Exception exception_thrown_by_the_sut

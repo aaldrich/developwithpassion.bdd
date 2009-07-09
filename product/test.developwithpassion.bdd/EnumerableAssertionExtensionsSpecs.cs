@@ -56,6 +56,18 @@ namespace test.developwithpassion.bdd
                 multiples_of_10_upto_100.should_contain(50);
             };
 
+            it should_be_able_to_assert_that_an_enumerable_contains_the_same_mocked_proxy = () =>
+            {
+                var item = an<SomeClass>();
+                var items = Enumerable.Repeat(item, 1);
+
+                items.should_contain(item);
+
+            };
+
+            public class SomeClass {
+            }
+
             it should_be_able_to_assert_that_an_enumerable_contains_a_set_of_items = () =>
             {
                 multiples_of_10_upto_100.should_contain(10,20,30,40,80);
