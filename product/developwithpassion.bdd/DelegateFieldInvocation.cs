@@ -23,7 +23,10 @@ namespace developwithpassion.bdd
 
         public void run()
         {
-            all_fields_of_the_target_delegate_type().each(x => x.GetValue(instance).downcast_to<Delegate>().DynamicInvoke());
+            all_fields_of_the_target_delegate_type().each(x =>
+            {
+                x.GetValue(instance).downcast_to<Delegate>().DynamicInvoke();
+            });
         }
 
         IEnumerable<FieldInfo> all_fields_of_the_target_delegate_type()

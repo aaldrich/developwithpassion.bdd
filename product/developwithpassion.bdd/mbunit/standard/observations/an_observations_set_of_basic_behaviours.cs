@@ -1,21 +1,45 @@
 using System;
 using System.Collections.Generic;
+using developwithpassion.bdd.concerns;
 using developwithpassion.bdd.containers;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core.commands;
+using developwithpassion.bdd.core.extensions;
+using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard;
-using developwithpassion.bdd.concerns;
 using MbUnit.Framework;
 using Rhino.Mocks;
-using developwithpassion.bdd.mbunit;
-using System.Linq;
 
 namespace developwithpassion.bdd.concerns
 {
     public interface IObservations {}
 
+    public class PipelinePair
+    {
+        public PipelinePair(Action context, Action tear_down)
+        {
+            this.context = context;
+            this.tear_down = tear_down;
+        }
+
+        public Action context { get; private set; }
+        public Action tear_down { get; private set; }
+    }
+
+    public abstract class observation_basics
+    {
+        static protected IList<Action> context_pipeline = new List<Action>();
+        static protected IList<Action> teardown_pipeline = new List<Action>();
+
+        static public void add_pipeline_behaviour(PipelinePair pipeline_pair)
+        {
+            context_pipeline.Add(pipeline_pair.context);
+            teardown_pipeline.Add(pipeline_pair.tear_down);
+        }
+    }
+
     [Observations]
-    public abstract class an_observations_set_of_basic_behaviours<SUT> : IObservations
+    public abstract class an_observations_set_of_basic_behaviours<SUT> : observation_basics, IObservations
     {
         static public IDictionary<Type, object> dependencies;
         static public Exception exception_thrown_while_the_sut_performed_its_work;
@@ -31,17 +55,21 @@ namespace developwithpassion.bdd.concerns
         [SetUp]
         public void setup()
         {
+            context_pipeline.Clear();
+            teardown_pipeline.Clear();
+
+            teardown_pipeline.Add(UnitTestContainer.tear_down);
             behaviour_performed_in_because = null;
             exception_thrown_while_the_sut_performed_its_work = null;
             dependencies = new Dictionary<Type, object>();
             prepare_to_make_an_observation();
         }
-        
+
         [TearDown]
         public void tear_down()
         {
             run_action<after_each_observation>();
-            UnitTestContainer.tear_down();
+            if (teardown_pipeline.Count > 0) teardown_pipeline.each(x => x());
         }
 
         [TestFixtureTearDown]
@@ -50,9 +78,11 @@ namespace developwithpassion.bdd.concerns
             run_action<after_all_observations>();
         }
 
+
         void prepare_to_make_an_observation()
         {
             run_action<context>();
+            if (context_pipeline.Count > 0) context_pipeline.each(x => x());
             sut = create_sut();
             run_action<after_the_sut_has_been_created>();
             run_action<because>();
@@ -90,7 +120,8 @@ namespace developwithpassion.bdd.concerns
             behaviour_performed_in_because = because_behaviour;
         }
 
-        static public void doing<T>(Func<IEnumerable<T>> behaviour) {
+        static public void doing<T>(Func<IEnumerable<T>> behaviour)
+        {
             doing(() => behaviour().force_traversal());
         }
 
