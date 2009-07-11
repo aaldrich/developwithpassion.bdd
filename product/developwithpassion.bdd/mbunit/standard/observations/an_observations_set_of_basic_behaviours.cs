@@ -7,36 +7,13 @@ using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.core.extensions;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard;
+using developwithpassion.bdd.mbunit.standard.observations;
 using MbUnit.Framework;
 using Rhino.Mocks;
 
 namespace developwithpassion.bdd.concerns
 {
     public interface IObservations {}
-
-    public class PipelinePair
-    {
-        public PipelinePair(Action context, Action tear_down)
-        {
-            this.context = context;
-            this.tear_down = tear_down;
-        }
-
-        public Action context { get; private set; }
-        public Action tear_down { get; private set; }
-    }
-
-    public abstract class observation_basics
-    {
-        static protected IList<Action> context_pipeline = new List<Action>();
-        static protected IList<Action> teardown_pipeline = new List<Action>();
-
-        static public void add_pipeline_behaviour(PipelinePair pipeline_pair)
-        {
-            context_pipeline.Add(pipeline_pair.context);
-            teardown_pipeline.Add(pipeline_pair.tear_down);
-        }
-    }
 
     [Observations]
     public abstract class an_observations_set_of_basic_behaviours<SUT> : observation_basics, IObservations
