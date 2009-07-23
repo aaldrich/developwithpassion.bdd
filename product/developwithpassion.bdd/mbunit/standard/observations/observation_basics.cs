@@ -14,5 +14,9 @@ namespace developwithpassion.bdd.mbunit.standard.observations
             context_pipeline.Add(pipeline_pair.context);
             teardown_pipeline.Add(pipeline_pair.tear_down);
         }
+
+        static  public void add_pipeline_behaviour(Action context,Action teardown) {
+            add_pipeline_behaviour(new PipelinePair(context, teardown));
+        } 
     }
 }
