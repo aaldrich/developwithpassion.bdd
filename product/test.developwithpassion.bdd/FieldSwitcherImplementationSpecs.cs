@@ -29,14 +29,14 @@ namespace test.developwithpassion.bdd
 
             it should_provide_the_pipeline_pair_that_can_do_the_switching = () =>
             {
-                result.context();
+                result.start();
                 Item.static_value.should_be_equal_to(value_to_change_to);
 
-                result.tear_down();
+                result.finish();
                 Item.static_value.should_be_equal_to("lah");
             };
 
-            static PipelinePair result;
+            static PipelineBehaviour result;
             static string value_to_change_to;
         }
 

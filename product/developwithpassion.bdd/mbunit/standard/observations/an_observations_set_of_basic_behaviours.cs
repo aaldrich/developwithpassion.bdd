@@ -33,9 +33,8 @@ namespace developwithpassion.bdd.concerns
         public void setup()
         {
             context_pipeline.Clear();
-            teardown_pipeline.Clear();
 
-            teardown_pipeline.Add(UnitTestContainer.tear_down);
+            add_pipeline_behaviour(() => {},UnitTestContainer.tear_down);
             behaviour_performed_in_because = null;
             exception_thrown_while_the_sut_performed_its_work = null;
             dependencies = new Dictionary<Type, object>();
@@ -46,7 +45,7 @@ namespace developwithpassion.bdd.concerns
         public void tear_down()
         {
             run_action<after_each_observation>();
-            if (teardown_pipeline.Count > 0) teardown_pipeline.each(x => x());
+            context_pipeline.each(item => item.finish());
         }
 
         [TestFixtureTearDown]
@@ -59,7 +58,7 @@ namespace developwithpassion.bdd.concerns
         void prepare_to_make_an_observation()
         {
             run_action<context>();
-            if (context_pipeline.Count > 0) context_pipeline.each(x => x());
+            context_pipeline.each(item => item.start());
             sut = create_sut();
             run_action<after_the_sut_has_been_created>();
             run_action<because>();

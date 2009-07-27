@@ -76,6 +76,7 @@
     <Compile Include="IterationExtensionsSpecs.cs" />
     <Compile Include="NumericExtensionsSpecs.cs" />
     <Compile Include="observations_for_an_instance_sut_specs.cs" />
+    <Compile Include="PipelineBehaviourSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FieldReassignmentStartSpecs.cs" />
     <Compile Include="StringAssertionExtensionsSpecs.cs" />

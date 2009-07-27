@@ -58,6 +58,7 @@
     <Compile Include="contexts\before_all_observations.cs" />
     <Compile Include="contexts\observation.cs" />
     <Compile Include="core\Change.cs" />
+    <Compile Include="core\CreateDelegateOf.cs" />
     <Compile Include="core\FieldSwitcherFactory.cs" />
     <Compile Include="core\FieldReassignmentStart.cs" />
     <Compile Include="core\FieldSwitcher.cs" />
@@ -86,7 +87,7 @@
     <Compile Include="mbunit\AppendTestsToTestTree.cs" />
     <Compile Include="mbunit\BlockRun.cs" />
     <Compile Include="mbunit\standard\observations\observation_basics.cs" />
-    <Compile Include="mbunit\standard\observations\PipelinePair.cs" />
+    <Compile Include="mbunit\standard\observations\PipelineBehaviour.cs" />
     <Compile Include="mbunit\standard\SlowAttribute.cs" />
     <Compile Include="mbunit\StringAssertionExtensions.cs" />
     <Compile Include="mbunit\TestTreeArgs.cs" />

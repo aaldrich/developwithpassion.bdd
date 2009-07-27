@@ -18,9 +18,9 @@ namespace developwithpassion.bdd.core
             original_value = field.GetValue(target);
         }
 
-        public PipelinePair to(object new_value)
+        public PipelineBehaviour to(object new_value)
         {
-            return new PipelinePair(() => field.SetValue(target,new_value),
+            return new PipelineBehaviour(() => field.SetValue(target,new_value),
                 () => field.SetValue(target,original_value));
         }
     }
