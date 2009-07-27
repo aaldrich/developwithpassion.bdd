@@ -48,9 +48,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="build.bat" />
-    <None Include="build_utilities.rb" />
-    <None Include="local_properties.rb" />
-    <None Include="project_name.rb" />
     <None Include="rakefile.rb" />
     <None Include="tools\psake\build_utilities.ps1" />
     <None Include="tools\psake\psake.ps1" />
@@ -77,6 +74,9 @@
     <Content Include="setup\resharper\FileTemplate.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="build_utilities.rb" />
+    <None Include="local_properties.rb.customize" />
+    <None Include="project.rb" />
     <None Include="setup\classtoincludefortdd.net\EmptyTestContainer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

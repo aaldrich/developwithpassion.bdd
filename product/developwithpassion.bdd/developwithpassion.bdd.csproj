@@ -57,6 +57,12 @@
     <Compile Include="contexts\after_all_observations.cs" />
     <Compile Include="contexts\before_all_observations.cs" />
     <Compile Include="contexts\observation.cs" />
+    <Compile Include="core\Change.cs" />
+    <Compile Include="core\FieldSwitcherFactory.cs" />
+    <Compile Include="core\FieldReassignmentStart.cs" />
+    <Compile Include="core\FieldSwitcher.cs" />
+    <Compile Include="core\FieldSwitcherImplementation.cs" />
+    <Compile Include="core\Tuple.cs" />
     <Compile Include="mbunit\AssertionExtensions.cs" />
     <Compile Include="mbunit\ComparisonAssertionExtensions.cs" />
     <Compile Include="mbunit\standard\observations\an_observations_set_of_basic_behaviours.cs" />

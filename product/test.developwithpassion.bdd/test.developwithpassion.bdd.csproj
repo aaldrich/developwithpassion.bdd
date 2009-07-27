@@ -68,13 +68,16 @@
     <Compile Include="an_observations_set_of_basic_behaviours_specs.cs" />
     <Compile Include="AssertionExtensionsSpecs.cs" />
     <Compile Include="ChainedCommandSpecs.cs" />
+    <Compile Include="ChangeSpecs.cs" />
     <Compile Include="ComparisonAssertionExtensionsSpecs.cs" />
     <Compile Include="DelegateFieldInvocationSpecs.cs" />
     <Compile Include="EnumerableAssertionExtensionsSpecs.cs" />
+    <Compile Include="FieldSwitcherImplementationSpecs.cs" />
     <Compile Include="IterationExtensionsSpecs.cs" />
     <Compile Include="NumericExtensionsSpecs.cs" />
     <Compile Include="observations_for_an_instance_sut_specs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FieldReassignmentStartSpecs.cs" />
     <Compile Include="StringAssertionExtensionsSpecs.cs" />
     <Compile Include="StringExtensionsSpecs.cs" />
     <Compile Include="TypeCastingExtensionsSpecs.cs" />

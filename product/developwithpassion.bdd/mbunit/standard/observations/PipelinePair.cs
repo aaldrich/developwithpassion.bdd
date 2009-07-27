@@ -1,6 +1,6 @@
 using System;
 
-namespace developwithpassion.bdd.concerns
+namespace developwithpassion.bdd.mbunit.standard.observations
 {
     public class PipelinePair
     {

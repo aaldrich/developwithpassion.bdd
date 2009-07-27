@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using developwithpassion.bdd.concerns;
 
 namespace developwithpassion.bdd.mbunit.standard.observations
 {
