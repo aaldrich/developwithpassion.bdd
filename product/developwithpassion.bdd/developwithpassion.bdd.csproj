@@ -58,7 +58,7 @@
     <Compile Include="contexts\before_all_observations.cs" />
     <Compile Include="contexts\observation.cs" />
     <Compile Include="core\Change.cs" />
-    <Compile Include="core\CreateDelegateOf.cs" />
+    <Compile Include="core\CreateDelegate.cs" />
     <Compile Include="core\FieldSwitcherFactory.cs" />
     <Compile Include="core\FieldReassignmentStart.cs" />
     <Compile Include="core\FieldSwitcher.cs" />

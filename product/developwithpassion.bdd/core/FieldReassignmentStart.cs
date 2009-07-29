@@ -19,6 +19,11 @@ namespace developwithpassion.bdd.core
 
         MemberInfo get_member_from(Expression<Func<object>> expression)
         {
+            if (expression.Body.NodeType == ExpressionType.Convert)
+            {
+                var result = expression.Body.downcast_to<UnaryExpression>().Operand;
+                return result.downcast_to<MemberExpression>().Member;
+            }
             var member_expression = expression.Body.downcast_to<MemberExpression>();
             return member_expression.Member;
         }

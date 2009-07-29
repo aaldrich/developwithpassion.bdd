@@ -16,7 +16,7 @@ namespace test.developwithpassion.bdd
             context c = () =>
             {
                 new_value = "other_value";
-                add_pipeline_behaviour(Change.the(() => SomeStatic.some_value).to(new_value));
+                change(() => SomeStatic.some_value).to(new_value);
             };
 
 

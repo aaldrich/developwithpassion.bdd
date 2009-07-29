@@ -79,6 +79,7 @@
     <Compile Include="PipelineBehaviourSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FieldReassignmentStartSpecs.cs" />
+    <Compile Include="spikes\ReassignmentSpecs.cs" />
     <Compile Include="StringAssertionExtensionsSpecs.cs" />
     <Compile Include="StringExtensionsSpecs.cs" />
     <Compile Include="TypeCastingExtensionsSpecs.cs" />
