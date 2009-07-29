@@ -63,7 +63,7 @@
     <Compile Include="core\FieldReassignmentStart.cs" />
     <Compile Include="core\FieldSwitcher.cs" />
     <Compile Include="core\FieldSwitcherImplementation.cs" />
-    <Compile Include="core\Tuple.cs" />
+    <Compile Include="core\Pair.cs" />
     <Compile Include="mbunit\AssertionExtensions.cs" />
     <Compile Include="mbunit\ComparisonAssertionExtensions.cs" />
     <Compile Include="mbunit\standard\observations\an_observations_set_of_basic_behaviours.cs" />

@@ -23,7 +23,7 @@ namespace test.developwithpassion.bdd
                 switcher = an<FieldSwitcher>();
                 FieldReassignmentStart.field_switcher_factory = (x, y) =>
                 {
-                    args = new Tuple<Type, FieldInfo>(x, y);
+                    args = new Pair<Type, FieldInfo>(x, y);
                     return switcher;
                 };
             };
@@ -56,7 +56,7 @@ namespace test.developwithpassion.bdd
             static FieldSwitcher result;
             static FieldSwitcher switcher;
             static FieldSwitcherFactory original_factory;
-            static Tuple<Type, FieldInfo> args;
+            static Pair<Type, FieldInfo> args;
         }
         [Concern(typeof (FieldReassignmentStart))]
         public class when_changing_the_target_that_requires_a_boxing_operation_to_be_performed : concern
@@ -68,7 +68,7 @@ namespace test.developwithpassion.bdd
                 switcher = an<FieldSwitcher>();
                 FieldReassignmentStart.field_switcher_factory = (x, y) =>
                 {
-                    args = new Tuple<Type, FieldInfo>(x, y);
+                    args = new Pair<Type, FieldInfo>(x, y);
                     return switcher;
                 };
             };
@@ -101,7 +101,7 @@ namespace test.developwithpassion.bdd
             static FieldSwitcher result;
             static FieldSwitcher switcher;
             static FieldSwitcherFactory original_factory;
-            static Tuple<Type, FieldInfo> args;
+            static Pair<Type, FieldInfo> args;
         }
     }
 
