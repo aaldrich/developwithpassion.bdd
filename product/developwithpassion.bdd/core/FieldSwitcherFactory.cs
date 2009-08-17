@@ -1,7 +1,8 @@
-using System;
 using System.Reflection;
 
 namespace developwithpassion.bdd.core
 {
-    public delegate FieldSwitcher FieldSwitcherFactory(Type target,FieldInfo field);
+    public interface FieldSwitcherFactory {
+        FieldSwitcher create_to_target(MemberInfo member);
+    }
 }

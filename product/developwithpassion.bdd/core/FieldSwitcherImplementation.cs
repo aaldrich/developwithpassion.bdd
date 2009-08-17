@@ -1,27 +1,22 @@
-using System;
-using System.Reflection;
 using developwithpassion.bdd.mbunit.standard.observations;
 
 namespace developwithpassion.bdd.core
 {
     public class FieldSwitcherImplementation : FieldSwitcher
     {
-        Type target;
-        FieldInfo field;
+        MemberTarget member_target;
         object original_value;
 
-        public FieldSwitcherImplementation(Type target, FieldInfo field)
+        public FieldSwitcherImplementation(MemberTarget member_target)
         {
-            this.target = target;
-            this.field = field;
-
-            original_value = field.GetValue(target);
+            this.member_target = member_target;
+            original_value = member_target.get_value();
         }
 
         public PipelineBehaviour to(object new_value)
         {
-            return new PipelineBehaviour(() => field.SetValue(target,new_value),
-                () => field.SetValue(target,original_value));
+            return new PipelineBehaviour(() => member_target.change_value_to(new_value),
+                                         () => member_target.change_value_to(original_value));
         }
     }
 }

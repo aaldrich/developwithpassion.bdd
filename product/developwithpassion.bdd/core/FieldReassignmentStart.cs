@@ -7,15 +7,20 @@ namespace developwithpassion.bdd.core
 {
     public class FieldReassignmentStart
     {
-        static public FieldSwitcherFactory field_switcher_factory = (type, field) => new FieldSwitcherImplementation(type, field);
+        FieldSwitcherFactory field_switcher_factory;
 
-        BindingFlags binding_flags = BindingFlags.Static | BindingFlags.Public;
+        public FieldReassignmentStart() : this(new FieldSwitcherFactoryImplementation()) {}
+
+        public FieldReassignmentStart(FieldSwitcherFactory field_switcher_factory)
+        {
+            this.field_switcher_factory = field_switcher_factory;
+        }
 
         public FieldSwitcher change(Expression<Func<object>> field_to_change)
         {
-            var member = get_member_from(field_to_change);
-            return field_switcher_factory(member.DeclaringType, member.DeclaringType.GetField(member.Name, binding_flags));
+            return field_switcher_factory.create_to_target(get_member_from(field_to_change));
         }
+
 
         MemberInfo get_member_from(Expression<Func<object>> expression)
         {

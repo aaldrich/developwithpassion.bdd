@@ -1,3 +1,5 @@
+using System.Security.Principal;
+using System.Threading;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit;
@@ -26,6 +28,29 @@ namespace test.developwithpassion.bdd
             };
 
             static string new_value;
+        }
+
+        public class integration
+        {
+            [Concern(typeof (Change))]
+            public class when_swapping_the_thread_current_principal : concern
+            {
+                context c = () =>
+                {
+                    principal = an<IPrincipal>();
+                    change(() => Thread.CurrentPrincipal).to(principal);
+                };
+
+
+                it should_have_the_fake_principal_being_used_as_the_principal = () =>
+                {
+                    Thread.CurrentPrincipal.should_be_equal_to(principal);
+                };
+
+                static string new_value;
+                static IPrincipal principal;
+                static object result;
+            }
         }
 
         public class SomeStatic

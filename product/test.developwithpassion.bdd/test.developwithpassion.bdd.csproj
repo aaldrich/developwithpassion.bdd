@@ -72,13 +72,17 @@
     <Compile Include="ComparisonAssertionExtensionsSpecs.cs" />
     <Compile Include="DelegateFieldInvocationSpecs.cs" />
     <Compile Include="EnumerableAssertionExtensionsSpecs.cs" />
+    <Compile Include="FieldMemberTargetSpecs.cs" />
+    <Compile Include="FieldSwitcherFactorySpecs.cs" />
     <Compile Include="FieldSwitcherImplementationSpecs.cs" />
     <Compile Include="IterationExtensionsSpecs.cs" />
+    <Compile Include="MemberTargetRegistrySpecs.cs" />
     <Compile Include="NumericExtensionsSpecs.cs" />
     <Compile Include="observations_for_an_instance_sut_specs.cs" />
     <Compile Include="PipelineBehaviourSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FieldReassignmentStartSpecs.cs" />
+    <Compile Include="PropertyInfoTargetSpecs.cs" />
     <Compile Include="StringAssertionExtensionsSpecs.cs" />
     <Compile Include="StringExtensionsSpecs.cs" />
     <Compile Include="TypeCastingExtensionsSpecs.cs" />
