@@ -4,6 +4,7 @@ using System.Data;
 using developwithpassion.bdd;
 using developwithpassion.bdd.concerns;
 using developwithpassion.bdd.contexts;
+using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard;
 using developwithpassion.bdd.mbunit.standard.observations;
@@ -20,10 +21,13 @@ namespace test.developwithpassion.bdd
         public abstract class concern
         {
             protected SampleSetOfObservations sut;
+            Observations<IDbConnection> observations;
+
 
             [SetUp]
             public void setup()
             {
+                observations = MockRepository.GenerateStub<Observations<IDbConnection>>();
                 SampleSetOfObservations.reset();
                 sut = new SampleSetOfObservations();
                 an_observations_set_of_basic_behaviours<IDbConnection>.sut = MockRepository.GenerateMock<IDbConnection>();
@@ -254,6 +258,15 @@ namespace test.developwithpassion.bdd
                 result2.should_be_an_instance_of<IDbConnection>();
             }
         }
+    }
+
+    public abstract class concern_that_has_a_provided_value_type_constructor_argument_that_can_be_overriden_in_derived_types {
+        context c = () =>
+        {
+            number_to_change = 23;
+        };
+
+        static int number_to_change;
     }
 
     [Concern(typeof (an_observations_set_of_basic_behaviours<>))]

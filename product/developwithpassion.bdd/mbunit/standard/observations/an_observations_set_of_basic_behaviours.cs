@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using developwithpassion.bdd.concerns;
-using developwithpassion.bdd.containers;
 using developwithpassion.bdd.contexts;
-using developwithpassion.bdd.core.commands;
-using developwithpassion.bdd.core.extensions;
-using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit.standard;
 using developwithpassion.bdd.mbunit.standard.observations;
 using MbUnit.Framework;
-using Rhino.Mocks;
 
 namespace developwithpassion.bdd.concerns
 {
@@ -18,118 +15,105 @@ namespace developwithpassion.bdd.concerns
     [Observations]
     public abstract class an_observations_set_of_basic_behaviours<SUT> : observation_basics, IObservations
     {
-        static public IDictionary<Type, object> dependencies;
-        static public Exception exception_thrown_while_the_sut_performed_its_work;
-        static public Action behaviour_performed_in_because;
-        static public SUT sut;
+        static Observations<SUT> observation_context;
 
         [TestFixtureSetUp]
         public void fixture_setup()
         {
-            run_action<before_all_observations>();
+            observation_context = new ObservationContext<SUT>(this, context_pipeline);
+            observation_context.run_action<before_all_observations>();
+            observation_context.factory = create_sut;
         }
 
         [SetUp]
         public void setup()
         {
-            context_pipeline.Clear();
-
-            add_pipeline_behaviour(() => {},UnitTestContainer.tear_down);
-            behaviour_performed_in_because = null;
-            exception_thrown_while_the_sut_performed_its_work = null;
-            dependencies = new Dictionary<Type, object>();
-            prepare_to_make_an_observation();
+            observation_context.reset();
         }
 
         [TearDown]
         public void tear_down()
         {
-            run_action<after_each_observation>();
-            context_pipeline.each(item => item.finish());
+            observation_context.tear_down();
         }
 
         [TestFixtureTearDown]
         public void fixture_tear_down()
         {
-            run_action<after_all_observations>();
+            observation_context.run_action<after_all_observations>();
         }
 
 
-        void prepare_to_make_an_observation()
+        static public ChangeValueInPipeline change(Expression<Func<object>> static_expression)
         {
-            run_action<context>();
-            context_pipeline.each(item => item.start());
-            sut = create_sut();
-            run_action<after_the_sut_has_been_created>();
-            run_action<because>();
+            return observation_context.change(static_expression);
         }
-
-        after_each_observation a = () => dependencies.Clear();
-
-        public virtual SUT create_sut()
-        {
-            return default(SUT);
-        }
-
-        Command build_command_chain<DelegateType>()
-        {
-            var actions = new Stack<Command>();
-            var current_class = GetType();
-
-            while (current_class.is_a_concern_type())
-            {
-                actions.Push(new DelegateFieldInvocation(typeof (DelegateType), this, current_class));
-                current_class = current_class.BaseType;
-            }
-
-            return actions.as_command_chain();
-        }
-
-        void run_action<DelegateType>()
-        {
-            build_command_chain<DelegateType>().run();
-        }
-
 
         static public void doing(Action because_behaviour)
         {
-            behaviour_performed_in_because = because_behaviour;
+            observation_context.doing(because_behaviour);
         }
 
         static public void doing<T>(Func<IEnumerable<T>> behaviour)
         {
-            doing(() => behaviour().force_traversal());
+            observation_context.doing(behaviour);
         }
 
         static public Exception exception_thrown_by_the_sut
         {
-            get { return exception_thrown_while_the_sut_performed_its_work ?? (exception_thrown_while_the_sut_performed_its_work = get_exception_throw_by(behaviour_performed_in_because)); }
-        }
-
-        static Exception get_exception_throw_by(Action because_behaviour)
-        {
-            return because_behaviour.get_exception();
+            get { return observation_context.exception_thrown_by_the_sut; }
         }
 
         static public InterfaceType container_dependency<InterfaceType>() where InterfaceType : class
         {
-            return container_dependency(an<InterfaceType>());
+            return observation_context.container_dependency(an<InterfaceType>());
         }
 
         static public InterfaceType container_dependency<InterfaceType>(InterfaceType instance) where InterfaceType : class
         {
-            UnitTestContainer.add_implementation_of(instance);
-            return instance;
+            return observation_context.container_dependency(instance);
         }
 
         static public object an_item_of(Type type)
         {
-            return MockRepository.GenerateStub(type, new object[0]);
+            return observation_context.an_item_of(type);
         }
 
         static public InterfaceType an<InterfaceType>() where InterfaceType : class
         {
-            return MockRepository.GenerateStub<InterfaceType>();
+            return observation_context.an<InterfaceType>();
+        }
+
+        static public void add_pipeline_behaviour(PipelineBehaviour pipeline_behaviour)
+        {
+            observation_context.add_pipeline_behaviour(pipeline_behaviour);
+        }
+
+        static public void add_pipeline_behaviour(Action context, Action teardown)
+        {
+            observation_context.add_pipeline_behaviour(context, teardown);
+        }
+
+        static public IDictionary<Type, object> dependencies
+        {
+            get { return observation_context.dependencies; }
+            set { observation_context.dependencies = value; }
+        }
+
+        static public Action behaviour_performed_in_because
+        {
+            get { return observation_context.behaviour_performed_in_because; }
+        }
+
+        static public SUT sut
+        {
+            get { return observation_context.sut; }
+            set { observation_context.sut = value; }
+        }
+
+        public virtual SUT create_sut()
+        {
+            return default(SUT);
         }
     }
 }

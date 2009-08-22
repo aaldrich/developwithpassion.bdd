@@ -70,6 +70,7 @@
     <Compile Include="ChainedCommandSpecs.cs" />
     <Compile Include="ChangeSpecs.cs" />
     <Compile Include="ComparisonAssertionExtensionsSpecs.cs" />
+    <Compile Include="DeferredValueSpecs.cs" />
     <Compile Include="DelegateFieldInvocationSpecs.cs" />
     <Compile Include="EnumerableAssertionExtensionsSpecs.cs" />
     <Compile Include="FieldMemberTargetSpecs.cs" />
