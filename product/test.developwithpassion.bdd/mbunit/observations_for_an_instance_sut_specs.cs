@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Data;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard;
@@ -17,30 +15,15 @@ namespace test.developwithpassion.bdd.mbunit
         public abstract class concern
         {
             protected SampleTestWithAnSut sut;
-            protected Observations<AClassWithDependencies> observations;
-            protected ObservationCommandFactory command_factory;
-            protected TestStateImplementation<AClassWithDependencies> state;
-            protected SystemUnderTestDependencyBuilder dependency_builder;
-            protected SystemUnderTestFactory sut_factory;
-            protected IDbConnection connection;
-            protected IDbCommand command;
+            protected ObservationController<AClassWithDependencies, AClassWithDependencies, RhinoMocksMockFactory> controller;
 
             [SetUp]
             public void setup()
             {
                 sut = new SampleTestWithAnSut();
 
-                connection = MockRepository.GenerateStub<IDbConnection>();
-                command = MockRepository.GenerateStub<IDbCommand>();
-                command_factory = MockRepository.GenerateStub<ObservationCommandFactory>();
-                sut_factory = MockRepository.GenerateStub<SystemUnderTestFactory>();
-                dependency_builder = MockRepository.GenerateStub<SystemUnderTestDependencyBuilder>();
-                state = new TestStateImplementation<AClassWithDependencies>(sut, sut.create_sut,new List<PipelineBehaviour>());
-                observations = new ObservationContext<AClassWithDependencies>(
-                    state, command_factory, new RhinoMocksMockFactory(),
-                    dependency_builder, sut_factory);
-                an_observations_set_of_basic_behaviours<AClassWithDependencies>.observation_context = observations;
-                an_observations_set_of_basic_behaviours<AClassWithDependencies>.test_state = state;
+                controller = MockRepository.GenerateStub<ObservationController<AClassWithDependencies, AClassWithDependencies, RhinoMocksMockFactory>>();
+                sut_observation_context<AClassWithDependencies, AClassWithDependencies, RhinoMocksMockFactory>.observation_controller = controller;
                 establish_context();
                 because();
             }
@@ -58,7 +41,7 @@ namespace test.developwithpassion.bdd.mbunit
             protected override void establish_context()
             {
                 the_sut = MockRepository.GenerateStub<AClassWithDependencies>();
-                sut_factory.Stub(x => x.create<AClassWithDependencies, AClassWithDependencies>()).Return(the_sut);
+                controller.Stub(x => x.build_sut<AClassWithDependencies, AClassWithDependencies>()).Return(the_sut);
             }
 
             protected override void because()
@@ -68,15 +51,14 @@ namespace test.developwithpassion.bdd.mbunit
 
 
             [Observation]
-            public void should_create_the_sut_by_using_the_sut_factory()
+            public void should_tell_the_controller_to_create_the_sut()
             {
                 result.should_be_equal_to(the_sut);
             }
         }
 
         public class SampleTestWithAnSut : observations_for_an_instance_sut<AClassWithDependencies, AClassWithDependencies> {}
-        public class AClassWithDependencies 
-        {
-        }
+
+        public class AClassWithDependencies {}
     }
 }

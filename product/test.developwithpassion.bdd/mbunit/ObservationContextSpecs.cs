@@ -44,7 +44,7 @@ namespace test.developwithpassion.bdd.mbunit
                 dependency_builder = MockRepository.GenerateStub<SystemUnderTestDependencyBuilder>();
                 delegate_controller = MockRepository.GenerateStub<DelegateController>();
                 mock_factory = MockRepository.GenerateStub<MockFactory>();
-                test_state = new TestStateImplementation<IDbConnection>(test_driver, factory,behaviours);
+                test_state = new TestStateImplementation<IDbConnection>(test_driver, factory, behaviours);
 
                 sut = create_the_sut();
                 establish_context();
@@ -53,7 +53,7 @@ namespace test.developwithpassion.bdd.mbunit
 
             ObservationContext<IDbConnection> create_the_sut()
             {
-                return new ObservationContext<IDbConnection>(test_state, observation_command_factory, mock_factory,dependency_builder,sut_factory);
+                return new ObservationContext<IDbConnection>(test_state, observation_command_factory, mock_factory, dependency_builder, sut_factory);
             }
 
             protected virtual void establish_context() {}
@@ -80,7 +80,6 @@ namespace test.developwithpassion.bdd.mbunit
             {
                 behaviours.should_contain(behaviour);
             }
-
         }
 
         [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
@@ -92,10 +91,9 @@ namespace test.developwithpassion.bdd.mbunit
             protected override void establish_context()
             {
                 prepare_to_make_observations_command = MockRepository.GenerateStub<Command>();
-                reset_command=  MockRepository.GenerateStub<Command>();
+                reset_command = MockRepository.GenerateStub<Command>();
                 observation_command_factory.Stub(x => x.create_reset_command()).Return(reset_command);
                 observation_command_factory.Stub(x => x.create_prepare_observations_command()).Return(prepare_to_make_observations_command);
-
             }
 
             protected override void because()
@@ -110,8 +108,6 @@ namespace test.developwithpassion.bdd.mbunit
                 reset_command.received(x => x.run());
                 prepare_to_make_observations_command.received(x => x.run());
             }
-
-
         }
 
 
@@ -223,10 +219,7 @@ namespace test.developwithpassion.bdd.mbunit
         [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
         public class when_its_doing_method_is_leveraged : concern
         {
-
-            static Action action = () => {
-
-            };
+            static Action action = () => {};
 
             protected override void because()
             {
@@ -234,7 +227,7 @@ namespace test.developwithpassion.bdd.mbunit
             }
 
             [Observation]
-            public void should_store_the_action_as_the_because_action()
+            public void should_tell_the_controller_to_change_its_because_behaviour()
             {
                 sut.because_behaviour.should_be_equal_to(action);
             }

@@ -6,25 +6,28 @@ using developwithpassion.bdd.mbunit;
 
 namespace developwithpassion.bdd.core
 {
-    public interface Observations<SUT> {
+    public interface ObservationBasics {
+        Dependency the_dependency<Dependency>() where Dependency : class;
+        void provide_a_basic_sut_constructor_argument<ArgumentType>(ArgumentType value);
+        InterfaceType container_dependency<InterfaceType>() where InterfaceType : class;
+        InterfaceType container_dependency<InterfaceType>(InterfaceType instance) where InterfaceType : class;
+        InterfaceType an<InterfaceType>() where InterfaceType : class;
+        object an_item_of(Type type);
+        Contract build_sut<Contract, Class>();
+        void add_pipeline_behaviour(PipelineBehaviour pipeline_behaviour);
+        void add_pipeline_behaviour(Action context, Action teardown);
+    }
+
+    public interface Observations<SUT>  : ObservationBasics{
         void tear_down();
         void reset();
         void doing(Action because_behaviour);
         void doing<T>(Func<IEnumerable<T>> behaviour);
-        InterfaceType container_dependency<InterfaceType>() where InterfaceType : class;
-        InterfaceType container_dependency<InterfaceType>(InterfaceType instance) where InterfaceType : class;
-        object an_item_of(Type type);
-        InterfaceType an<InterfaceType>() where InterfaceType : class;
-        void add_pipeline_behaviour(PipelineBehaviour pipeline_behaviour);
-        void add_pipeline_behaviour(Action context, Action teardown);
         ChangeValueInPipeline change(Expression<Func<object>> static_expression);
         void before_all_observations();
         void after_all_observations();
         Exception exception_thrown_by_the_sut { get;}
         Action because_behaviour { get; }
-        Contract build_sut<Contract, Class>();
-        Dependency the_dependency<Dependency>() where Dependency : class;
-        void provide_a_basic_sut_constructor_argument<ArgumentType>(ArgumentType value);
     }
 
     public class ObservationContext<SUT> : Observations<SUT>

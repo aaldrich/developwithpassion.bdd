@@ -63,6 +63,7 @@
     <Compile Include="core\CreateDelegate.cs" />
     <Compile Include="core\DeferredValue.cs" />
     <Compile Include="core\DelegateController.cs" />
+    <Compile Include="core\ObservationController.cs" />
     <Compile Include="core\SystemUnderTestFactory.cs" />
     <Compile Include="core\FieldMemberTarget.cs" />
     <Compile Include="core\FieldReassignmentStart.cs" />
@@ -71,7 +72,6 @@
     <Compile Include="core\SystemUnderTestDependencyBuilder.cs" />
     <Compile Include="core\MemberTargetRegistry.cs" />
     <Compile Include="core\MockFactory.cs" />
-    <Compile Include="core\Observations.cs" />
     <Compile Include="core\PrepareToMakeAnObservation.cs" />
     <Compile Include="core\PropertyInfoMemberTarget.cs" />
     <Compile Include="core\MemberTarget.cs" />

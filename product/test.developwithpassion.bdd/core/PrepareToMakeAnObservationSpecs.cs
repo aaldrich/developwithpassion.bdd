@@ -5,7 +5,6 @@ using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 using Rhino.Mocks;
-using developwithpassion.bdd.mbunit;
 
 namespace test.developwithpassion.bdd.core
 {

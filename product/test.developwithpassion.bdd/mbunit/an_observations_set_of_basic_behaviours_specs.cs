@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using developwithpassion.bdd.core;
@@ -19,20 +18,15 @@ namespace test.developwithpassion.bdd.mbunit
         public abstract class concern
         {
             protected SampleSetOfObservations sut;
-            protected Observations<IDbConnection> observations;
-            TestState<IDbConnection> test_state_implementation;
-
+            protected ObservationController<IDbConnection, IDbConnection, RhinoMocksMockFactory> controller;
 
             [SetUp]
             public void setup()
             {
-                observations = MockRepository.GenerateStub<Observations<IDbConnection>>();
-
+                controller = MockRepository.GenerateStub<ObservationController<IDbConnection, IDbConnection, RhinoMocksMockFactory>>();
                 sut = new SampleSetOfObservations();
-                test_state_implementation = new TestStateImplementation<IDbConnection>(sut,() => null,new List<PipelineBehaviour>());
 
-                an_observations_set_of_basic_behaviours<IDbConnection>.test_state = test_state_implementation;
-                an_observations_set_of_basic_behaviours<IDbConnection>.observation_context = observations;
+                sut_observation_context<IDbConnection, IDbConnection, RhinoMocksMockFactory>.observation_controller = controller;
 
                 establish_context();
                 because();
@@ -52,9 +46,9 @@ namespace test.developwithpassion.bdd.mbunit
 
 
             [Observation]
-            public void should_tell_the_observation_to_reset()
+            public void should_tell_the_controller_to_reset()
             {
-                observations.received(x => x.reset());
+                controller.received(x => x.reset());
             }
         }
 
@@ -68,9 +62,9 @@ namespace test.developwithpassion.bdd.mbunit
             }
 
             [Observation]
-            public void should_tell_the_observation_to_tear_down()
+            public void should_tell_the_controller_to_tear_down()
             {
-                observations.received(x => x.tear_down());
+                controller.received(x => x.tear_down());
             }
         }
 
@@ -86,12 +80,12 @@ namespace test.developwithpassion.bdd.mbunit
             protected override void establish_context()
             {
                 exception = new Exception();
-                observations.Stub(x => x.exception_thrown_by_the_sut).Return(exception);
+                controller.Stub(x => x.exception_thrown_by_the_sut).Return(exception);
             }
 
             protected override void because()
             {
-                result = an_observations_set_of_basic_behaviours<IDbConnection>.exception_thrown_by_the_sut;
+                result = sut_observation_context<IDbConnection, IDbConnection, RhinoMocksMockFactory>.exception_thrown_by_the_sut;
             }
 
             [Observation]
@@ -117,13 +111,13 @@ namespace test.developwithpassion.bdd.mbunit
 
             protected override void because()
             {
-                an_observations_set_of_basic_behaviours<IDbConnection>.doing(action);
+                sut_observation_context<IDbConnection, IDbConnection, RhinoMocksMockFactory>.doing(action);
             }
 
             [Observation]
             public void should_tell_the_observation_to_wrap_the_doing()
             {
-                observations.received(x => x.doing(action));
+                controller.received(x => x.doing(action));
             }
         }
 
@@ -136,12 +130,12 @@ namespace test.developwithpassion.bdd.mbunit
             protected override void establish_context()
             {
                 connection = MockRepository.GenerateStub<IDbConnection>();
-                observations.Stub(x => x.an<IDbConnection>()).Return(connection);
+                controller.Stub(x => x.an<IDbConnection>()).Return(connection);
             }
 
             protected override void because()
             {
-                result = an_observations_set_of_basic_behaviours<IDbConnection>.an<IDbConnection>();
+                result = sut_observation_context<IDbConnection, IDbConnection, RhinoMocksMockFactory>.an<IDbConnection>();
             }
 
             [Observation]

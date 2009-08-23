@@ -7,16 +7,16 @@ namespace developwithpassion.bdd.mbunit.standard.observations
         [Obsolete("use context property to access testing dsl")]
         public override ContractUnderTest create_sut()
         {
-            return observation_context.build_sut<ContractUnderTest, ClassUnderTest>();
+            return observation_controller.build_sut<ContractUnderTest,ClassUnderTest>();
         }
         static protected Dependency the_dependency<Dependency>() where Dependency : class
         {
-            return observation_context.the_dependency<Dependency>();
+            return observation_controller.the_dependency<Dependency>();
         }
 
         static protected void provide_a_basic_sut_constructor_argument<ArgumentType>(ArgumentType value)
         {
-            observation_context.provide_a_basic_sut_constructor_argument(value);
+            observation_controller.provide_a_basic_sut_constructor_argument(value);
         }
     }
 }
