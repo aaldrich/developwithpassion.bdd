@@ -87,7 +87,7 @@ namespace test.developwithpassion.bdd.mbunit
             protected override void establish_context()
             {
                 exception = new Exception();
-                observations.exception_thrown_by_the_sut = exception;
+                observations.Stub(x => x.exception_thrown_by_the_sut).Return(exception);
             }
 
             protected override void because()

@@ -6,6 +6,26 @@ using developwithpassion.bdd.mbunit;
 
 namespace developwithpassion.bdd.core
 {
+    public interface Observations<SUT> {
+        void tear_down();
+        void reset();
+        void doing(Action because_behaviour);
+        void doing<T>(Func<IEnumerable<T>> behaviour);
+        InterfaceType container_dependency<InterfaceType>() where InterfaceType : class;
+        InterfaceType container_dependency<InterfaceType>(InterfaceType instance) where InterfaceType : class;
+        object an_item_of(Type type);
+        InterfaceType an<InterfaceType>() where InterfaceType : class;
+        void add_pipeline_behaviour(PipelineBehaviour pipeline_behaviour);
+        void add_pipeline_behaviour(Action context, Action teardown);
+        ChangeValueInPipeline change(Expression<Func<object>> static_expression);
+        void before_all_observations();
+        void after_all_observations();
+        Exception exception_thrown_by_the_sut { get;}
+        Contract build_sut<Contract, Class>();
+        Dependency the_dependency<Dependency>() where Dependency : class;
+        void provide_a_basic_sut_constructor_argument<ArgumentType>(ArgumentType value);
+    }
+
     public class ObservationContext<SUT> : Observations<SUT>
     {
         TestState<SUT> test_state { get; set; }
@@ -13,6 +33,7 @@ namespace developwithpassion.bdd.core
         MockFactory mock_factory;
         SystemUnderTestDependencyBuilder system_under_test_dependency_builder { get; set; }
         SystemUnderTestFactory system_under_test_factory { get; set; }
+        Exception exception_thrown;
 
 
         public ObservationContext(TestState<SUT> test_state_implementation, ObservationCommandFactory observation_command_factory, MockFactory mock_factory,
@@ -52,15 +73,15 @@ namespace developwithpassion.bdd.core
             doing(() => behaviour().force_traversal());
         }
 
+
         public Exception exception_thrown_by_the_sut
         {
             get
             {
-                return test_state.exception_thrown_while_the_sut_performed_its_work ??
-                       (test_state.exception_thrown_while_the_sut_performed_its_work =
+                return exception_thrown ??
+                       (exception_thrown=
                         get_exception_throw_by(test_state.behaviour_performed_in_because));
             }
-            set { test_state.exception_thrown_while_the_sut_performed_its_work = value; }
         }
 
         Exception get_exception_throw_by(Action because_behaviour)

@@ -1,6 +1,5 @@
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core.commands;
-using developwithpassion.bdd.core.extensions;
 
 namespace developwithpassion.bdd.core
 {

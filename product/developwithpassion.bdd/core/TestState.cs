@@ -6,13 +6,11 @@ namespace developwithpassion.bdd.core
 {
     public interface BasicTestState : DependencyBag
     {
-        object test { get; set; }
         Exception exception_thrown_while_the_sut_performed_its_work { get; set; }
         Action behaviour_performed_in_because { get; set; }
     }
 
     public interface DependencyBag {
-        IDictionary<Type, object> dependencies { get; set; }
         void store_dependency(Type type, object instance);
         Dependency get_dependency<Dependency>();
         bool has_no_dependency_for<Dependency>();
@@ -35,8 +33,8 @@ namespace developwithpassion.bdd.core
     public class TestStateImplementation<SUT> : TestState<SUT>
     {
         IList<PipelineBehaviour> pipeline_behaviours { get; set; }
-        public object test { get; set; }
-        public IDictionary<Type, object> dependencies { get; set; }
+        object test { get; set; }
+        IDictionary<Type, object> dependencies { get; set; }
         public Exception exception_thrown_while_the_sut_performed_its_work { get; set; }
         public Action behaviour_performed_in_because { get; set; }
         public SUT sut { get; set; }
