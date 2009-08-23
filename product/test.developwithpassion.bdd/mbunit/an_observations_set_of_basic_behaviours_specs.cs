@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using developwithpassion.bdd.core;
@@ -28,7 +29,7 @@ namespace test.developwithpassion.bdd.mbunit
                 observations = MockRepository.GenerateStub<Observations<IDbConnection>>();
 
                 sut = new SampleSetOfObservations();
-                test_state_implementation = new TestStateImplementation<IDbConnection>(sut,() => null);
+                test_state_implementation = new TestStateImplementation<IDbConnection>(sut,() => null,new List<PipelineBehaviour>());
 
                 an_observations_set_of_basic_behaviours<IDbConnection>.test_state = test_state_implementation;
                 an_observations_set_of_basic_behaviours<IDbConnection>.observation_context = observations;

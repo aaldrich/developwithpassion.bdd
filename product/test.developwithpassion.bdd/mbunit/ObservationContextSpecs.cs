@@ -28,6 +28,7 @@ namespace test.developwithpassion.bdd.mbunit
             protected MockFactory mock_factory;
             protected ObservationCommandFactory observation_command_factory;
             protected TestState<IDbConnection> test_state;
+            protected IList<PipelineBehaviour> behaviours;
             SystemUnderTestDependencyBuilder dependency_builder;
             SystemUnderTestFactory sut_factory;
 
@@ -35,6 +36,7 @@ namespace test.developwithpassion.bdd.mbunit
             [SetUp]
             public void setup()
             {
+                behaviours = new List<PipelineBehaviour>();
                 factory = () => new SqlConnection();
                 test_driver = new SampleSetOfObservations();
                 observation_command_factory = MockRepository.GenerateStub<ObservationCommandFactory>();
@@ -42,7 +44,7 @@ namespace test.developwithpassion.bdd.mbunit
                 dependency_builder = MockRepository.GenerateStub<SystemUnderTestDependencyBuilder>();
                 delegate_controller = MockRepository.GenerateStub<DelegateController>();
                 mock_factory = MockRepository.GenerateStub<MockFactory>();
-                test_state = new TestStateImplementation<IDbConnection>(test_driver, factory);
+                test_state = new TestStateImplementation<IDbConnection>(test_driver, factory,behaviours);
 
                 sut = create_the_sut();
                 establish_context();
@@ -76,8 +78,9 @@ namespace test.developwithpassion.bdd.mbunit
             [Observation]
             public void should_add_the_behaviour_to_the_pipeline_list()
             {
-                test_state.pipeline_behaviours.should_contain(behaviour);
+                behaviours.should_contain(behaviour);
             }
+
         }
 
         [Concern(typeof (an_observations_set_of_basic_behaviours<>))]

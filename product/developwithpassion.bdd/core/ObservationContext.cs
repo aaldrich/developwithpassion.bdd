@@ -91,7 +91,7 @@ namespace developwithpassion.bdd.core
 
         public void add_pipeline_behaviour(PipelineBehaviour pipeline_behaviour)
         {
-            test_state.pipeline_behaviours.Add(pipeline_behaviour);
+            test_state.add_pipeline_behaviour(pipeline_behaviour);
         }
 
         public void add_pipeline_behaviour(Action context, Action teardown)

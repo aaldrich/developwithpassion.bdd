@@ -19,7 +19,7 @@ namespace developwithpassion.bdd.mbunit.standard.observations
         public void fixture_setup()
         {
             mock_factory = new MockFactoryAdapter();
-            test_state = new TestStateImplementation<Contract>(this, create_sut);
+            test_state = new TestStateImplementation<Contract>(this, create_sut,new List<PipelineBehaviour>());
             var dependency_builder = new SystemUnderTestDependencyBuilderImplementation(test_state, mock_factory);
             observation_context = new ObservationContext<Contract>(test_state,
                                                                    new ObservationCommandFactoryImplementation<Contract>(test_state,

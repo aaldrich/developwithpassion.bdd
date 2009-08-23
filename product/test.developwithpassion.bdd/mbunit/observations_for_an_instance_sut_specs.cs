@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit;
@@ -34,7 +35,7 @@ namespace test.developwithpassion.bdd.mbunit
                 command_factory = MockRepository.GenerateStub<ObservationCommandFactory>();
                 sut_factory = MockRepository.GenerateStub<SystemUnderTestFactory>();
                 dependency_builder = MockRepository.GenerateStub<SystemUnderTestDependencyBuilder>();
-                state = new TestStateImplementation<AClassWithDependencies>(sut, sut.create_sut);
+                state = new TestStateImplementation<AClassWithDependencies>(sut, sut.create_sut,new List<PipelineBehaviour>());
                 observations = new ObservationContext<AClassWithDependencies>(
                     state, command_factory, new RhinoMocksMockFactory(),
                     dependency_builder, sut_factory);

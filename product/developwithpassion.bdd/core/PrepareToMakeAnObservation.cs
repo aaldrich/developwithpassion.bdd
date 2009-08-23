@@ -19,7 +19,7 @@ namespace developwithpassion.bdd.core
         public void run()
         {
             controller.run_block<context>();
-            test_state.pipeline_behaviours.each(item => item.start());
+            test_state.run_startup_pipeline();
             test_state.sut = test_state.factory();
             controller.run_block<after_the_sut_has_been_created>();
             controller.run_block<because>();

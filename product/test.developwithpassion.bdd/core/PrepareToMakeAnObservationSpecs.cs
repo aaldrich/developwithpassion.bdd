@@ -22,7 +22,6 @@ namespace test.developwithpassion.bdd.core
             {
                 state = an<TestState<int>>();
                 state.factory = () => 3;
-                state.pipeline_behaviours = new List<PipelineBehaviour>();
                 controller = MockRepository.GenerateStub<DelegateController>();
             };
 
