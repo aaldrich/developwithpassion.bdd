@@ -1,28 +1,29 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using developwithpassion.bdd.concerns;
-using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
-using developwithpassion.bdd.mbunit.standard;
-using developwithpassion.bdd.mbunit.standard.observations;
 using MbUnit.Framework;
 
-namespace developwithpassion.bdd.concerns
+namespace developwithpassion.bdd.mbunit.standard.observations
 {
     public interface IObservations {}
 
     [Observations]
-    public abstract class an_observations_set_of_basic_behaviours<SUT> : observation_basics, IObservations
+    public abstract class an_observations_set_of_basic_behaviours<SUT> : IObservations
     {
-        public static Observations<SUT> observation_context;
+        static public Observations<SUT> observation_context;
+        static public TestState<SUT> test_state;
 
         [TestFixtureSetUp]
         public void fixture_setup()
         {
-            observation_context = new ObservationContext<SUT>(this, context_pipeline);
-            observation_context.run_action<before_all_observations>();
-            observation_context.factory = create_sut;
+            test_state = new TestStateImplementation<SUT>(this, create_sut);
+            observation_context = new ObservationContext<SUT>(test_state,
+                                                              new ObservationCommandFactoryImplementation<SUT>(test_state,
+                                                                                                               new DelegateControllerImplementation
+                                                                                                                   (this)),
+                                                              new RhinoMocksMockFactory());
+            observation_context.before_all_observations();
         }
 
         [SetUp]
@@ -40,7 +41,7 @@ namespace developwithpassion.bdd.concerns
         [TestFixtureTearDown]
         public void fixture_tear_down()
         {
-            observation_context.run_action<after_all_observations>();
+            observation_context.after_all_observations();
         }
 
 
@@ -94,35 +95,15 @@ namespace developwithpassion.bdd.concerns
             observation_context.add_pipeline_behaviour(context, teardown);
         }
 
-        static public IDictionary<Type, object> dependencies
-        {
-            get { return observation_context.dependencies; }
-            set { observation_context.dependencies = value; }
-        }
-
-        static public Action behaviour_performed_in_because
-        {
-            get { return observation_context.behaviour_performed_in_because; }
-        }
-
         static public SUT sut
         {
-            get { return observation_context.sut; }
-            set { observation_context.sut = value; }
+            get { return test_state.sut; }
+            set { test_state.sut = value; }
         }
 
         public virtual SUT create_sut()
         {
             return default(SUT);
         }
-    }
-}
-
-static public class ConcernExtensions
-{
-    static public bool is_a_concern_type(this Type type)
-    {
-        return typeof (IObservations)
-            .IsAssignableFrom(type);
     }
 }

@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
+using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard;
 using developwithpassion.bdd.mbunit.standard.observations;
@@ -16,11 +15,21 @@ namespace test.developwithpassion.bdd
         public abstract class concern
         {
             protected SampleTestWithAnSut sut;
+            protected Observations<AClassWithDependencies> observations;
+            protected ObservationCommandFactory command_factory;
+            protected TestStateImplementation<AClassWithDependencies> state;
 
             [SetUp]
             public void setup()
             {
                 sut = new SampleTestWithAnSut();
+
+                command_factory = MockRepository.GenerateStub<ObservationCommandFactory>();
+                state = new TestStateImplementation<AClassWithDependencies>(sut, sut.create_sut);
+                observations = new ObservationContext<AClassWithDependencies>(
+                    state, command_factory, new RhinoMocksMockFactory());
+                an_observations_set_of_basic_behaviours<AClassWithDependencies>.observation_context = observations;
+                an_observations_set_of_basic_behaviours<AClassWithDependencies>.test_state = state;
                 establish_context();
                 because();
             }
@@ -32,12 +41,7 @@ namespace test.developwithpassion.bdd
         [Concern(typeof (observations_for_an_instance_sut<,>))]
         public class when_creating_an_instance_of_the_sut_and_no_dependencies_have_been_provided : concern
         {
-            AClassWithDependences result;
-
-            protected override void establish_context()
-            {
-                SampleTestWithAnSut.dependencies = new Dictionary<Type, object>();
-            }
+            AClassWithDependencies result;
 
             protected override void because()
             {
@@ -49,25 +53,25 @@ namespace test.developwithpassion.bdd
             public void should_create_the_sut_and_automatically_mock_out_dependencies_that_can_be_mocked()
             {
                 result.should_not_be_null();
-                result.connection.should_be_an_instance_of<IDbConnection>();
-                result.command.should_be_an_instance_of<IDbCommand>();
+                result.connection.should_not_be_null();
+                result.command.should_not_be_null();
             }
         }
 
         [Concern(typeof (observations_for_an_instance_sut<,>))]
         public class when_creating_an_instance_of_the_sut_and_dependencies_have_been_provided : concern
         {
-            AClassWithDependences result;
+            AClassWithDependencies result;
             IDbConnection connection;
             IDbCommand command;
 
             protected override void establish_context()
             {
-                SampleTestWithAnSut.dependencies = new Dictionary<Type, object>();
+                an_observations_set_of_basic_behaviours<AClassWithDependencies>.test_state.dependencies.Clear();
                 connection = MockRepository.GenerateMock<IDbConnection>();
                 command = MockRepository.GenerateMock<IDbCommand>();
-                SampleTestWithAnSut.dependencies.Add(typeof (IDbConnection), connection);
-                SampleTestWithAnSut.dependencies.Add(typeof (IDbCommand), command);
+                SampleTestWithAnSut.test_state.dependencies.Add(typeof (IDbConnection), connection);
+                SampleTestWithAnSut.test_state.dependencies.Add(typeof (IDbCommand), command);
             }
 
             protected override void because()
@@ -85,16 +89,15 @@ namespace test.developwithpassion.bdd
             }
         }
 
-        public class SampleTestWithAnSut : observations_for_an_instance_sut<AClassWithDependences, AClassWithDependences> {}
+        public class SampleTestWithAnSut : observations_for_an_instance_sut<AClassWithDependencies, AClassWithDependencies> {}
 
 
-
-        public class AClassWithDependences
+        public class AClassWithDependencies
         {
             public IDbCommand command { get; private set; }
             public IDbConnection connection { get; private set; }
 
-            public AClassWithDependences(IDbCommand command, IDbConnection connection)
+            public AClassWithDependencies(IDbCommand command, IDbConnection connection)
             {
                 this.command = command;
                 this.connection = connection;

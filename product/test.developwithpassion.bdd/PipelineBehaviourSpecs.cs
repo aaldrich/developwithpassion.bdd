@@ -1,5 +1,4 @@
- using System;
- using developwithpassion.bdd.contexts;
+using developwithpassion.bdd.contexts;
  using developwithpassion.bdd.mbunit.standard.observations;
  using developwithpassion.bdddoc.core;
  using developwithpassion.bdd.mbunit;

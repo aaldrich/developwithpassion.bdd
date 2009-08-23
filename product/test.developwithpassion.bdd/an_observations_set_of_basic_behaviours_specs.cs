@@ -1,10 +1,10 @@
 using System;
 using System.Data;
 using developwithpassion.bdd;
-using developwithpassion.bdd.concerns;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard;
+using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 using MbUnit.Framework;
 using Rhino.Mocks;
@@ -18,15 +18,22 @@ namespace test.developwithpassion.bdd
         {
             protected SampleSetOfObservations sut;
             protected Observations<IDbConnection> observations;
+            TestState<IDbConnection> test_state_implementation;
 
 
             [SetUp]
             public void setup()
             {
                 observations = MockRepository.GenerateStub<Observations<IDbConnection>>();
-                SampleSetOfObservations.observation_context = observations;
+
                 sut = new SampleSetOfObservations();
+                test_state_implementation = new TestStateImplementation<IDbConnection>(sut,() => null);
+
+                an_observations_set_of_basic_behaviours<IDbConnection>.test_state = test_state_implementation;
+                an_observations_set_of_basic_behaviours<IDbConnection>.observation_context = observations;
                 an_observations_set_of_basic_behaviours<IDbConnection>.sut = MockRepository.GenerateMock<IDbConnection>();
+                observations.Stub(x => x.test_state).Return(test_state_implementation);
+
                 establish_context();
                 because();
             }
@@ -123,7 +130,6 @@ namespace test.developwithpassion.bdd
 
             protected override void establish_context()
             {
-                base.establish_context();
                 connection = MockRepository.GenerateStub<IDbConnection>();
                 observations.Stub(x => x.an<IDbConnection>()).Return(connection);
             }

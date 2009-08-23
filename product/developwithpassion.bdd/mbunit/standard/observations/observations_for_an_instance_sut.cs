@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using developwithpassion.bdd.concerns;
 using developwithpassion.bdd.core.extensions;
 
 namespace developwithpassion.bdd.mbunit.standard.observations
@@ -24,7 +23,7 @@ namespace developwithpassion.bdd.mbunit.standard.observations
 
         object get_the_provided_dependency_assignable_from(Type constructor_parament_type)
         {
-            return dependencies[constructor_parament_type];
+            return test_state.dependencies[constructor_parament_type];
         }
 
         static bool dependency_needs_to_be_registered_for(Type dependency_type)
@@ -40,20 +39,20 @@ namespace developwithpassion.bdd.mbunit.standard.observations
 
         static bool does_not_have_dependency_registered_for(Type dependency_type)
         {
-            return ! dependencies.ContainsKey(dependency_type);
+            return ! test_state.dependencies.ContainsKey(dependency_type);
         }
 
         static void register_dependency_for_sut(Type dependency_type)
         {
-            dependencies[dependency_type] = an_item_of(dependency_type);
+            test_state.dependencies[dependency_type] = an_item_of(dependency_type);
         }
 
 
         static protected Dependency the_dependency<Dependency>() where Dependency : class
         {
-            if (has_no_dependency_for<Dependency>()) dependencies[typeof (Dependency)] = an<Dependency>();
+            if (has_no_dependency_for<Dependency>()) test_state.dependencies[typeof (Dependency)] = an<Dependency>();
 
-            return (Dependency) dependencies[typeof (Dependency)];
+            return (Dependency) test_state.dependencies[typeof (Dependency)];
         }
 
         static protected Dependency provide_an<Dependency>(Dependency instance) where Dependency : class
@@ -65,7 +64,7 @@ namespace developwithpassion.bdd.mbunit.standard.observations
         static void store_a_sut_constructor_argument<ArgumentType>(ArgumentType argument)
         {
             if (! has_no_dependency_for<ArgumentType>()) throw new ArgumentException("A dependency has already been provided for :{0}".format_using(typeof (ArgumentType).proper_name()));
-            dependencies[typeof (ArgumentType)] = argument;
+            test_state.dependencies[typeof (ArgumentType)] = argument;
         }
 
         static protected void provide_a_basic_sut_constructor_argument<ArgumentType>(ArgumentType value)

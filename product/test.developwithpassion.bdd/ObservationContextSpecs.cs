@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using developwithpassion.bdd;
-using developwithpassion.bdd.concerns;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
+using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard;
 using developwithpassion.bdd.mbunit.standard.observations;
@@ -20,66 +21,102 @@ namespace test.developwithpassion.bdd
         [Observations]
         public abstract class concern
         {
-            protected SampleSetOfObservations sut;
-            protected Observations<IDbConnection> observations;
+            protected SampleSetOfObservations test_driver;
+            protected Observations<IDbConnection> sut;
+            protected DelegateController delegate_controller;
+            protected Func<IDbConnection> factory;
+            protected MockFactory mock_factory;
+            protected ObservationCommandFactory observation_command_factory;
+            protected TestState<IDbConnection> test_state;
 
 
             [SetUp]
             public void setup()
             {
-                observations = MockRepository.GenerateStub<Observations<IDbConnection>>();
-                SampleSetOfObservations.reset();
-                sut = new SampleSetOfObservations();
-                an_observations_set_of_basic_behaviours<IDbConnection>.sut = MockRepository.GenerateMock<IDbConnection>();
+                factory = () => new SqlConnection();
+                test_driver = new SampleSetOfObservations();
+                observation_command_factory = MockRepository.GenerateStub<ObservationCommandFactory>();
+                delegate_controller = MockRepository.GenerateStub<DelegateController>();
+                mock_factory = MockRepository.GenerateStub<MockFactory>();
+                test_state = new TestStateImplementation<IDbConnection>(test_driver, factory);
+
+                sut = create_the_sut();
                 establish_context();
                 because();
+            }
+
+            ObservationContext<IDbConnection> create_the_sut()
+            {
+                return new ObservationContext<IDbConnection>(test_state, observation_command_factory, mock_factory);
             }
 
             protected virtual void establish_context() {}
             protected abstract void because();
         }
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
-        public class when_told_to_setup : concern
+        [Observations]
+        public class when_adding_a_pipeline_action_to_the_context_pipeline : concern
         {
+            PipelineBehaviour behaviour;
+
+            protected override void establish_context()
+            {
+                behaviour = new PipelineBehaviour(() => {}, () => {});
+            }
+
             protected override void because()
             {
-                sut.setup();
+                sut.add_pipeline_behaviour(behaviour);
+            }
+
+            [Observation]
+            public void should_add_the_behaviour_to_the_pipeline_list()
+            {
+                test_state.pipeline_behaviours.should_contain(behaviour);
+            }
+        }
+
+        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        public class when_told_to_reset : concern
+        {
+            Command reset_command;
+            Command prepare_to_make_observations_command;
+
+            protected override void establish_context()
+            {
+                prepare_to_make_observations_command = MockRepository.GenerateStub<Command>();
+                reset_command=  MockRepository.GenerateStub<Command>();
+                observation_command_factory.Stub(x => x.create_reset_command()).Return(reset_command);
+                observation_command_factory.Stub(x => x.create_prepare_observations_command()).Return(prepare_to_make_observations_command);
+
+            }
+
+            protected override void because()
+            {
+                sut.reset();
             }
 
 
             [Observation]
-            public void should_clear_the_dependencies_dictionary()
+            public void should_run_the_reset_and_prepare_to_make_observations_command()
             {
-                observations.received(x => x.reset());
+                reset_command.received(x => x.run());
+                prepare_to_make_observations_command.received(x => x.run());
             }
 
-            [Observation]
-            public void should_run_the_context_block()
-            {
-                SampleSetOfObservations.context_block_ran.should_be_true();
-            }
 
-            [Observation]
-            public void should_run_the_because_blocks()
-            {
-                an_observations_set_of_basic_behaviours<IDbConnection>.sut.was_told_to(x => x.Open());
-            }
-
-            [Observation]
-            public void should_not_run_the_after_each_observation_block()
-            {
-                SampleSetOfObservations.after_each_observation_block_ran.should_be_false();
-            }
         }
 
 
         [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
         public class when_told_to_teardown : concern
         {
+            Command teardown_command;
+
             protected override void establish_context()
             {
-                an_observations_set_of_basic_behaviours<IDbConnection>.dependencies = new Dictionary<Type, object>();
+                teardown_command = MockRepository.GenerateStub<Command>();
+                observation_command_factory.Stub(x => x.create_teardown_command()).Return(teardown_command);
             }
 
             protected override void because()
@@ -88,31 +125,14 @@ namespace test.developwithpassion.bdd
             }
 
             [Observation]
-            public void should_run_the_after_each_observation_block()
+            public void should_run_the_teardown_command()
             {
-                SampleSetOfObservations.after_each_observation_block_ran.should_be_true();
-            }
-
-            [Observation]
-            public void should_not_run_the_context_and_because_and_after_sut_has_been_initialized_blocks()
-            {
-                SampleSetOfObservations.context_block_ran.should_be_false();
-                SampleSetOfObservations.after_the_sut_has_been_created_block_ran.should_be_false();
-                an_observations_set_of_basic_behaviours<IDbConnection>.sut.was_never_told_to(x => x.Open());
-            }
-        }
-
-        public abstract class concern_for_an_observations_set_of_basic_behaviours_that_has_run_its_setup : concern
-        {
-            protected override void establish_context()
-            {
-                sut.setup();
+                teardown_command.received(x => x.run());
             }
         }
 
         [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
-        public class when_it_is_asked_for_the_exception_that_was_thrown :
-            concern_for_an_observations_set_of_basic_behaviours_that_has_run_its_setup
+        public class when_it_is_asked_for_the_exception_that_was_thrown : concern
         {
             static Exception exception = new Exception();
             static bool alternate_because_block_ran;
@@ -126,12 +146,12 @@ namespace test.developwithpassion.bdd
 
             protected override void establish_context()
             {
-                an_observations_set_of_basic_behaviours<IDbConnection>.doing(action);
+                sut.doing(action);
             }
 
             protected override void because()
             {
-                result = an_observations_set_of_basic_behaviours<IDbConnection>.exception_thrown_by_the_sut;
+                result = sut.exception_thrown_by_the_sut;
             }
 
             [Observation]
@@ -147,26 +167,24 @@ namespace test.developwithpassion.bdd
             }
         }
 
-        [Ignore("Inconsistent results. Will have to revisit")]
         [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
         public class
             when_it_is_asked_for_the_exception_that_was_thrown_and_the_method_it_is_targeting_is_a_method_that_leverages_the_yield_keyword :
-                concern_for_an_observations_set_of_basic_behaviours_that_has_run_its_setup
+                concern
         {
-            static Exception exception = new Exception();
-            static bool alternate_because_block_ran;
+            Exception exception = new Exception();
+            bool alternate_because_block_ran;
             Exception result;
 
 
             protected override void establish_context()
             {
-                an_observations_set_of_basic_behaviours<IDbConnection>.doing(
-                    () => new SampleClassWithYieldingMethodThrowingAnException().get_numbers());
+                sut.doing(() => new SampleClassWithYieldingMethodThrowingAnException().get_numbers());
             }
 
             protected override void because()
             {
-                result = an_observations_set_of_basic_behaviours<IDbConnection>.exception_thrown_by_the_sut;
+                result = sut.exception_thrown_by_the_sut;
             }
 
 
@@ -189,42 +207,10 @@ namespace test.developwithpassion.bdd
 
         public class SampleSetOfObservations : an_observations_set_of_basic_behaviours<IDbConnection>
         {
-            static public bool context_block_ran;
-            static public bool after_each_observation_block_ran;
-            static public bool after_the_sut_has_been_created_block_ran;
-
-            static public void reset()
-            {
-                context_block_ran = false;
-                after_each_observation_block_ran = false;
-                after_the_sut_has_been_created_block_ran = false;
-                sut = null;
-            }
-
-            static context c = () =>
-            {
-                context_block_ran = true;
-            };
-
             public override IDbConnection create_sut()
             {
                 return an<IDbConnection>();
             }
-
-            after_the_sut_has_been_created i = () =>
-            {
-                after_the_sut_has_been_created_block_ran = true;
-            };
-
-            public after_each_observation a = () =>
-            {
-                after_each_observation_block_ran = true;
-            };
-
-            because b = () =>
-            {
-                sut.Open();
-            };
         }
 
         [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
@@ -234,33 +220,41 @@ namespace test.developwithpassion.bdd
 
             protected override void because()
             {
-                an_observations_set_of_basic_behaviours<IDbConnection>.doing(action);
+                sut.doing(action);
             }
 
             [Observation]
             public void should_store_the_action_as_the_because_action()
             {
-                an_observations_set_of_basic_behaviours<IDbConnection>.behaviour_performed_in_because.should_be_equal_to(action);
+                test_state.behaviour_performed_in_because.should_be_equal_to(action);
             }
         }
 
         [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
-        public class when_its_an_method_is_used_to_create_a_mock : concern
+        public class when_creating_a_mock : concern
         {
             IDbConnection result;
             object result2;
+            IDbConnection connection;
+
+            protected override void establish_context()
+            {
+                connection = MockRepository.GenerateStub<IDbConnection>();
+                mock_factory.Stub(x => x.create_stub<IDbConnection>()).Return(connection);
+                mock_factory.Stub(x => x.create_stub(typeof (IDbConnection))).Return(connection);
+            }
 
             protected override void because()
             {
-                result = an_observations_set_of_basic_behaviours<IDbConnection>.an<IDbConnection>();
-                result2 = an_observations_set_of_basic_behaviours<IDbConnection>.an_item_of(typeof (IDbConnection));
+                result = sut.an<IDbConnection>();
+                result2 = sut.an_item_of(typeof (IDbConnection));
             }
 
             [Observation]
-            public void should_create_a_mock_of_the_requested_type()
+            public void should_return_the_mocks_created_by_the_mock_factory()
             {
-                result.should_not_be_null();
-                result2.should_be_an_instance_of<IDbConnection>();
+                result.should_be_equal_to(connection);
+                result2.should_be_equal_to(connection);
             }
         }
     }

@@ -82,11 +82,14 @@
     <Compile Include="ObservationContextSpecs.cs" />
     <Compile Include="observations_for_an_instance_sut_specs.cs" />
     <Compile Include="PipelineBehaviourSpecs.cs" />
+    <Compile Include="PrepareToMakeAnObservationSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FieldReassignmentStartSpecs.cs" />
     <Compile Include="PropertyInfoTargetSpecs.cs" />
+    <Compile Include="ResetTestStateSpecs.cs" />
     <Compile Include="StringAssertionExtensionsSpecs.cs" />
     <Compile Include="StringExtensionsSpecs.cs" />
+    <Compile Include="TearDownCommandSpecs.cs" />
     <Compile Include="TypeCastingExtensionsSpecs.cs" />
     <Compile Include="TypeExtensionsSpecs.cs" />
   </ItemGroup>
