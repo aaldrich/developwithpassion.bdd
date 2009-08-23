@@ -223,7 +223,10 @@ namespace test.developwithpassion.bdd.mbunit
         [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
         public class when_its_doing_method_is_leveraged : concern
         {
-            static Action action = () => {};
+
+            static Action action = () => {
+
+            };
 
             protected override void because()
             {
@@ -233,7 +236,7 @@ namespace test.developwithpassion.bdd.mbunit
             [Observation]
             public void should_store_the_action_as_the_because_action()
             {
-                test_state.behaviour_performed_in_because.should_be_equal_to(action);
+                sut.because_behaviour.should_be_equal_to(action);
             }
         }
 

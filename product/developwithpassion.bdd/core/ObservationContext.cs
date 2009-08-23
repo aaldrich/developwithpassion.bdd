@@ -21,6 +21,7 @@ namespace developwithpassion.bdd.core
         void before_all_observations();
         void after_all_observations();
         Exception exception_thrown_by_the_sut { get;}
+        Action because_behaviour { get; }
         Contract build_sut<Contract, Class>();
         Dependency the_dependency<Dependency>() where Dependency : class;
         void provide_a_basic_sut_constructor_argument<ArgumentType>(ArgumentType value);
@@ -34,6 +35,7 @@ namespace developwithpassion.bdd.core
         SystemUnderTestDependencyBuilder system_under_test_dependency_builder { get; set; }
         SystemUnderTestFactory system_under_test_factory { get; set; }
         Exception exception_thrown;
+        public Action because_behaviour { get; private set; }
 
 
         public ObservationContext(TestState<SUT> test_state_implementation, ObservationCommandFactory observation_command_factory, MockFactory mock_factory,
@@ -65,7 +67,7 @@ namespace developwithpassion.bdd.core
 
         public void doing(Action because_behaviour)
         {
-            test_state.behaviour_performed_in_because = because_behaviour;
+            this.because_behaviour = because_behaviour;
         }
 
         public void doing<T>(Func<IEnumerable<T>> behaviour)
@@ -80,13 +82,13 @@ namespace developwithpassion.bdd.core
             {
                 return exception_thrown ??
                        (exception_thrown=
-                        get_exception_throw_by(test_state.behaviour_performed_in_because));
+                        get_exception_throw_by(because_behaviour));
             }
         }
 
-        Exception get_exception_throw_by(Action because_behaviour)
+        Exception get_exception_throw_by(Action action)
         {
-            return because_behaviour.get_exception();
+            return action.get_exception();
         }
 
         public InterfaceType container_dependency<InterfaceType>() where InterfaceType : class

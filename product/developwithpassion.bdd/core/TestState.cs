@@ -5,10 +5,7 @@ using developwithpassion.bdd.core.extensions;
 namespace developwithpassion.bdd.core
 {
     public interface BasicTestState : DependencyBag
-    {
-        Exception exception_thrown_while_the_sut_performed_its_work { get; set; }
-        Action behaviour_performed_in_because { get; set; }
-    }
+    {}
 
     public interface DependencyBag {
         void store_dependency(Type type, object instance);
@@ -28,6 +25,7 @@ namespace developwithpassion.bdd.core
         void add_pipeline_behaviour(PipelineBehaviour pipeline_behaviour);
         void reset();
         void run_startup_pipeline();
+        void change_because_behaviour_to(Action because_behaviour);
     }
 
     public class TestStateImplementation<SUT> : TestState<SUT>
@@ -35,9 +33,10 @@ namespace developwithpassion.bdd.core
         IList<PipelineBehaviour> pipeline_behaviours { get; set; }
         object test { get; set; }
         IDictionary<Type, object> dependencies { get; set; }
-        public Exception exception_thrown_while_the_sut_performed_its_work { get; set; }
         public Action behaviour_performed_in_because { get; set; }
+
         public SUT sut { get; set; }
+
         public Func<SUT> factory { get; set; }
 
         public TestStateImplementation(object test, Func<SUT> factory,IList<PipelineBehaviour> behaviours)
@@ -52,6 +51,11 @@ namespace developwithpassion.bdd.core
         public void run_startup_pipeline()
         {
             pipeline_behaviours.each(item => item.start());
+        }
+
+        public void change_because_behaviour_to(Action because_behaviour)
+        {
+            behaviour_performed_in_because = because_behaviour;
         }
 
         public void run_teardown_pipeline()
@@ -107,7 +111,6 @@ namespace developwithpassion.bdd.core
         public void reset()
         {
             behaviour_performed_in_because = null;
-            exception_thrown_while_the_sut_performed_its_work = null;
         }
     }
 }
