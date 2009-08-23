@@ -7,7 +7,7 @@ using developwithpassion.bdddoc.core;
 using Rhino.Mocks;
 using developwithpassion.bdd.mbunit;
 
-namespace test.developwithpassion.bdd
+namespace test.developwithpassion.bdd.core
 {
     public class PrepareToMakeAnObservationSpecs
     {

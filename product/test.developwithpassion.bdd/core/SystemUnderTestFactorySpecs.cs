@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit;
@@ -6,12 +9,11 @@ using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 using Rhino.Mocks;
 
-namespace test.developwithpassion.bdd
+namespace test.developwithpassion.bdd.core
 {
     public class SystemUnderTestFactorySpecs
     {
-        public abstract class concern : observations_for_a_sut_with_a_contract<SystemUnderTestFactory,
-                                            SystemUnderTestFactoryImplementation>
+        public abstract class concern : observations_for_a_sut_with_a_contract<SystemUnderTestFactory, SystemUnderTestFactoryImplementation>
         {
             context c = () =>
             {
@@ -19,7 +21,12 @@ namespace test.developwithpassion.bdd
                 command = MockRepository.GenerateStub<IDbCommand>();
                 builder = MockRepository.GenerateStub<SystemUnderTestDependencyBuilder>();
 
-                builder.Stub(x => x.all_dependencies()).Return(new object[] {command, connection});
+                builder.Stub(
+                    x =>
+                    x.all_dependencies(
+                        Arg<IEnumerable<Type>>.Matches(
+                            args => args.First() == typeof (IDbCommand) && args.Skip(1).Take(1).First() == typeof (IDbConnection)))).Return(
+                    new object[] {command, connection});
             };
 
             public override SystemUnderTestFactory create_sut()
@@ -37,7 +44,7 @@ namespace test.developwithpassion.bdd
         {
             because b = () =>
             {
-                result = context.sut.create<AClassWithDependencies, AClassWithDependencies>();
+                result = sut.create<AClassWithDependencies, AClassWithDependencies>();
             };
 
 
@@ -61,16 +68,6 @@ namespace test.developwithpassion.bdd
             {
                 this.command = command;
                 this.connection = connection;
-            }
-
-            public void open_the_connection()
-            {
-                connection.Open();
-            }
-
-            public void update_the_commands_transaction(IDbTransaction transaction)
-            {
-                command.Transaction = transaction;
             }
         }
     }

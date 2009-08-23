@@ -7,7 +7,7 @@ using developwithpassion.bdddoc.core;
 using MbUnit.Framework;
 using Rhino.Mocks;
 
-namespace test.developwithpassion.bdd
+namespace test.developwithpassion.bdd.mbunit
 {
     public class observations_for_an_instance_sut_specs
     {
@@ -73,7 +73,7 @@ namespace test.developwithpassion.bdd
         }
 
         public class SampleTestWithAnSut : observations_for_an_instance_sut<AClassWithDependencies, AClassWithDependencies> {}
-        public class AClassWithDependencies
+        public class AClassWithDependencies 
         {
         }
     }

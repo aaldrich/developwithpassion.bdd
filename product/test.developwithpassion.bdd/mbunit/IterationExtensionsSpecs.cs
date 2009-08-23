@@ -5,7 +5,7 @@ using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdddoc.core;
 
-namespace test.developwithpassion.bdd
+namespace test.developwithpassion.bdd.mbunit
 {
     public class IterationExtensionsSpecs
     {

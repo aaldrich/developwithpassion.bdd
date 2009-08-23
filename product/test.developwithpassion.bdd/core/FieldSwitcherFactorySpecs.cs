@@ -6,7 +6,7 @@ using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 using Rhino.Mocks;
 
-namespace test.developwithpassion.bdd
+namespace test.developwithpassion.bdd.core
 {
     public class FieldSwitcherFactorySpecs
     {

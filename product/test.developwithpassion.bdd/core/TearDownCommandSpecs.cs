@@ -6,7 +6,7 @@ using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace test.developwithpassion.bdd
+namespace test.developwithpassion.bdd.core
 {
     public class TearDownCommandSpecs
     {

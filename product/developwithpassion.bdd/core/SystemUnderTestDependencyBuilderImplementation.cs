@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using developwithpassion.bdd.core.extensions;
 
@@ -22,7 +23,7 @@ namespace developwithpassion.bdd.core
 
         public bool dependency_needs_to_be_registered_for(Type dependency_type)
         {
-            return does_not_have_dependency_registered_for(dependency_type) &&
+            return has_no_dependency_for(dependency_type) &&
                    is_a_depedency_that_can_automatically_be_created(dependency_type);
         }
 
@@ -31,7 +32,7 @@ namespace developwithpassion.bdd.core
             return ! dependency_type.IsValueType;
         }
 
-        public bool does_not_have_dependency_registered_for(Type dependency_type)
+        public bool has_no_dependency_for(Type dependency_type)
         {
             return ! test_state.dependencies.ContainsKey(dependency_type);
         }
@@ -61,10 +62,15 @@ namespace developwithpassion.bdd.core
 
         void store_a_sut_constructor_argument<ArgumentType>(ArgumentType argument)
         {
+            ensure_the_dependency_has_not_already_been_register<ArgumentType>();
+            test_state.dependencies[typeof (ArgumentType)] = argument;
+        }
+
+        void ensure_the_dependency_has_not_already_been_register<ArgumentType>()
+        {
             if (! has_no_dependency_for<ArgumentType>())
                 throw new ArgumentException(
                     "A dependency has already been provided for :{0}".format_using(typeof (ArgumentType).proper_name()));
-            test_state.dependencies[typeof (ArgumentType)] = argument;
         }
 
         public void provide_a_basic_sut_constructor_argument<ArgumentType>(ArgumentType value)
@@ -72,14 +78,14 @@ namespace developwithpassion.bdd.core
             store_a_sut_constructor_argument(value);
         }
 
-        public object[] all_dependencies()
+        public object[] all_dependencies(IEnumerable<Type> constructor_parameter_types)
         {
-            return test_state.dependencies.Values.ToArray();
+            return constructor_parameter_types.Select(parameter => get_the_provided_dependency_assignable_from(parameter)).ToArray();
         }
 
         public bool has_no_dependency_for<Interface>()
         {
-            return does_not_have_dependency_registered_for(typeof (Interface));
+            return has_no_dependency_for(typeof (Interface));
         }
     }
 }

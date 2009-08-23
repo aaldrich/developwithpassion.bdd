@@ -57,6 +57,7 @@
     <Compile Include="contexts\after_all_observations.cs" />
     <Compile Include="contexts\before_all_observations.cs" />
     <Compile Include="contexts\observation.cs" />
+    <Compile Include="core\BasicTestState.cs" />
     <Compile Include="core\Change.cs" />
     <Compile Include="core\commands\AnonymousCommand.cs" />
     <Compile Include="core\CreateDelegate.cs" />
@@ -107,7 +108,6 @@
     <Compile Include="contexts\because.cs" />
     <Compile Include="contexts\before_each_observation.cs" />
     <Compile Include="contexts\context.cs" />
-    <Compile Include="contexts\create_the_sut.cs" />
     <Compile Include="contexts\it.cs" />
     <Compile Include="core\commands\ParameterizedCommand.cs" />
     <Compile Include="mbunit\AppendTestsToTestTree.cs" />

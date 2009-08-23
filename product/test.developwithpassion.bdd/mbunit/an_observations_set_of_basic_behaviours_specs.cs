@@ -8,7 +8,7 @@ using developwithpassion.bdddoc.core;
 using MbUnit.Framework;
 using Rhino.Mocks;
 
-namespace test.developwithpassion.bdd
+namespace test.developwithpassion.bdd.mbunit
 {
     public class an_observations_set_of_basic_behaviours_specs
     {

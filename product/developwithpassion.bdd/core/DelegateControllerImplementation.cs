@@ -38,7 +38,7 @@ namespace developwithpassion.bdd.core
     {
         static public bool is_a_concern_type(this Type type)
         {
-            return typeof (IObservations)
+            return typeof (Observations)
                 .IsAssignableFrom(type);
         }
     }

@@ -6,7 +6,7 @@ using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
-namespace test.developwithpassion.bdd
+namespace test.developwithpassion.bdd.mbunit
 {
     public class AssertionExtensionsSpecs
     {

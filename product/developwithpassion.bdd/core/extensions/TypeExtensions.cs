@@ -12,9 +12,7 @@ namespace developwithpassion.bdd.core.extensions
 
         static public ConstructorInfo greediest_constructor(this Type type)
         {
-            return type.GetConstructors()
-                .OrderByDescending(x => x.GetParameters().Count())
-                .First();
+            return type.GetConstructors().OrderByDescending(x => x.GetParameters().Count()).First();
         }
 
 
@@ -28,7 +26,7 @@ namespace developwithpassion.bdd.core.extensions
             return message.ToString();
         }
 
-        public static IEnumerable<FieldInfo> all_fields_of<FieldType>(this Type type, BindingFlags flags)
+        static public IEnumerable<FieldInfo> all_fields_of<FieldType>(this Type type, BindingFlags flags)
         {
             return type.GetFields(flags).Where(field => field.FieldType == typeof (FieldType));
         }

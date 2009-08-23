@@ -13,7 +13,7 @@ using developwithpassion.commons.core.infrastructure.containers;
 using MbUnit.Framework;
 using Rhino.Mocks;
 
-namespace test.developwithpassion.bdd
+namespace test.developwithpassion.bdd.mbunit
 {
     public class ObservationContextSpecs
     {
