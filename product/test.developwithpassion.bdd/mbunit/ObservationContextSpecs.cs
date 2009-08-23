@@ -8,6 +8,7 @@ using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard;
 using developwithpassion.bdd.mbunit.standard.observations;
+using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 using developwithpassion.commons.core.infrastructure.containers;
 using MbUnit.Framework;

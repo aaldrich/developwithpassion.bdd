@@ -1,7 +1,8 @@
 using System;
+using developwithpassion.bdd.core;
 using Rhino.Mocks;
 
-namespace developwithpassion.bdd.core
+namespace developwithpassion.bdd.mocking.rhino
 {
     public class RhinoMocksMockFactory : MockFactory
     {

@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using developwithpassion.bdd.core;
 
-namespace developwithpassion.bdd.mbunit.standard.observations
+namespace developwithpassion.bdd.core
 {
     public class TestScopeImplementation<SUT> : TestScope<SUT>
     {

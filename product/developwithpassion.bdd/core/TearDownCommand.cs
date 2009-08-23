@@ -18,7 +18,7 @@ namespace developwithpassion.bdd.core
         {
             delegate_controller.run_block<after_each_observation>();
             test_state.run_teardown_pipeline();
-            test_state.dependencies.Clear();
+            test_state.empty_dependencies();
         }
     }
 }

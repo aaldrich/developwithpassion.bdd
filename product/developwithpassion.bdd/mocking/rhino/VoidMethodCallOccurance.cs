@@ -1,7 +1,7 @@
 using System;
 using Rhino.Mocks;
 
-namespace developwithpassion.bdd.core
+namespace developwithpassion.bdd.mocking.rhino
 {
     public class VoidMethodCallOccurance<T>
     {
@@ -17,7 +17,6 @@ namespace developwithpassion.bdd.core
 
         public void times(int number_of_times_the_method_should_have_been_called)
         {
-            mock.AssertWasCalled(action, y => y.Repeat.Times(number_of_times_the_method_should_have_been_called));
             mock.AssertWasCalled(action, y => y.Repeat.Times(number_of_times_the_method_should_have_been_called));
         }
 

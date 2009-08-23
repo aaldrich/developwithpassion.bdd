@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using developwithpassion.bdd.containers;
 using developwithpassion.bdd.core.commands;
 
 namespace developwithpassion.bdd.core
@@ -16,11 +13,10 @@ namespace developwithpassion.bdd.core
 
         public void run()
         {
-            test_state.pipeline_behaviours.Clear();
-            test_state.pipeline_behaviours.Add(new PipelineBehaviour(() => {}, UnitTestContainer.tear_down));
-            test_state.behaviour_performed_in_because = null;
-            test_state.exception_thrown_while_the_sut_performed_its_work = null;
-            test_state.dependencies = new Dictionary<Type, object>();
+            test_state.clear_test_pipeline();
+            test_state.add_pipeline_behaviour(CommonPipelineBehaviours.tear_down_the_unit_test_container);
+            test_state.reset();
+            test_state.empty_dependencies();
         }
     }
 }

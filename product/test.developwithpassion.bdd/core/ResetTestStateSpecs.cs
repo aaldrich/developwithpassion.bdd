@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.core.commands;
-using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
+using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 
 namespace test.developwithpassion.bdd.core
@@ -17,8 +15,6 @@ namespace test.developwithpassion.bdd.core
             context c = () =>
             {
                 state_implementation = an<TestState<int>>();
-                state_implementation.dependencies = new Dictionary<Type, object>();
-                controller = the_dependency<DelegateController>();
             };
 
             public override Command create_sut()
@@ -26,16 +22,35 @@ namespace test.developwithpassion.bdd.core
                 return new ResetTestState<int>(state_implementation);
             }
 
-            static public DelegateController controller;
             static protected TestState<int> state_implementation;
         }
 
         [Concern(typeof (ResetTestState<int>))]
         public class when_test_test_state_is_reset : concern
         {
+            because b = () =>
+            {
+                sut.run();
+            };
             it should_clear_the_dependencies_dictionary = () =>
             {
-                state_implementation.dependencies.Count.should_be_equal_to(0);
+                state_implementation.received(x => x.empty_dependencies());
+            };
+
+            it should_clear_the_test_pipeline = () =>
+            {
+                state_implementation.received(x => x.clear_test_pipeline());
+            };
+
+            it should_add_the_unit_test_container_teardown_behaviour = () =>
+            {
+                state_implementation.received(x => x.add_pipeline_behaviour(CommonPipelineBehaviours.tear_down_the_unit_test_container));
+            };
+
+            it should_reset_the_test_state = () =>
+            {
+                state_implementation.received(x => x.reset());
+
             };
         }
     }

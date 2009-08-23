@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="core\SystemUnderTestDependencyBuilderSpecs.cs" />
     <Compile Include="mbunit\an_observations_set_of_basic_behaviours_specs.cs" />
     <Compile Include="mbunit\AssertionExtensionsSpecs.cs" />
     <Compile Include="core\ChainedCommandSpecs.cs" />

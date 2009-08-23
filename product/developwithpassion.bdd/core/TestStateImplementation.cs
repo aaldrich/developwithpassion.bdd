@@ -27,5 +27,56 @@ namespace developwithpassion.bdd.core
         {
             pipeline_behaviours.each(item => item.finish());
         }
+
+        public void clear_test_pipeline()
+        {
+            pipeline_behaviours.Clear();
+        }
+
+        public void store_dependency(Type type, object instance)
+        {
+            dependencies.Add(type, instance);
+        }
+
+        public Dependency get_dependency<Dependency>()
+        {
+            return (Dependency)dependencies[typeof(Dependency)];
+        }
+
+        public bool has_no_dependency_for<Interface>()
+        {
+            return has_no_dependency_for(typeof (Interface));
+        }
+
+        public bool has_no_dependency_for(Type dependency_type)
+        {
+            return ! dependencies.ContainsKey(dependency_type);
+        }
+
+        public void register_dependency_for_sut(Type dependency_type,object instance)
+        {
+            dependencies[dependency_type] = instance;
+        }
+
+        public object get_the_provided_dependency_assignable_from(Type constructor_parament_type)
+        {
+            return dependencies[constructor_parament_type];
+        }
+
+        public void empty_dependencies()
+        {
+            dependencies.Clear();
+        }
+
+        public void add_pipeline_behaviour(PipelineBehaviour pipeline_behaviour)
+        {
+            pipeline_behaviours.Add(pipeline_behaviour);
+        }
+
+        public void reset()
+        {
+            behaviour_performed_in_because = null;
+            exception_thrown_while_the_sut_performed_its_work = null;
+        }
     }
 }

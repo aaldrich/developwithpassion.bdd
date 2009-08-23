@@ -53,7 +53,9 @@ namespace test.developwithpassion.bdd.core
 
             because b = () =>
             {
-                result = TypeExtensions.all_fields_of<it>(typeof(SomethingWithParameterfulConstructors),BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+                result = TypeExtensions.all_fields_of<it>(typeof (SomethingWithParameterfulConstructors),
+                                                          BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance |
+                                                          BindingFlags.FlattenHierarchy);
             };
 
             it should_only_return_the_fields_that_match_the_expected_type = () =>
@@ -63,15 +65,13 @@ namespace test.developwithpassion.bdd.core
         }
 
 
-        
-
         public class SomethingWithParameterfulConstructors
         {
             public IDbConnection connection { get; set; }
 
             public IDbCommand command { get; set; }
 
-            public SomethingWithParameterfulConstructors(IDbConnection connection) {}
+            public SomethingWithParameterfulConstructors(IDbConnection connection) :this(connection,null){}
 
             public SomethingWithParameterfulConstructors(IDbConnection connection, IDbCommand command)
             {
@@ -79,19 +79,9 @@ namespace test.developwithpassion.bdd.core
                 this.command = command;
             }
 
-            it first_observation = () =>
-            {
-                
+            it first_observation = () => {};
 
-
-            };
-
-            it second_observation = () =>
-            {
-                
-
-
-            };
+            it second_observation = () => {};
         }
     }
 }

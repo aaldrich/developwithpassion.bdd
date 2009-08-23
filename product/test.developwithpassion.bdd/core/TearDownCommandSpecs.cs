@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.mbunit.standard.observations;
+using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 
 namespace test.developwithpassion.bdd.core
@@ -19,7 +18,6 @@ namespace test.developwithpassion.bdd.core
             context c = () =>
             {
                 state = an<TestState<int>>();
-                state.dependencies = new Dictionary<Type, object>();
                 controller = an<DelegateController>();
             };
 
@@ -41,6 +39,11 @@ namespace test.developwithpassion.bdd.core
             it should_run_all_of_the_teardown_pipeline_blocks = () =>
             {
                 state.received(x => x.run_teardown_pipeline());
+            };
+
+            it should_clear_all_of_the_test_dependencies = () =>
+            {
+                state.received(x => x.empty_dependencies());
             };
 
             static DelegateController controller;

@@ -82,7 +82,6 @@ namespace test.developwithpassion.bdd.core
             static string new_value;
             static FieldSwitcher result;
             static FieldSwitcherFactory original_factory;
-            static Pair<Type, FieldInfo> args;
             static FieldInfo boxed_member_info;
         }
     }

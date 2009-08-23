@@ -60,10 +60,12 @@
     <Compile Include="core\BasicTestState.cs" />
     <Compile Include="core\Change.cs" />
     <Compile Include="core\commands\AnonymousCommand.cs" />
+    <Compile Include="core\CommonPipelineBehaviours.cs" />
     <Compile Include="core\CreateDelegate.cs" />
     <Compile Include="core\DeferredValue.cs" />
     <Compile Include="core\DelegateController.cs" />
     <Compile Include="core\DelegateControllerImplementation.cs" />
+    <Compile Include="core\DependencyBag.cs" />
     <Compile Include="core\SystemUnderTestFactory.cs" />
     <Compile Include="core\SystemUnderTestFactoryImplementation.cs" />
     <Compile Include="core\FieldMemberTarget.cs" />
@@ -80,13 +82,14 @@
     <Compile Include="core\MockFactory.cs" />
     <Compile Include="core\ObservationCommandFactory.cs" />
     <Compile Include="core\Observations.cs" />
-    <Compile Include="core\Pair.cs" />
     <Compile Include="core\PrepareToMakeAnObservation.cs" />
     <Compile Include="core\PropertyInfoMemberTarget.cs" />
     <Compile Include="core\MemberTarget.cs" />
     <Compile Include="core\ObservationContext.cs" />
     <Compile Include="core\ResetTestState.cs" />
-    <Compile Include="core\RhinoMocksMockFactory.cs" />
+    <Compile Include="mbunit\standard\observations\Observations.cs" />
+    <Compile Include="mbunit\standard\observations\sut_observation_context.cs" />
+    <Compile Include="mocking\rhino\RhinoMocksMockFactory.cs" />
     <Compile Include="core\TearDownCommand.cs" />
     <Compile Include="core\TestStateImplementation.cs" />
     <Compile Include="mbunit\AssertionExtensions.cs" />
@@ -113,8 +116,8 @@
     <Compile Include="mbunit\AppendTestsToTestTree.cs" />
     <Compile Include="mbunit\BlockRun.cs" />
     <Compile Include="core\PipelineBehaviour.cs" />
-    <Compile Include="mbunit\standard\observations\TestScope.cs" />
-    <Compile Include="mbunit\standard\observations\TestScopeImplementation.cs" />
+    <Compile Include="core\TestScope.cs" />
+    <Compile Include="core\TestScopeImplementation.cs" />
     <Compile Include="mbunit\standard\SlowAttribute.cs" />
     <Compile Include="mbunit\StringAssertionExtensions.cs" />
     <Compile Include="mbunit\TestTreeArgs.cs" />
@@ -132,8 +135,8 @@
     <Compile Include="mbunit\standard\ObservationsAttribute.cs" />
     <Compile Include="mbunit\EnumerableAssertionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="core\RhinoMocksExtensions.cs" />
-    <Compile Include="core\VoidMethodCallOccurance.cs" />
+    <Compile Include="mocking\rhino\RhinoMocksExtensions.cs" />
+    <Compile Include="mocking\rhino\VoidMethodCallOccurance.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
