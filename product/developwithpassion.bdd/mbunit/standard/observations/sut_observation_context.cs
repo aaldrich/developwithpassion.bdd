@@ -121,7 +121,6 @@ namespace developwithpassion.bdd.mbunit.standard.observations
         static public Contract sut
         {
             get { return test_state.sut; }
-            set { test_state.sut = value; }
         }
 
         [Obsolete("use context property to access testing dsl")]

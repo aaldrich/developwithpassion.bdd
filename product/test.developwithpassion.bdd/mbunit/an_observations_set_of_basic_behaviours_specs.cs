@@ -33,7 +33,6 @@ namespace test.developwithpassion.bdd.mbunit
 
                 an_observations_set_of_basic_behaviours<IDbConnection>.test_state = test_state_implementation;
                 an_observations_set_of_basic_behaviours<IDbConnection>.observation_context = observations;
-                an_observations_set_of_basic_behaviours<IDbConnection>.sut = MockRepository.GenerateMock<IDbConnection>();
 
                 establish_context();
                 because();

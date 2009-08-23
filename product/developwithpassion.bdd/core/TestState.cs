@@ -4,15 +4,17 @@ using developwithpassion.bdd.core.extensions;
 
 namespace developwithpassion.bdd.core
 {
-    public interface DependencyBag {
+    public interface DependencyBag
+    {
         void store_dependency(Type type, object instance);
         Dependency get_dependency<Dependency>();
         bool has_no_dependency_for<Dependency>();
-        void register_dependency_for_sut(Type dependency_type,object instance);
+        void register_dependency_for_sut(Type dependency_type, object instance);
         bool has_no_dependency_for(Type dependency_type);
         object get_the_provided_dependency_assignable_from(Type constructor_parament_type);
         void empty_dependencies();
     }
+
     public interface TestState<SUT> : DependencyBag
     {
         SUT sut { get; set; }
@@ -31,12 +33,12 @@ namespace developwithpassion.bdd.core
         Func<SUT> factory { get; set; }
         public SUT sut { get; set; }
 
-        public TestStateImplementation(object test, Func<SUT> factory,IList<PipelineBehaviour> behaviours)
+        public TestStateImplementation(object test, Func<SUT> factory, IList<PipelineBehaviour> behaviours)
         {
             this.test = test;
             this.factory = factory;
 
-            pipeline_behaviours = this.pipeline_behaviours = behaviours;
+            pipeline_behaviours = pipeline_behaviours = behaviours;
             dependencies = new Dictionary<Type, object>();
         }
 
@@ -104,6 +106,5 @@ namespace developwithpassion.bdd.core
         {
             pipeline_behaviours.Add(pipeline_behaviour);
         }
-
     }
 }
