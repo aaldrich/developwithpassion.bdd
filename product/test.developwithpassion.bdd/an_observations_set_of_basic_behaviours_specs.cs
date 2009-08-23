@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using developwithpassion.bdd;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard;

@@ -2,7 +2,6 @@ using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
-using developwithpassion.bdd;
 using Rhino.Mocks;
 
 namespace test.developwithpassion.bdd

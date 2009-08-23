@@ -13,16 +13,22 @@ namespace developwithpassion.bdd.mbunit.standard.observations
     {
         static public Observations<SUT> observation_context;
         static public TestState<SUT> test_state;
+        static MockFactory mock_factory;
 
         [TestFixtureSetUp]
         public void fixture_setup()
         {
+            mock_factory = new RhinoMocksMockFactory();
             test_state = new TestStateImplementation<SUT>(this, create_sut);
+            var dependency_builder = new SystemUnderTestDependencyBuilderImplementation(
+                test_state, mock_factory);
             observation_context = new ObservationContext<SUT>(test_state,
                                                               new ObservationCommandFactoryImplementation<SUT>(test_state,
                                                                                                                new DelegateControllerImplementation
                                                                                                                    (this)),
-                                                              new RhinoMocksMockFactory());
+                                                              new RhinoMocksMockFactory(),
+                                                              dependency_builder,
+                                                              new SystemUnderTestFactoryImplementation(dependency_builder));
             observation_context.before_all_observations();
         }
 

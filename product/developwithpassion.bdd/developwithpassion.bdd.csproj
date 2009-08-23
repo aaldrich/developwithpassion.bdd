@@ -63,12 +63,16 @@
     <Compile Include="core\DeferredValue.cs" />
     <Compile Include="core\DelegateController.cs" />
     <Compile Include="core\DelegateControllerImplementation.cs" />
+    <Compile Include="core\SystemUnderTestFactory.cs" />
+    <Compile Include="core\SystemUnderTestFactoryImplementation.cs" />
     <Compile Include="core\FieldMemberTarget.cs" />
     <Compile Include="core\FieldSwitcherFactory.cs" />
     <Compile Include="core\FieldReassignmentStart.cs" />
     <Compile Include="core\FieldSwitcher.cs" />
     <Compile Include="core\FieldSwitcherFactoryImplementation.cs" />
     <Compile Include="core\FieldSwitcherImplementation.cs" />
+    <Compile Include="core\SystemUnderTestDependencyBuilder.cs" />
+    <Compile Include="core\SystemUnderTestDependencyBuilderImplementation.cs" />
     <Compile Include="core\TestState.cs" />
     <Compile Include="core\MemberTargetRegistry.cs" />
     <Compile Include="core\MemberTargetRegistryImplementation.cs" />
@@ -87,8 +91,8 @@
     <Compile Include="mbunit\AssertionExtensions.cs" />
     <Compile Include="mbunit\ComparisonAssertionExtensions.cs" />
     <Compile Include="mbunit\standard\observations\an_observations_set_of_basic_behaviours.cs" />
-    <Compile Include="mbunit\standard\observations\ChangeValueInPipeline.cs" />
-    <Compile Include="mbunit\standard\observations\ObservationCommandFactoryImplementation.cs" />
+    <Compile Include="core\ChangeValueInPipeline.cs" />
+    <Compile Include="core\ObservationCommandFactoryImplementation.cs" />
     <Compile Include="mbunit\standard\observations\observations_for_an_instance_sut.cs" />
     <Compile Include="mbunit\standard\observations\observations_for_a_static_sut.cs" />
     <Compile Include="mbunit\standard\observations\observations_for_a_sut_without_a_contract.cs" />
@@ -108,7 +112,7 @@
     <Compile Include="core\commands\ParameterizedCommand.cs" />
     <Compile Include="mbunit\AppendTestsToTestTree.cs" />
     <Compile Include="mbunit\BlockRun.cs" />
-    <Compile Include="mbunit\standard\observations\PipelineBehaviour.cs" />
+    <Compile Include="core\PipelineBehaviour.cs" />
     <Compile Include="mbunit\standard\SlowAttribute.cs" />
     <Compile Include="mbunit\StringAssertionExtensions.cs" />
     <Compile Include="mbunit\TestTreeArgs.cs" />
@@ -121,13 +125,13 @@
     <Compile Include="core\extensions\StringExtensions.cs" />
     <Compile Include="core\extensions\TypeCastingExtensions.cs" />
     <Compile Include="core\extensions\TypeExtensions.cs" />
-    <Compile Include="DelegateFieldInvocation.cs" />
+    <Compile Include="core\DelegateFieldInvocation.cs" />
     <Compile Include="mbunit\standard\ObservationAttribute.cs" />
     <Compile Include="mbunit\standard\ObservationsAttribute.cs" />
     <Compile Include="mbunit\EnumerableAssertionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RhinoMocksExtensions.cs" />
-    <Compile Include="VoidMethodCallOccurance.cs" />
+    <Compile Include="core\RhinoMocksExtensions.cs" />
+    <Compile Include="core\VoidMethodCallOccurance.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

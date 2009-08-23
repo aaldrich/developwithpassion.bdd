@@ -1,6 +1,6 @@
 using System;
-using developwithpassion.bdd;
 using developwithpassion.bdd.contexts;
+using developwithpassion.bdd.core;
 using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;

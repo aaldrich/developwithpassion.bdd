@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using developwithpassion.bdd.mbunit.standard.observations;
 
 namespace developwithpassion.bdd.core
 {
@@ -21,5 +20,7 @@ namespace developwithpassion.bdd.core
         void after_all_observations();
         TestState<SUT> test_state { get; }
         Exception exception_thrown_by_the_sut { get; set; }
+        SystemUnderTestDependencyBuilder system_under_test_dependency_builder { get;}
+        Contract build_sut<Contract, Class>();
     }
 }

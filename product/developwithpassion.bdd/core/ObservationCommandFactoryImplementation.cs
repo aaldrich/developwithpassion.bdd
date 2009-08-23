@@ -1,8 +1,7 @@
 using developwithpassion.bdd.contexts;
-using developwithpassion.bdd.core;
 using developwithpassion.bdd.core.commands;
 
-namespace developwithpassion.bdd.mbunit.standard.observations
+namespace developwithpassion.bdd.core
 {
     public class ObservationCommandFactoryImplementation<SUT> : ObservationCommandFactory
     {

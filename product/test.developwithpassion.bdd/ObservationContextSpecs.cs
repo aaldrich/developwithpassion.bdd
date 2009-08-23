@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using developwithpassion.bdd;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.core.commands;
@@ -28,6 +27,8 @@ namespace test.developwithpassion.bdd
             protected MockFactory mock_factory;
             protected ObservationCommandFactory observation_command_factory;
             protected TestState<IDbConnection> test_state;
+            SystemUnderTestDependencyBuilder dependency_builder;
+            SystemUnderTestFactory sut_factory;
 
 
             [SetUp]
@@ -36,6 +37,8 @@ namespace test.developwithpassion.bdd
                 factory = () => new SqlConnection();
                 test_driver = new SampleSetOfObservations();
                 observation_command_factory = MockRepository.GenerateStub<ObservationCommandFactory>();
+                sut_factory = MockRepository.GenerateStub<SystemUnderTestFactory>();
+                dependency_builder = MockRepository.GenerateStub<SystemUnderTestDependencyBuilder>();
                 delegate_controller = MockRepository.GenerateStub<DelegateController>();
                 mock_factory = MockRepository.GenerateStub<MockFactory>();
                 test_state = new TestStateImplementation<IDbConnection>(test_driver, factory);
@@ -47,7 +50,7 @@ namespace test.developwithpassion.bdd
 
             ObservationContext<IDbConnection> create_the_sut()
             {
-                return new ObservationContext<IDbConnection>(test_state, observation_command_factory, mock_factory);
+                return new ObservationContext<IDbConnection>(test_state, observation_command_factory, mock_factory,dependency_builder,sut_factory);
             }
 
             protected virtual void establish_context() {}

@@ -1,7 +1,7 @@
 using System;
 using Rhino.Mocks;
 
-namespace developwithpassion.bdd
+namespace developwithpassion.bdd.core
 {
     static public class RhinoMocksExtensions
     {

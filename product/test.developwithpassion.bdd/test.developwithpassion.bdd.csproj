@@ -69,6 +69,7 @@
     <Compile Include="AssertionExtensionsSpecs.cs" />
     <Compile Include="ChainedCommandSpecs.cs" />
     <Compile Include="ChangeSpecs.cs" />
+    <Compile Include="SystemUnderTestFactorySpecs.cs" />
     <Compile Include="ComparisonAssertionExtensionsSpecs.cs" />
     <Compile Include="DeferredValueSpecs.cs" />
     <Compile Include="DelegateFieldInvocationSpecs.cs" />

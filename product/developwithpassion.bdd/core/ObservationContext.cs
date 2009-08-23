@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using developwithpassion.bdd.containers;
 using developwithpassion.bdd.mbunit;
-using developwithpassion.bdd.mbunit.standard.observations;
 
 namespace developwithpassion.bdd.core
 {
@@ -12,15 +11,24 @@ namespace developwithpassion.bdd.core
         public TestState<SUT> test_state { get; private set; }
         ObservationCommandFactory observation_command_factory;
         MockFactory mock_factory;
+        public SystemUnderTestDependencyBuilder system_under_test_dependency_builder { get; private set; }
+        public SystemUnderTestFactory system_under_test_factory { get; private set; }
 
 
-        public ObservationContext(TestState<SUT> test_state_implementation, ObservationCommandFactory observation_command_factory, MockFactory mock_factory)
+        public ObservationContext(TestState<SUT> test_state_implementation, ObservationCommandFactory observation_command_factory, MockFactory mock_factory,SystemUnderTestDependencyBuilder system_under_test_dependency_builder,
+            SystemUnderTestFactory system_under_test_factory)
         {
             this.test_state = test_state_implementation;
             this.observation_command_factory = observation_command_factory;
             this.mock_factory = mock_factory;
+            this.system_under_test_dependency_builder = system_under_test_dependency_builder;
+            this.system_under_test_factory = system_under_test_factory;
         }
 
+        public Contract build_sut<Contract, Class>()
+        {
+            return system_under_test_factory.create<Contract, Class>();
+        }
 
         public void tear_down()
         {

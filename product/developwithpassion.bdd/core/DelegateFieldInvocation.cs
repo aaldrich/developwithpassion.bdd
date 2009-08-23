@@ -5,7 +5,7 @@ using System.Reflection;
 using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.core.extensions;
 
-namespace developwithpassion.bdd
+namespace developwithpassion.bdd.core
 {
     public class DelegateFieldInvocation : Command
     {

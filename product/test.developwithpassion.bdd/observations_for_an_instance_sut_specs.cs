@@ -18,16 +18,25 @@ namespace test.developwithpassion.bdd
             protected Observations<AClassWithDependencies> observations;
             protected ObservationCommandFactory command_factory;
             protected TestStateImplementation<AClassWithDependencies> state;
+            protected SystemUnderTestDependencyBuilder dependency_builder;
+            protected SystemUnderTestFactory sut_factory;
+            protected IDbConnection connection;
+            protected IDbCommand command;
 
             [SetUp]
             public void setup()
             {
                 sut = new SampleTestWithAnSut();
 
+                connection = MockRepository.GenerateStub<IDbConnection>();
+                command = MockRepository.GenerateStub<IDbCommand>();
                 command_factory = MockRepository.GenerateStub<ObservationCommandFactory>();
+                sut_factory = MockRepository.GenerateStub<SystemUnderTestFactory>();
+                dependency_builder = MockRepository.GenerateStub<SystemUnderTestDependencyBuilder>();
                 state = new TestStateImplementation<AClassWithDependencies>(sut, sut.create_sut);
                 observations = new ObservationContext<AClassWithDependencies>(
-                    state, command_factory, new RhinoMocksMockFactory());
+                    state, command_factory, new RhinoMocksMockFactory(),
+                    dependency_builder, sut_factory);
                 an_observations_set_of_basic_behaviours<AClassWithDependencies>.observation_context = observations;
                 an_observations_set_of_basic_behaviours<AClassWithDependencies>.test_state = state;
                 establish_context();
@@ -39,39 +48,15 @@ namespace test.developwithpassion.bdd
         }
 
         [Concern(typeof (observations_for_an_instance_sut<,>))]
-        public class when_creating_an_instance_of_the_sut_and_no_dependencies_have_been_provided : concern
+        public class when_creating_the_instance_of_the_sut : concern
         {
             AClassWithDependencies result;
-
-            protected override void because()
-            {
-                result = sut.create_sut();
-            }
-
-
-            [Observation]
-            public void should_create_the_sut_and_automatically_mock_out_dependencies_that_can_be_mocked()
-            {
-                result.should_not_be_null();
-                result.connection.should_not_be_null();
-                result.command.should_not_be_null();
-            }
-        }
-
-        [Concern(typeof (observations_for_an_instance_sut<,>))]
-        public class when_creating_an_instance_of_the_sut_and_dependencies_have_been_provided : concern
-        {
-            AClassWithDependencies result;
-            IDbConnection connection;
-            IDbCommand command;
+            AClassWithDependencies the_sut;
 
             protected override void establish_context()
             {
-                an_observations_set_of_basic_behaviours<AClassWithDependencies>.test_state.dependencies.Clear();
-                connection = MockRepository.GenerateMock<IDbConnection>();
-                command = MockRepository.GenerateMock<IDbCommand>();
-                SampleTestWithAnSut.test_state.dependencies.Add(typeof (IDbConnection), connection);
-                SampleTestWithAnSut.test_state.dependencies.Add(typeof (IDbCommand), command);
+                the_sut = MockRepository.GenerateStub<AClassWithDependencies>();
+                sut_factory.Stub(x => x.create<AClassWithDependencies, AClassWithDependencies>()).Return(the_sut);
             }
 
             protected override void because()
@@ -81,37 +66,15 @@ namespace test.developwithpassion.bdd
 
 
             [Observation]
-            public void should_create_the_sut_using_the_dependencies_that_were_provided_by_the_client()
+            public void should_create_the_sut_by_using_the_sut_factory()
             {
-                result.should_not_be_null();
-                result.connection.should_be_equal_to(connection);
-                result.command.should_be_equal_to(command);
+                result.should_be_equal_to(the_sut);
             }
         }
 
         public class SampleTestWithAnSut : observations_for_an_instance_sut<AClassWithDependencies, AClassWithDependencies> {}
-
-
         public class AClassWithDependencies
         {
-            public IDbCommand command { get; private set; }
-            public IDbConnection connection { get; private set; }
-
-            public AClassWithDependencies(IDbCommand command, IDbConnection connection)
-            {
-                this.command = command;
-                this.connection = connection;
-            }
-
-            public void open_the_connection()
-            {
-                connection.Open();
-            }
-
-            public void update_the_commands_transaction(IDbTransaction transaction)
-            {
-                command.Transaction = transaction;
-            }
         }
     }
 }
