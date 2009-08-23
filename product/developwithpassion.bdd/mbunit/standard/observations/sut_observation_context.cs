@@ -20,8 +20,15 @@ namespace developwithpassion.bdd.mbunit.standard.observations
         {
             mock_factory = new MockFactoryAdapter();
             test_state = new TestStateImplementation<Contract>(this, create_sut,new List<PipelineBehaviour>());
+            var args = new ObservationContextArgs<Contract>
+                       {
+                           mock_factory = new MockFactoryAdapter(),
+                           state = test_state
+                       };
+
+
             var dependency_builder = new SystemUnderTestDependencyBuilderImplementation(test_state, mock_factory);
-            observation_context = new ObservationContext<Contract>(test_state,
+            observation_context = new ObservationContext<Contract>(args.state,
                                                                    new ObservationCommandFactoryImplementation<Contract>(test_state,
                                                                                                                          new DelegateControllerImplementation
                                                                                                                              (this)),
