@@ -19,7 +19,7 @@ namespace developwithpassion.bdd.containers
 
         static void do_in_initialized_container(Action action)
         {
-            perform_blocking_action(() =>
+            perform_synchronized_action(() =>
             {
                 if (container == null)
                 {
@@ -31,7 +31,7 @@ namespace developwithpassion.bdd.containers
             });
         }
 
-        static void perform_blocking_action(Action action)
+        static void perform_synchronized_action(Action action)
         {
             lock (mutex) action();
         }
@@ -39,7 +39,7 @@ namespace developwithpassion.bdd.containers
 
         static public void tear_down()
         {
-            perform_blocking_action(() =>
+            perform_synchronized_action(() =>
             {
                 items = null;
                 container = null;

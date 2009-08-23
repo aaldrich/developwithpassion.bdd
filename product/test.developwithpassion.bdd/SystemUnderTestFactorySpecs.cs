@@ -1,4 +1,3 @@
-using System;
 using System.Data;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
@@ -14,14 +13,11 @@ namespace test.developwithpassion.bdd
         public abstract class concern : observations_for_a_sut_with_a_contract<SystemUnderTestFactory,
                                             SystemUnderTestFactoryImplementation>
         {
-            static protected IDbConnection connection;
-            static protected IDbCommand command;
-
             context c = () =>
             {
-                connection = an<IDbConnection>();
-                command = an<IDbCommand>();
-                builder = the_dependency<SystemUnderTestDependencyBuilder>();
+                connection = MockRepository.GenerateStub<IDbConnection>();
+                command = MockRepository.GenerateStub<IDbCommand>();
+                builder = MockRepository.GenerateStub<SystemUnderTestDependencyBuilder>();
 
                 builder.Stub(x => x.all_dependencies()).Return(new object[] {command, connection});
             };
@@ -31,22 +27,25 @@ namespace test.developwithpassion.bdd
                 return new SystemUnderTestFactoryImplementation(builder);
             }
 
+            static protected IDbConnection connection;
+            static protected IDbCommand command;
             static SystemUnderTestDependencyBuilder builder;
         }
 
         [Concern(typeof (SystemUnderTestFactoryImplementation))]
-        public class when_creating_the_system_under_test_and_there_are_dependencies_that_have_not_been_registered : concern
+        public class when_creating_the_system_under_test : concern
         {
             because b = () =>
             {
-                result = sut.create<AClassWithDependencies, AClassWithDependencies>();
+                result = context.sut.create<AClassWithDependencies, AClassWithDependencies>();
             };
 
-            it should_automatically_register_the_dependencies_before_creating_the_sut = () =>
+
+            it should_create_an_instance_of_the_system_under_test_using_the_builders_constructor_arg_array = () =>
             {
                 result.should_not_be_null();
-                result.command.should_not_be_null();
-                result.connection.should_not_be_null();
+                result.command.should_be_equal_to(command);
+                result.connection.should_be_equal_to(connection);
             };
 
             static AClassWithDependencies result;

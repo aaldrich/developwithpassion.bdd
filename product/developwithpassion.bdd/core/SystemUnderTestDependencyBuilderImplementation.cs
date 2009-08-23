@@ -41,6 +41,10 @@ namespace developwithpassion.bdd.core
             test_state.dependencies[dependency_type] = mock_factory.create_stub(dependency_type);
         }
 
+        public void register_only_if_missing(Type dependency_type)
+        {
+            if (dependency_needs_to_be_registered_for(dependency_type)) register_dependency_for_sut(dependency_type);
+        }
 
         public Dependency the_dependency<Dependency>() where Dependency : class
         {

@@ -18,11 +18,7 @@ namespace developwithpassion.bdd.core
             var constructor = typeof (Class).greediest_constructor();
             var constructor_parameter_types = constructor.GetParameters().Select(constructor_arg => constructor_arg.ParameterType);
 
-            constructor_parameter_types.each(dependency_type =>
-            {
-                if (dependency_builder.dependency_needs_to_be_registered_for(dependency_type))
-                    dependency_builder.register_dependency_for_sut(dependency_type);
-            });
+            constructor_parameter_types.each(dependency_builder.register_only_if_missing);
 
             return (Contract) Activator.CreateInstance(typeof (Class), dependency_builder.all_dependencies());
         }

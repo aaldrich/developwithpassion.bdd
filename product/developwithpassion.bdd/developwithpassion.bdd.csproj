@@ -113,6 +113,8 @@
     <Compile Include="mbunit\AppendTestsToTestTree.cs" />
     <Compile Include="mbunit\BlockRun.cs" />
     <Compile Include="core\PipelineBehaviour.cs" />
+    <Compile Include="mbunit\standard\observations\TestScope.cs" />
+    <Compile Include="mbunit\standard\observations\TestScopeImplementation.cs" />
     <Compile Include="mbunit\standard\SlowAttribute.cs" />
     <Compile Include="mbunit\StringAssertionExtensions.cs" />
     <Compile Include="mbunit\TestTreeArgs.cs" />

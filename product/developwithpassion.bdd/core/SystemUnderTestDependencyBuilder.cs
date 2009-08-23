@@ -13,5 +13,6 @@ namespace developwithpassion.bdd.core
         object[] all_dependencies();
         bool has_no_dependency_for<Interface>();
         object get_the_provided_dependency_assignable_from(Type constructor_parament_type);
+        void register_only_if_missing(Type dependency_type);
     }
 }
