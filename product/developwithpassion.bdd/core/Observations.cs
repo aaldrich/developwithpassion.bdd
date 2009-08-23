@@ -11,7 +11,7 @@ namespace developwithpassion.bdd.core
         Action behaviour_performed_in_because { get; set; }
         SUT sut { get; set; }
         Func<SUT> factory { get; set; }
-        Exception exception_thrown_by_the_sut { get; }
+        Exception exception_thrown_by_the_sut { get; set; }
         void run_action<DelegateType>();
         void tear_down();
         void reset();

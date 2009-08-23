@@ -76,6 +76,7 @@ namespace developwithpassion.bdd.core
         public Exception exception_thrown_by_the_sut
         {
             get { return exception_thrown_while_the_sut_performed_its_work ?? (exception_thrown_while_the_sut_performed_its_work = get_exception_throw_by(behaviour_performed_in_because)); }
+            set { exception_thrown_while_the_sut_performed_its_work = value; }
         }
 
         Exception get_exception_throw_by(Action because_behaviour)

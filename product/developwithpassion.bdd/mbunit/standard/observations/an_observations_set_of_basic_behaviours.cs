@@ -15,7 +15,7 @@ namespace developwithpassion.bdd.concerns
     [Observations]
     public abstract class an_observations_set_of_basic_behaviours<SUT> : observation_basics, IObservations
     {
-        static Observations<SUT> observation_context;
+        public static Observations<SUT> observation_context;
 
         [TestFixtureSetUp]
         public void fixture_setup()

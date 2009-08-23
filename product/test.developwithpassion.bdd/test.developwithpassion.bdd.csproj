@@ -79,6 +79,7 @@
     <Compile Include="IterationExtensionsSpecs.cs" />
     <Compile Include="MemberTargetRegistrySpecs.cs" />
     <Compile Include="NumericExtensionsSpecs.cs" />
+    <Compile Include="ObservationContextSpecs.cs" />
     <Compile Include="observations_for_an_instance_sut_specs.cs" />
     <Compile Include="PipelineBehaviourSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
