@@ -4,9 +4,6 @@ using developwithpassion.bdd.core.extensions;
 
 namespace developwithpassion.bdd.core
 {
-    public interface BasicTestState : DependencyBag
-    {}
-
     public interface DependencyBag {
         void store_dependency(Type type, object instance);
         Dependency get_dependency<Dependency>();
@@ -16,16 +13,14 @@ namespace developwithpassion.bdd.core
         object get_the_provided_dependency_assignable_from(Type constructor_parament_type);
         void empty_dependencies();
     }
-    public interface TestState<SUT> : BasicTestState
+    public interface TestState<SUT> : DependencyBag
     {
         SUT sut { get; set; }
-        Func<SUT> factory { get; set; }
         void run_teardown_pipeline();
         void clear_test_pipeline();
         void add_pipeline_behaviour(PipelineBehaviour pipeline_behaviour);
-        void reset();
         void run_startup_pipeline();
-        void change_because_behaviour_to(Action because_behaviour);
+        void build_sut();
     }
 
     public class TestStateImplementation<SUT> : TestState<SUT>
@@ -33,11 +28,8 @@ namespace developwithpassion.bdd.core
         IList<PipelineBehaviour> pipeline_behaviours { get; set; }
         object test { get; set; }
         IDictionary<Type, object> dependencies { get; set; }
-        public Action behaviour_performed_in_because { get; set; }
-
+        Func<SUT> factory { get; set; }
         public SUT sut { get; set; }
-
-        public Func<SUT> factory { get; set; }
 
         public TestStateImplementation(object test, Func<SUT> factory,IList<PipelineBehaviour> behaviours)
         {
@@ -48,14 +40,19 @@ namespace developwithpassion.bdd.core
             dependencies = new Dictionary<Type, object>();
         }
 
+        public void build_sut()
+        {
+            sut = factory();
+        }
+
+        public SUT create_sut()
+        {
+            return factory();
+        }
+
         public void run_startup_pipeline()
         {
             pipeline_behaviours.each(item => item.start());
-        }
-
-        public void change_because_behaviour_to(Action because_behaviour)
-        {
-            behaviour_performed_in_because = because_behaviour;
         }
 
         public void run_teardown_pipeline()
@@ -108,9 +105,5 @@ namespace developwithpassion.bdd.core
             pipeline_behaviours.Add(pipeline_behaviour);
         }
 
-        public void reset()
-        {
-            behaviour_performed_in_because = null;
-        }
     }
 }

@@ -46,12 +46,6 @@ namespace test.developwithpassion.bdd.core
             {
                 state_implementation.received(x => x.add_pipeline_behaviour(CommonPipelineBehaviours.tear_down_the_unit_test_container));
             };
-
-            it should_reset_the_test_state = () =>
-            {
-                state_implementation.received(x => x.reset());
-
-            };
         }
     }
 }

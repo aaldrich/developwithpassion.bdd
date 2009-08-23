@@ -20,7 +20,6 @@ namespace test.developwithpassion.bdd.core
             context c = () =>
             {
                 state = an<TestState<int>>();
-                state.factory = () => 3;
                 controller = MockRepository.GenerateStub<DelegateController>();
             };
 
@@ -39,9 +38,9 @@ namespace test.developwithpassion.bdd.core
                 controller.received(x => x.run_block<context>());
             };
 
-            it should_assign_the_sut_to_the_test_state = () =>
+            it should_direct_the_test_state_to_builds_its_sut = () =>
             {
-                state.sut.should_be_equal_to(3);
+                state.received(x => x.build_sut());
             };
 
             it should_run_the_because_blocks = () =>

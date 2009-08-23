@@ -30,7 +30,7 @@ namespace developwithpassion.bdd.mbunit.standard.observations
                                                                    new SystemUnderTestFactoryImplementation(dependency_builder));
             observation_context.before_all_observations();
 
-            test_scope_implementation = new TestScopeImplementation<Contract>(observation_context, test_state);
+            test_scope_implementation = new TestScopeImplementation<Contract>(observation_context);
         }
 
         static public TestScopeImplementation<Contract> context

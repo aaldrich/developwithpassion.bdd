@@ -15,7 +15,6 @@ namespace developwithpassion.bdd.core
         {
             test_state.clear_test_pipeline();
             test_state.add_pipeline_behaviour(CommonPipelineBehaviours.tear_down_the_unit_test_container);
-            test_state.reset();
             test_state.empty_dependencies();
         }
     }

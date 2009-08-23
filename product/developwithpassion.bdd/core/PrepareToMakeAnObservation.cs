@@ -19,7 +19,7 @@ namespace developwithpassion.bdd.core
         {
             controller.run_block<context>();
             test_state.run_startup_pipeline();
-            test_state.sut = test_state.factory();
+            test_state.build_sut();
             controller.run_block<after_the_sut_has_been_created>();
             controller.run_block<because>();
         }
