@@ -8,17 +8,18 @@ namespace developwithpassion.bdd.core
 {
     public class ObservationContext<SUT> : Observations<SUT>
     {
-        public TestState<SUT> test_state { get; private set; }
+        TestState<SUT> test_state { get; set; }
         ObservationCommandFactory observation_command_factory;
         MockFactory mock_factory;
-        public SystemUnderTestDependencyBuilder system_under_test_dependency_builder { get; private set; }
-        public SystemUnderTestFactory system_under_test_factory { get; private set; }
+        SystemUnderTestDependencyBuilder system_under_test_dependency_builder { get; set; }
+        SystemUnderTestFactory system_under_test_factory { get; set; }
 
 
-        public ObservationContext(TestState<SUT> test_state_implementation, ObservationCommandFactory observation_command_factory, MockFactory mock_factory,SystemUnderTestDependencyBuilder system_under_test_dependency_builder,
-            SystemUnderTestFactory system_under_test_factory)
+        public ObservationContext(TestState<SUT> test_state_implementation, ObservationCommandFactory observation_command_factory, MockFactory mock_factory,
+                                  SystemUnderTestDependencyBuilder system_under_test_dependency_builder,
+                                  SystemUnderTestFactory system_under_test_factory)
         {
-            this.test_state = test_state_implementation;
+            test_state = test_state_implementation;
             this.observation_command_factory = observation_command_factory;
             this.mock_factory = mock_factory;
             this.system_under_test_dependency_builder = system_under_test_dependency_builder;
@@ -111,6 +112,16 @@ namespace developwithpassion.bdd.core
         public void after_all_observations()
         {
             observation_command_factory.create_after_all_observations_command().run();
+        }
+
+        public Dependency the_dependency<Dependency>() where Dependency : class
+        {
+            return system_under_test_dependency_builder.the_dependency<Dependency>();
+        }
+
+        public void provide_a_basic_sut_constructor_argument<ArgumentType>(ArgumentType value)
+        {
+            system_under_test_dependency_builder.provide_a_basic_sut_constructor_argument(value);
         }
     }
 }

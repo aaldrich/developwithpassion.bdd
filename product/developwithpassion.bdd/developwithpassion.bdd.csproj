@@ -87,6 +87,8 @@
     <Compile Include="core\MemberTarget.cs" />
     <Compile Include="core\ObservationContext.cs" />
     <Compile Include="core\ResetTestState.cs" />
+    <Compile Include="mbunit\standard\observations\ObservationContextArgs.cs" />
+    <Compile Include="mbunit\standard\observations\ObservationContextFactory.cs" />
     <Compile Include="mbunit\standard\observations\Observations.cs" />
     <Compile Include="mbunit\standard\observations\sut_observation_context.cs" />
     <Compile Include="mocking\rhino\RhinoMocksMockFactory.cs" />

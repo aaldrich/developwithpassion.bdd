@@ -9,15 +9,14 @@ namespace developwithpassion.bdd.mbunit.standard.observations
         {
             return observation_context.build_sut<ContractUnderTest, ClassUnderTest>();
         }
-
         static protected Dependency the_dependency<Dependency>() where Dependency : class
         {
-            return observation_context.system_under_test_dependency_builder.the_dependency<Dependency>();
+            return observation_context.the_dependency<Dependency>();
         }
 
         static protected void provide_a_basic_sut_constructor_argument<ArgumentType>(ArgumentType value)
         {
-            observation_context.system_under_test_dependency_builder.provide_a_basic_sut_constructor_argument(value);
+            observation_context.provide_a_basic_sut_constructor_argument(value);
         }
     }
 }

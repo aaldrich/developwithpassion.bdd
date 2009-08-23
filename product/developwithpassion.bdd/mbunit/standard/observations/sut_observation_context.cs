@@ -19,7 +19,7 @@ namespace developwithpassion.bdd.mbunit.standard.observations
         public void fixture_setup()
         {
             mock_factory = new MockFactoryAdapter();
-            test_state = new TestStateImplementation<Contract>(this, create_sut());
+            test_state = new TestStateImplementation<Contract>(this, create_sut);
             var dependency_builder = new SystemUnderTestDependencyBuilderImplementation(test_state, mock_factory);
             observation_context = new ObservationContext<Contract>(test_state,
                                                                    new ObservationCommandFactoryImplementation<Contract>(test_state,
@@ -125,12 +125,9 @@ namespace developwithpassion.bdd.mbunit.standard.observations
         }
 
         [Obsolete("use context property to access testing dsl")]
-        public virtual Func<Contract> create_sut()
+        public virtual Contract create_sut()
         {
-            return () =>
-            {
-                return observation_context.build_sut<Contract, Class>();
-            };
+            return observation_context.build_sut<Contract, Class>();
         }
     }
 }

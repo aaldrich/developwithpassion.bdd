@@ -18,9 +18,9 @@ namespace developwithpassion.bdd.core
         ChangeValueInPipeline change(Expression<Func<object>> static_expression);
         void before_all_observations();
         void after_all_observations();
-        TestState<SUT> test_state { get; }
         Exception exception_thrown_by_the_sut { get; set; }
-        SystemUnderTestDependencyBuilder system_under_test_dependency_builder { get;}
         Contract build_sut<Contract, Class>();
+        Dependency the_dependency<Dependency>() where Dependency : class;
+        void provide_a_basic_sut_constructor_argument<ArgumentType>(ArgumentType value);
     }
 }
