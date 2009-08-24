@@ -97,10 +97,6 @@
     <Compile Include="utiliity\ObjectMother.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\developwithpassion.bdd.mbunit\developwithpassion.bdd.mbunit.csproj">
-      <Project>{04EEA576-8A89-45F2-A9E2-998CFD6C22C9}</Project>
-      <Name>developwithpassion.bdd.mbunit</Name>
-    </ProjectReference>
     <ProjectReference Include="..\developwithpassion.bdd\developwithpassion.bdd.csproj">
       <Project>{CA06C6F3-B8CA-4BDD-B428-2A79C74CC96C}</Project>
       <Name>developwithpassion.bdd</Name>

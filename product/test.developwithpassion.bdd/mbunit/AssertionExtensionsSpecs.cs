@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using developwithpassion.bdd.contexts;
-using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdddoc.core;
 
 namespace test.developwithpassion.bdd.mbunit

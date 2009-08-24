@@ -3,7 +3,7 @@ using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.core.extensions;
 
-namespace developwithpassion.bdd.mbunit
+namespace developwithpassion.bdd.harnesses.mbunit
 {
     public class AppendTestsToTestTree : ParameterizedCommand<TestTreeArgs<it>>
     {

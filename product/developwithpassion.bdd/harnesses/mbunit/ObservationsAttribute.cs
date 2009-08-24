@@ -4,7 +4,7 @@ using MbUnit.Core.Framework;
 using MbUnit.Core.Runs;
 using MbUnit.Framework;
 
-namespace developwithpassion.bdd.mbunit
+namespace developwithpassion.bdd.harnesses.mbunit
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class ObservationsAttribute : TestFixturePatternAttribute

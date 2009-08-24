@@ -4,7 +4,7 @@ using System.Linq;
 using developwithpassion.bdd.core.extensions;
 using MbUnit.Framework;
 
-namespace developwithpassion.bdd.mbunit
+namespace developwithpassion.bdd.harnesses.mbunit
 {
     static public class EnumerableAssertionExtensions
     {

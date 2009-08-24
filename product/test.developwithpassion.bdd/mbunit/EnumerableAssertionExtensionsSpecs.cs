@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using developwithpassion.bdd.contexts;
-using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdddoc.core;
 using test.developwithpassion.bdd.core;
 

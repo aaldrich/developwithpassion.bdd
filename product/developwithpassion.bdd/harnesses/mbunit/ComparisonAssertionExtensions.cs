@@ -1,7 +1,7 @@
 using System;
 using MbUnit.Framework;
 
-namespace developwithpassion.bdd.mbunit
+namespace developwithpassion.bdd.harnesses.mbunit
 {
     public static class ComparisonAssertionExtensions
     {

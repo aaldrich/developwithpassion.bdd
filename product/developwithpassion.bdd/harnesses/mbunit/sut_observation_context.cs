@@ -6,11 +6,11 @@ using developwithpassion.bdd.core.observations;
 using developwithpassion.bdd.mocking;
 using MbUnit.Framework;
 
-namespace developwithpassion.bdd.mbunit
+namespace developwithpassion.bdd.harnesses.mbunit
 {
     [Observations]
     public abstract class sut_observation_context<Contract, Class, MockFactoryAdapter> : Context where Class : Contract
-                                                                                                      where MockFactoryAdapter : MockFactory, new()
+                                                                                                 where MockFactoryAdapter : MockFactory, new()
     {
         static public ObservationController<Contract,Class,MockFactoryAdapter> observation_controller;
 

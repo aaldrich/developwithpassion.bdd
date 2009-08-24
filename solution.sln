@@ -6,8 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project", "project.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test.developwithpassion.bdd", "product\test.developwithpassion.bdd\test.developwithpassion.bdd.csproj", "{7CFD2097-9055-478A-B1AF-E2978C347EBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "developwithpassion.bdd.mbunit", "product\developwithpassion.bdd.mbunit\developwithpassion.bdd.mbunit.csproj", "{04EEA576-8A89-45F2-A9E2-998CFD6C22C9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,10 +23,6 @@ Global
 		{7CFD2097-9055-478A-B1AF-E2978C347EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CFD2097-9055-478A-B1AF-E2978C347EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CFD2097-9055-478A-B1AF-E2978C347EBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04EEA576-8A89-45F2-A9E2-998CFD6C22C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04EEA576-8A89-45F2-A9E2-998CFD6C22C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04EEA576-8A89-45F2-A9E2-998CFD6C22C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04EEA576-8A89-45F2-A9E2-998CFD6C22C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

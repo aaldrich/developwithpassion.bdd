@@ -5,7 +5,7 @@ using developwithpassion.bdd.core.extensions;
 using MbUnit.Core.Invokers;
 using MbUnit.Core.Runs;
 
-namespace developwithpassion.bdd.mbunit
+namespace developwithpassion.bdd.harnesses.mbunit
 {
     public class DelegateRunInvoker : RunInvoker
     {

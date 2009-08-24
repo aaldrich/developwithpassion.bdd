@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
-using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdddoc.core;
 using Rhino.Mocks;
 

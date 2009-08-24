@@ -35,6 +35,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\thirdparty\developwithpassion.commons\developwithpassion.commons.core.infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="MbUnit.Framework, Version=2.4.2.355, Culture=neutral, PublicKeyToken=5e72ecd30bc408d5">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\thirdparty\mbunit\MbUnit.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph, Version=2.4.2.355, Culture=neutral, PublicKeyToken=975e84d0c8d6464d">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\thirdparty\mbunit\QuickGraph.dll</HintPath>
+    </Reference>
     <Reference Include="Rhino.Mocks, Version=3.5.0.1337, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\thirdparty\rhino.mocks\Rhino.Mocks.dll</HintPath>
@@ -64,6 +72,23 @@
     <Compile Include="core\FieldSwitcher.cs" />
     <Compile Include="core\SystemUnderTestDependencyBuilder.cs" />
     <Compile Include="core\MemberTargetRegistry.cs" />
+    <Compile Include="harnesses\mbunit\an_observations_set_of_basic_behaviours.cs" />
+    <Compile Include="harnesses\mbunit\AppendTestsToTestTree.cs" />
+    <Compile Include="harnesses\mbunit\AssertionExtensions.cs" />
+    <Compile Include="harnesses\mbunit\BlockRun.cs" />
+    <Compile Include="harnesses\mbunit\ComparisonAssertionExtensions.cs" />
+    <Compile Include="harnesses\mbunit\DelegateRunInvoker.cs" />
+    <Compile Include="harnesses\mbunit\EnumerableAssertionExtensions.cs" />
+    <Compile Include="harnesses\mbunit\ObservationAttribute.cs" />
+    <Compile Include="harnesses\mbunit\ObservationsAttribute.cs" />
+    <Compile Include="harnesses\mbunit\observations_for_an_instance_sut.cs" />
+    <Compile Include="harnesses\mbunit\observations_for_a_static_sut.cs" />
+    <Compile Include="harnesses\mbunit\observations_for_a_sut_without_a_contract.cs" />
+    <Compile Include="harnesses\mbunit\observations_for_a_sut_with_a_contract.cs" />
+    <Compile Include="harnesses\mbunit\SlowAttribute.cs" />
+    <Compile Include="harnesses\mbunit\StringAssertionExtensions.cs" />
+    <Compile Include="harnesses\mbunit\sut_observation_context.cs" />
+    <Compile Include="harnesses\mbunit\TestTreeArgs.cs" />
     <Compile Include="mocking\MockFactory.cs" />
     <Compile Include="core\observations\PrepareToMakeAnObservation.cs" />
     <Compile Include="core\PropertyInfoMemberTarget.cs" />

@@ -3,7 +3,7 @@ using developwithpassion.bdd.core.commands;
 using MbUnit.Core.Invokers;
 using MbUnit.Core.Runs;
 
-namespace developwithpassion.bdd.mbunit
+namespace developwithpassion.bdd.harnesses.mbunit
 {
     public class BlockRun<DelegateType> : Run
     {

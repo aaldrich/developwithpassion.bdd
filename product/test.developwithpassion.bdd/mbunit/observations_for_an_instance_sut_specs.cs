@@ -1,5 +1,5 @@
 using developwithpassion.bdd.core.observations;
-using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 using MbUnit.Framework;

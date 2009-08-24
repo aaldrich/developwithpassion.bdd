@@ -2,7 +2,7 @@ using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.core.commands;
 using developwithpassion.bdd.core.observations;
-using developwithpassion.bdd.mbunit;
+using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 using Rhino.Mocks;
