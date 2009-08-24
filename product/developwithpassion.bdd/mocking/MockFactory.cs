@@ -1,6 +1,6 @@
 using System;
 
-namespace developwithpassion.bdd.core
+namespace developwithpassion.bdd.mocking
 {
     public interface MockFactory
     {

@@ -2,7 +2,7 @@ using System.Data;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit;
-using developwithpassion.bdd.mbunit.standard.observations;
+using developwithpassion.bdd.mocking;
 using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 using Rhino.Mocks;

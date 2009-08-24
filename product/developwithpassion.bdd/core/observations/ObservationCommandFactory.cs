@@ -1,7 +1,7 @@
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core.commands;
 
-namespace developwithpassion.bdd.core
+namespace developwithpassion.bdd.core.observations
 {
     public interface ObservationCommandFactory
     {
@@ -11,6 +11,7 @@ namespace developwithpassion.bdd.core
         Command create_before_all_observations_command();
         Command create_after_all_observations_command();
     }
+
     public class ObservationCommandFactoryImplementation<SUT> : ObservationCommandFactory
     {
         TestState<SUT> test_state;
@@ -34,7 +35,7 @@ namespace developwithpassion.bdd.core
 
         public Command create_teardown_command()
         {
-            return new TearDownCommand<SUT>(test_state, delegate_controller);
+            return new TearDown<SUT>(test_state, delegate_controller);
         }
 
         public Command create_before_all_observations_command()

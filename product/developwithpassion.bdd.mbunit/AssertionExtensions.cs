@@ -1,4 +1,5 @@
 using System;
+using developwithpassion.bdd.core.extensions;
 using MbUnit.Framework;
 
 namespace developwithpassion.bdd.mbunit
@@ -36,19 +37,6 @@ namespace developwithpassion.bdd.mbunit
             resultingException.should_not_be_null();
             resultingException.should_be_an_instance_of<ExceptionType>();
             return (ExceptionType)resultingException;
-        }
-
-        public static Exception get_exception(this Action work)
-        {
-            try
-            {
-                work();
-                return null;
-            }
-            catch (Exception e)
-            {
-                return e;
-            }
         }
 
         static public Type should_be_an_instance_of<Type>(this object item)

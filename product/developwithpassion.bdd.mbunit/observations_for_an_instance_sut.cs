@@ -1,6 +1,6 @@
 using System;
 
-namespace developwithpassion.bdd.mbunit.standard.observations
+namespace developwithpassion.bdd.mbunit
 {
     public abstract class observations_for_an_instance_sut<ContractUnderTest, ClassUnderTest> : an_observations_set_of_basic_behaviours<ContractUnderTest> where ClassUnderTest : ContractUnderTest
     {

@@ -1,7 +1,8 @@
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.core.commands;
-using developwithpassion.bdd.mbunit.standard.observations;
+using developwithpassion.bdd.core.observations;
+using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 
@@ -10,9 +11,9 @@ namespace test.developwithpassion.bdd.core
     public class TearDownCommandSpecs
     {
         public abstract class concern : observations_for_a_sut_with_a_contract<Command,
-                                            TearDownCommand<int>> {}
+                                            TearDown<int>> {}
 
-        [Concern(typeof (TearDownCommand<int>))]
+        [Concern(typeof (TearDown<int>))]
         public class when_tearing_down_a_test : concern
         {
             context c = () =>
@@ -23,7 +24,7 @@ namespace test.developwithpassion.bdd.core
 
             public override Command create_sut()
             {
-                return new TearDownCommand<int>(state, controller);
+                return new TearDown<int>(state, controller);
             }
 
             because b = () =>

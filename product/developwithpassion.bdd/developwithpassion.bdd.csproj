@@ -35,14 +35,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\thirdparty\developwithpassion.commons\developwithpassion.commons.core.infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="MbUnit.Framework, Version=2.4.2.355, Culture=neutral, PublicKeyToken=5e72ecd30bc408d5">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\thirdparty\mbunit\MbUnit.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="QuickGraph, Version=2.4.2.355, Culture=neutral, PublicKeyToken=975e84d0c8d6464d">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\thirdparty\mbunit\QuickGraph.dll</HintPath>
-    </Reference>
     <Reference Include="Rhino.Mocks, Version=3.5.0.1337, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\thirdparty\rhino.mocks\Rhino.Mocks.dll</HintPath>
@@ -63,7 +55,8 @@
     <Compile Include="core\CreateDelegate.cs" />
     <Compile Include="core\DeferredValue.cs" />
     <Compile Include="core\DelegateController.cs" />
-    <Compile Include="core\ObservationController.cs" />
+    <Compile Include="core\extensions\ExceptionExtensions.cs" />
+    <Compile Include="core\observations\ObservationController.cs" />
     <Compile Include="core\SystemUnderTestFactory.cs" />
     <Compile Include="core\FieldMemberTarget.cs" />
     <Compile Include="core\FieldReassignmentStart.cs" />
@@ -71,28 +64,20 @@
     <Compile Include="core\FieldSwitcher.cs" />
     <Compile Include="core\SystemUnderTestDependencyBuilder.cs" />
     <Compile Include="core\MemberTargetRegistry.cs" />
-    <Compile Include="core\MockFactory.cs" />
-    <Compile Include="core\PrepareToMakeAnObservation.cs" />
+    <Compile Include="mocking\MockFactory.cs" />
+    <Compile Include="core\observations\PrepareToMakeAnObservation.cs" />
     <Compile Include="core\PropertyInfoMemberTarget.cs" />
     <Compile Include="core\MemberTarget.cs" />
-    <Compile Include="core\ObservationContext.cs" />
-    <Compile Include="core\ResetTestState.cs" />
-    <Compile Include="mbunit\standard\observations\ObservationContextArgs.cs" />
-    <Compile Include="mbunit\standard\observations\ObservationContextFactory.cs" />
-    <Compile Include="mbunit\standard\observations\Observations.cs" />
-    <Compile Include="mbunit\standard\observations\sut_observation_context.cs" />
+    <Compile Include="core\observations\ObservationContext.cs" />
+    <Compile Include="core\observations\ResetTestState.cs" />
+    <Compile Include="core\observations\ObservationContextArgs.cs" />
+    <Compile Include="core\observations\ObservationContextFactory.cs" />
+    <Compile Include="core\observations\Context.cs" />
     <Compile Include="mocking\rhino\RhinoMocksMockFactory.cs" />
-    <Compile Include="core\TearDownCommand.cs" />
+    <Compile Include="core\observations\TearDownCommand.cs" />
     <Compile Include="core\TestState.cs" />
-    <Compile Include="mbunit\AssertionExtensions.cs" />
-    <Compile Include="mbunit\ComparisonAssertionExtensions.cs" />
-    <Compile Include="mbunit\standard\observations\an_observations_set_of_basic_behaviours.cs" />
     <Compile Include="core\ChangeValueInPipeline.cs" />
-    <Compile Include="core\ObservationCommandFactory.cs" />
-    <Compile Include="mbunit\standard\observations\observations_for_an_instance_sut.cs" />
-    <Compile Include="mbunit\standard\observations\observations_for_a_static_sut.cs" />
-    <Compile Include="mbunit\standard\observations\observations_for_a_sut_without_a_contract.cs" />
-    <Compile Include="mbunit\standard\observations\observations_for_a_sut_with_a_contract.cs" />
+    <Compile Include="core\observations\ObservationCommandFactory.cs" />
     <Compile Include="containers\DependencyResolver.cs" />
     <Compile Include="containers\ContainerItemResolver.cs" />
     <Compile Include="containers\SimpleContainer.cs" />
@@ -105,14 +90,8 @@
     <Compile Include="contexts\context.cs" />
     <Compile Include="contexts\it.cs" />
     <Compile Include="core\commands\ParameterizedCommand.cs" />
-    <Compile Include="mbunit\AppendTestsToTestTree.cs" />
-    <Compile Include="mbunit\BlockRun.cs" />
     <Compile Include="core\PipelineBehaviour.cs" />
     <Compile Include="core\TestScope.cs" />
-    <Compile Include="mbunit\standard\SlowAttribute.cs" />
-    <Compile Include="mbunit\StringAssertionExtensions.cs" />
-    <Compile Include="mbunit\TestTreeArgs.cs" />
-    <Compile Include="mbunit\DelegateRunInvoker.cs" />
     <Compile Include="core\commands\ChainedCommand.cs" />
     <Compile Include="core\commands\CommandExtensions.cs" />
     <Compile Include="core\commands\Command.cs" />
@@ -122,9 +101,6 @@
     <Compile Include="core\extensions\TypeCastingExtensions.cs" />
     <Compile Include="core\extensions\TypeExtensions.cs" />
     <Compile Include="core\DelegateFieldInvocation.cs" />
-    <Compile Include="mbunit\standard\ObservationAttribute.cs" />
-    <Compile Include="mbunit\standard\ObservationsAttribute.cs" />
-    <Compile Include="mbunit\EnumerableAssertionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="mocking\rhino\RhinoMocksExtensions.cs" />
     <Compile Include="mocking\rhino\VoidMethodCallOccurance.cs" />

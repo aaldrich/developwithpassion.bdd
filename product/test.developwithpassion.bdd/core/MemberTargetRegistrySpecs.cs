@@ -2,7 +2,6 @@ using System.Reflection;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core;
 using developwithpassion.bdd.mbunit;
-using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
 namespace test.developwithpassion.bdd.core

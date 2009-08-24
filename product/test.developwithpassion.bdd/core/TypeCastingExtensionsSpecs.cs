@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.core.extensions;
 using developwithpassion.bdd.mbunit;
-using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 
 namespace test.developwithpassion.bdd.core

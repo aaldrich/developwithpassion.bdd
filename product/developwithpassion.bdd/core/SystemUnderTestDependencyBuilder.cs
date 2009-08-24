@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using developwithpassion.bdd.core.extensions;
+using developwithpassion.bdd.mocking;
 
 namespace developwithpassion.bdd.core
 {

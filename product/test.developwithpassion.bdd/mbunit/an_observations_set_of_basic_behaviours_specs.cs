@@ -1,10 +1,8 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using developwithpassion.bdd.core;
+using developwithpassion.bdd.core.observations;
 using developwithpassion.bdd.mbunit;
-using developwithpassion.bdd.mbunit.standard;
-using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdd.mocking.rhino;
 using developwithpassion.bdddoc.core;
 using MbUnit.Framework;

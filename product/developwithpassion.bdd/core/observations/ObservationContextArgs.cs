@@ -1,6 +1,6 @@
-using developwithpassion.bdd.core;
+using developwithpassion.bdd.mocking;
 
-namespace developwithpassion.bdd.mbunit.standard.observations
+namespace developwithpassion.bdd.core.observations
 {
     public class ObservationContextArgs<Contract>
     {

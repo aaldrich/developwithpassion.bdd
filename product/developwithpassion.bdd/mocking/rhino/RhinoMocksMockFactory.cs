@@ -1,5 +1,4 @@
 using System;
-using developwithpassion.bdd.core;
 using Rhino.Mocks;
 
 namespace developwithpassion.bdd.mocking.rhino

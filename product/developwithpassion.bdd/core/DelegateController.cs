@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using developwithpassion.bdd.core.commands;
-using developwithpassion.bdd.mbunit.standard.observations;
+using developwithpassion.bdd.core.observations;
 
 namespace developwithpassion.bdd.core
 {
@@ -43,7 +43,7 @@ namespace developwithpassion.bdd.core
     {
         static public bool is_a_concern_type(this Type type)
         {
-            return typeof (Observations)
+            return typeof (Context)
                 .IsAssignableFrom(type);
         }
     }

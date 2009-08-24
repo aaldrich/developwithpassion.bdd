@@ -1,6 +1,6 @@
 using MbUnit.Framework;
 
-namespace developwithpassion.bdd.mbunit.standard
+namespace developwithpassion.bdd.mbunit
 {
     public class SlowAttribute : FixtureCategoryAttribute
     {

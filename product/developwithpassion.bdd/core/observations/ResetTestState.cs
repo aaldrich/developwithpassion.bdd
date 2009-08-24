@@ -1,6 +1,6 @@
 using developwithpassion.bdd.core.commands;
 
-namespace developwithpassion.bdd.core
+namespace developwithpassion.bdd.core.observations
 {
     public class ResetTestState<SUT> : Command
     {

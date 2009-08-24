@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using developwithpassion.bdd.containers;
-using developwithpassion.bdd.mbunit;
+using System.Linq;
+using developwithpassion.bdd.core.extensions;
+using developwithpassion.bdd.mocking;
 
-namespace developwithpassion.bdd.core
+namespace developwithpassion.bdd.core.observations
 {
     public interface ObservationBasics {
         Dependency the_dependency<Dependency>() where Dependency : class;
@@ -75,7 +77,7 @@ namespace developwithpassion.bdd.core
 
         public void doing<T>(Func<IEnumerable<T>> behaviour)
         {
-            doing(() => behaviour().force_traversal());
+            doing(() => behaviour().Count());
         }
 
 

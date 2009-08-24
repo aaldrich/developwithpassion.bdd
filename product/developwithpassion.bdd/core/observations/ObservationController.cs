@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using developwithpassion.bdd.mbunit.standard.observations;
+using developwithpassion.bdd.mocking;
 
-namespace developwithpassion.bdd.core
+namespace developwithpassion.bdd.core.observations
 {
     public interface ObservationController<Contract, Class, MockFactoryAdapter> : ObservationBasics where MockFactoryAdapter : MockFactory, new()
     {
@@ -46,7 +46,7 @@ namespace developwithpassion.bdd.core
                            test = raw_test_runner
                        }
                 ;
-            observation_context = new ObservationContextFactoryImplementation().create_from(args);
+            observation_context = new ObservationContextFactory().create_from(args);
             observation_context.before_all_observations();
             test_scope_implementation = new TestScopeImplementation<Contract>(observation_context);
         }
@@ -103,7 +103,7 @@ namespace developwithpassion.bdd.core
 
         public InterfaceType container_dependency<InterfaceType>(InterfaceType instance) where InterfaceType : class
         {
-            return observation_context.container_dependency<InterfaceType>(instance);
+            return observation_context.container_dependency(instance);
         }
 
         public InterfaceType an<InterfaceType>() where InterfaceType : class

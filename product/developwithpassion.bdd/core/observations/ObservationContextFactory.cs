@@ -1,8 +1,6 @@
-using developwithpassion.bdd.core;
-
-namespace developwithpassion.bdd.mbunit.standard.observations
+namespace developwithpassion.bdd.core.observations
 {
-    public class ObservationContextFactoryImplementation 
+    public class ObservationContextFactory 
     {
         public ObservationContext<Contract> create_from<Contract>(ObservationContextArgs<Contract> args)
         {
