@@ -82,7 +82,7 @@ namespace test.developwithpassion.bdd.mbunit
             }
         }
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class when_told_to_reset : concern
         {
             Command reset_command;
@@ -111,7 +111,7 @@ namespace test.developwithpassion.bdd.mbunit
         }
 
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class when_told_to_teardown : concern
         {
             Command teardown_command;
@@ -134,7 +134,7 @@ namespace test.developwithpassion.bdd.mbunit
             }
         }
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class when_it_is_asked_for_the_exception_that_was_thrown : concern
         {
             static Exception exception = new Exception();
@@ -170,7 +170,7 @@ namespace test.developwithpassion.bdd.mbunit
             }
         }
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class
             when_it_is_asked_for_the_exception_that_was_thrown_and_the_method_it_is_targeting_is_a_method_that_leverages_the_yield_keyword :
                 concern
@@ -208,7 +208,7 @@ namespace test.developwithpassion.bdd.mbunit
             }
         }
 
-        public class SampleSetOfObservations : an_observations_set_of_basic_behaviours<IDbConnection>
+        public class SampleSetOfObservations : sut_observation_context<IDbConnection, IDbConnection, RhinoMocksMockFactory>
         {
             public override IDbConnection create_sut()
             {
@@ -216,7 +216,7 @@ namespace test.developwithpassion.bdd.mbunit
             }
         }
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class when_its_doing_method_is_leveraged : concern
         {
             static Action action = () => {};
@@ -233,7 +233,7 @@ namespace test.developwithpassion.bdd.mbunit
             }
         }
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class when_creating_a_mock : concern
         {
             IDbConnection result;
@@ -272,7 +272,7 @@ namespace test.developwithpassion.bdd.mbunit
         static int number_to_change;
     }
 
-    [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+    [Concern(typeof (sut_observation_context<,,>))]
     public class when_it_makes_use_of_a_container_dependency :
         observations_for_a_sut_without_a_contract<SomeObjectWithContainerDependencies>
     {

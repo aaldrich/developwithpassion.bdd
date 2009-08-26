@@ -34,7 +34,7 @@ namespace test.developwithpassion.bdd.mbunit
             protected abstract void because();
         }
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class when_told_to_setup : concern
         {
             protected override void because()
@@ -51,7 +51,7 @@ namespace test.developwithpassion.bdd.mbunit
         }
 
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class when_told_to_teardown : concern
         {
             protected override void because()
@@ -68,7 +68,7 @@ namespace test.developwithpassion.bdd.mbunit
 
         public abstract class concern_for_an_observations_set_of_basic_behaviours_that_has_run_its_setup : concern {}
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class when_it_is_asked_for_the_exception_that_was_thrown :
             concern_for_an_observations_set_of_basic_behaviours_that_has_run_its_setup
         {
@@ -94,7 +94,7 @@ namespace test.developwithpassion.bdd.mbunit
         }
 
 
-        public class SampleSetOfObservations : an_observations_set_of_basic_behaviours<IDbConnection>
+        public class SampleSetOfObservations : sut_observation_context<IDbConnection,IDbConnection,RhinoMocksMockFactory>
         {
             public override IDbConnection create_sut()
             {
@@ -102,7 +102,7 @@ namespace test.developwithpassion.bdd.mbunit
             }
         }
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class when_its_doing_method_is_leveraged : concern
         {
             static Action action = () => {};
@@ -119,7 +119,7 @@ namespace test.developwithpassion.bdd.mbunit
             }
         }
 
-        [Concern(typeof (an_observations_set_of_basic_behaviours<>))]
+        [Concern(typeof (sut_observation_context<,,>))]
         public class when_its_an_method_is_used_to_create_a_mock : concern
         {
             IDbConnection result;

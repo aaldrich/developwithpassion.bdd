@@ -72,7 +72,6 @@
     <Compile Include="core\FieldSwitcher.cs" />
     <Compile Include="core\SystemUnderTestDependencyBuilder.cs" />
     <Compile Include="core\MemberTargetRegistry.cs" />
-    <Compile Include="harnesses\mbunit\an_observations_set_of_basic_behaviours.cs" />
     <Compile Include="harnesses\mbunit\AppendTestsToTestTree.cs" />
     <Compile Include="harnesses\mbunit\AssertionExtensions.cs" />
     <Compile Include="harnesses\mbunit\BlockRun.cs" />

@@ -45,73 +45,73 @@ namespace developwithpassion.bdd.harnesses.mbunit
         }
 
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public ChangeValueInPipeline change(Expression<Func<object>> static_expression)
         {
             return observation_controller.change(static_expression);
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public void doing(Action because_behaviour)
         {
             observation_controller.doing(because_behaviour);
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public void doing<T>(Func<IEnumerable<T>> behaviour)
         {
             observation_controller.doing(behaviour);
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public Exception exception_thrown_by_the_sut
         {
             get { return observation_controller.exception_thrown_by_the_sut; }
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public InterfaceType container_dependency<InterfaceType>() where InterfaceType : class
         {
             return observation_controller.container_dependency(an<InterfaceType>());
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public InterfaceType container_dependency<InterfaceType>(InterfaceType instance) where InterfaceType : class
         {
             return observation_controller.container_dependency(instance);
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public object an_item_of(Type type)
         {
             return observation_controller.an_item_of(type);
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public InterfaceType an<InterfaceType>() where InterfaceType : class
         {
             return observation_controller.an<InterfaceType>();
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public void add_pipeline_behaviour(PipelineBehaviour pipeline_behaviour)
         {
             observation_controller.add_pipeline_behaviour(pipeline_behaviour);
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public void add_pipeline_behaviour(Action context, Action teardown)
         {
             observation_controller.add_pipeline_behaviour(context, teardown);
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         static public Contract sut
         {
             get { return observation_controller.sut; }
         }
 
-        [Obsolete("use context property to access testing dsl")]
+        [Obsolete("use context property to access testing controller")]
         public virtual Contract create_sut()
         {
             return observation_controller.build_sut<Contract, Class>();
