@@ -1,5 +1,6 @@
 obj
 bin
+*.chm
 _ReSharper.*
 *.csproj.user
 *.resharper.user
@@ -10,6 +11,7 @@ _ReSharper.*
 *.sql
 *.swp
 *.swo
+/product/docs/Help/*.*
 /artifacts
 /product/config/app.config.vista
 /product/config/app.config.xp
