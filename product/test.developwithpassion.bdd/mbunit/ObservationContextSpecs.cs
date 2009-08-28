@@ -299,7 +299,7 @@ namespace test.developwithpassion.bdd.mbunit
     {
         public void do_something()
         {
-            IOC.get().instance_of<IDbConnection>().Open();
+            IOC.resolve.instance_of<IDbConnection>().Open();
         }
     }
 }
