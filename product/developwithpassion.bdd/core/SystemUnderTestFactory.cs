@@ -8,6 +8,7 @@ namespace developwithpassion.bdd.core
     {
         Contract create<Contract,Class>(); 
     }
+
     public class SystemUnderTestFactoryImplementation : SystemUnderTestFactory
     {
         SystemUnderTestDependencyBuilder dependency_builder;

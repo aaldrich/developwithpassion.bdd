@@ -9,21 +9,26 @@ using MbUnit.Framework;
 namespace developwithpassion.bdd.harnesses.mbunit
 {
     [Observations]
-    public abstract class sut_observation_context<Contract, Class, MockFactoryAdapter> : Context where Class : Contract
-                                                                                                 where MockFactoryAdapter : MockFactory, new()
+    public abstract class sut_observation_context<Contract, Class,
+                                                  MockFactoryAdapter> : Context
+        where Class : Contract where MockFactoryAdapter : MockFactory, new()
     {
-        static public ObservationController<Contract,Class,MockFactoryAdapter> observation_controller;
+        static public ObservationController<Contract, Class, MockFactoryAdapter>
+            observation_controller;
 
         [TestFixtureSetUp]
         public void fixture_setup()
         {
-            observation_controller = new ObservationControllerImplementation<Contract, Class, MockFactoryAdapter>(this,create_sut);
+            observation_controller =
+                new ObservationControllerImplementation
+                    <Contract, Class, MockFactoryAdapter>(this, create_sut);
             observation_controller.init();
         }
 
-        static public TestScopeImplementation<Contract> context
+        static public ObservationController<Contract, Class, MockFactoryAdapter>
+            controller
         {
-            get { return observation_controller.test_scope_implementation; }
+            get { return observation_controller; }
         }
 
         [SetUp]
@@ -46,7 +51,8 @@ namespace developwithpassion.bdd.harnesses.mbunit
 
 
         [Obsolete("use context property to access testing controller")]
-        static public ChangeValueInPipeline change(Expression<Func<object>> static_expression)
+        static public ChangeValueInPipeline change(
+            Expression<Func<object>> static_expression)
         {
             return observation_controller.change(static_expression);
         }
@@ -70,13 +76,16 @@ namespace developwithpassion.bdd.harnesses.mbunit
         }
 
         [Obsolete("use context property to access testing controller")]
-        static public InterfaceType container_dependency<InterfaceType>() where InterfaceType : class
+        static public InterfaceType container_dependency<InterfaceType>()
+            where InterfaceType : class
         {
-            return observation_controller.container_dependency(an<InterfaceType>());
+            return
+                observation_controller.container_dependency(an<InterfaceType>());
         }
 
         [Obsolete("use context property to access testing controller")]
-        static public InterfaceType container_dependency<InterfaceType>(InterfaceType instance) where InterfaceType : class
+        static public InterfaceType container_dependency<InterfaceType>(
+            InterfaceType instance) where InterfaceType : class
         {
             return observation_controller.container_dependency(instance);
         }
@@ -88,19 +97,22 @@ namespace developwithpassion.bdd.harnesses.mbunit
         }
 
         [Obsolete("use context property to access testing controller")]
-        static public InterfaceType an<InterfaceType>() where InterfaceType : class
+        static public InterfaceType an<InterfaceType>()
+            where InterfaceType : class
         {
             return observation_controller.an<InterfaceType>();
         }
 
         [Obsolete("use context property to access testing controller")]
-        static public void add_pipeline_behaviour(PipelineBehaviour pipeline_behaviour)
+        static public void add_pipeline_behaviour(
+            PipelineBehaviour pipeline_behaviour)
         {
             observation_controller.add_pipeline_behaviour(pipeline_behaviour);
         }
 
         [Obsolete("use context property to access testing controller")]
-        static public void add_pipeline_behaviour(Action context, Action teardown)
+        static public void add_pipeline_behaviour(Action context,
+                                                  Action teardown)
         {
             observation_controller.add_pipeline_behaviour(context, teardown);
         }
