@@ -40,6 +40,7 @@ task :init  => :clean do
   mkdir 'artifacts'
   mkdir 'artifacts/coverage'
   mkdir 'artifacts/deploy'
+  mkdir "artifacts/deploy/#{Project.name}"
 end
 
 desc 'expands all of the template files in the project'
@@ -83,7 +84,11 @@ end
 
 desc 'outputs a compiled version of the program to the artifacts/deploy folder'
 task :deploy => [:init,:compile] do
-  copy_project_outputs(File.join('artifacts','deploy'),['*.dll','*.exe','*.pdb'])
+  deploy_folder = File.join('artifacts','deploy')
+  copy_project_outputs(File.join(deploy_folder,Project.name),['*.dll','*.exe','*.pdb'])
+  FileUtils.cp_r(File.join('thirdparty','mbunit'),deploy_folder)
+  FileUtils.cp_r(File.join('thirdparty','rhino.mocks'),deploy_folder)
+  FileUtils.cp_r(File.join('thirdparty','developwithpassion.commons'),deploy_folder)
 end
 
 
