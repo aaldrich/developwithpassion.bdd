@@ -57,19 +57,16 @@ namespace developwithpassion.bdd.harnesses.mbunit
             return observation_controller.change(static_expression);
         }
 
-        [Obsolete("use context property to access testing controller")]
         static public void doing(Action because_behaviour)
         {
             observation_controller.doing(because_behaviour);
         }
 
-        [Obsolete("use context property to access testing controller")]
         static public void doing<T>(Func<IEnumerable<T>> behaviour)
         {
             observation_controller.doing(behaviour);
         }
 
-        [Obsolete("use context property to access testing controller")]
         static public Exception exception_thrown_by_the_sut
         {
             get { return observation_controller.exception_thrown_by_the_sut; }
@@ -96,7 +93,6 @@ namespace developwithpassion.bdd.harnesses.mbunit
             return observation_controller.an_item_of(type);
         }
 
-        [Obsolete("use context property to access testing controller")]
         static public InterfaceType an<InterfaceType>()
             where InterfaceType : class
         {
@@ -117,13 +113,11 @@ namespace developwithpassion.bdd.harnesses.mbunit
             observation_controller.add_pipeline_behaviour(context, teardown);
         }
 
-        [Obsolete("use context property to access testing controller")]
         static public Contract sut
         {
             get { return observation_controller.sut; }
         }
 
-        [Obsolete("use context property to access testing controller")]
         public virtual Contract create_sut()
         {
             return observation_controller.build_sut<Contract, Class>();
